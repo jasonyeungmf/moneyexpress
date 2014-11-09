@@ -1,13 +1,4 @@
 <?php
-
-/*
-* Script: phpinfo.php
-* 	Show the servers PHP settings
-*
-* License:
-*	 GPL v3 or above
-*/
-
 $secure = true;
 
 if($secure)
