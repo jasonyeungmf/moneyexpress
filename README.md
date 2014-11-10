@@ -10,13 +10,13 @@
 	<li>et.</li>
 </ul>
 
-<img src="https://github.com/jesonyang001/moneyexpress/blob/master/images/money_exchange_system.jpg" alt="Money express system screenshot" style="width:640px;height:306px">
+<img src="https://github.com/jesonyang001/moneyexpress/blob/master/images/money_exchange_system.jpg" alt="Money express screenshot" style="width:640px;height:306px">
 
 #Feature
 Include 4 modules:
 <ul>
-	<li>Receipt manage(money exchange,remittance)</li>
+	<li>Receipt manage</li>
 	<li>Account manage</li>
-	<li>Role manage(user,staff,customer)</li>
+	<li>Role manage</li>
 	<li>Product manage</li>
 </ul>
