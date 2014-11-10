@@ -1,17 +1,4 @@
 <?php
-/*
-* Script: details.php
-* 	invoice details page
-*
-* License:
-*	 GPL v3 or above
-*
-* Website:
-* 	http://www.simpleinvoices.org
- */
-#table
-
-//stop the direct browsing to this file - let index.php handle which files get displayed
 checkLogin();
 
 #get the invoice id

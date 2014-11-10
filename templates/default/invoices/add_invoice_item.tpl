@@ -1,15 +1,3 @@
-{*
-/*
-* Script: add_invoice_item.tpl
-* 	 Add new item to an existing invoice 
-*
-* License:
-*	 GPL v2 or above
-*
-* Website:
-*	http://www.simpleinvoices.org
-*/
-*}
 {if $smarty.post.submit != null}
 	<meta http-equiv="refresh" content="1;URL=index.php?module=invoices&amp;view=details&amp;id={$smarty.post.id|urlencode}&amp;type={$smarty.post.type|urlencode}" />
 	<br /><br />

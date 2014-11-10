@@ -1,15 +1,3 @@
-{*
-/*
-* Script: consulting.tpl
-* 	 Consulting invoice type template
-*
-* License:
-*	 GPL v3 or above
-*
-* Website:
-*	http://www.simpleinvoices.org
-*/
-*}
 <form name="frmpost" action="index.php?module=invoices&amp;view=save" method="post" onsubmit="return frmpost_Validator(this);">
 
 <h3>{$LANG.inv} {$LANG.inv_consulting}

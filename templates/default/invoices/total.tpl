@@ -1,16 +1,3 @@
-{*
-/*
-* Script: total.tpl
-* 	 Total style invoice template
-*
-* License:
-*	 GPL v3 or above
-*
-* Website:
-*	http://www.simpleinvoices.org
-*/
-*}
-
 <form name="frmpost" action="index.php?module=invoices&amp;view=save" method="POST">
 <!--
 <h3>{$LANG.inv} {$LANG.inv_total}</h3>

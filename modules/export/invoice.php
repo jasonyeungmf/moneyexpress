@@ -1,14 +1,4 @@
 <?php
-/*
-* Script: template.php
-* 	invoice export page
-*
-* License:
-*	 GPL v3 or above
-*
-* Website:
-* 	http://www.simpleinvoices.org
- */
 #define("BROWSE","browse");
 
 $invoiceID = $_GET['id'];

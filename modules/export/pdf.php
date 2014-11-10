@@ -1,11 +1,4 @@
 <?php
-// Author 
-//		Ap.Muthu
-// Last Edited on 
-//		2008-01-04
-/*
-require_once("./include/init.php");	// for getInvoice() and getPreference()
-*/
 $invoice_id = $_GET['id'];
 $invoice = getInvoice($invoice_id);
 

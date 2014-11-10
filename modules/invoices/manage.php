@@ -1,16 +1,4 @@
 <?php
-/*
-* Script: manage.php
-* 	Manage Invoices page
-*
-* License:
-*	 GPL v2 or above
-*
-* Website:
-* 	http://www.simpleinvoices.org
- */
-
-//stop the direct browsing to this file - let index.php handle which files get displayed
 checkLogin();
 
 $sql = "SELECT count(*) as count FROM ".TB_PREFIX."invoices";

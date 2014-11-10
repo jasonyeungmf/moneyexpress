@@ -1,18 +1,3 @@
-{*
-/*
-* Script: details.tpl
-* 	 Invoice details template
-*	 Modified for 'default_invoices' by Marcel van Dorp. Version 20090208
-*	 if no invoice_id set, the date will be today, and the action will be 'insert' instead of 'edit'
-*
-* License:
-*	 GPL v3 or above
-*
-* Website:
-*	http://www.simpleinvoices.org
-*/
-*}
-{* <h3>You are editing {$preference.pref_inv_wording|htmlsafe} {$invoice.id|htmlsafe}</h3> *}
 <br />
 <div id="gmail_loading" class="gmailLoader" style="float:right; display: none;">
         	<img src="images/common/gmail-loader.gif" alt="{$LANG.loading} ..." /> {$LANG.loading} ...

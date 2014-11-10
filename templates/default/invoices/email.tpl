@@ -1,21 +1,3 @@
-{*
-/*
-* Script: email.tpl
-* 	 Send invoice via email page template
-*
-* Authors:
-*	 Justin Kelly, Nicolas Ruflin
-*
-* Last edited:
-* 	 2007-07-18
-*
-* License:
-*	 GPL v2 or above
-*
-* Website:
-*	http://www.simpleinvoices.org
-*/
-*}
 {if $smarty.get.stage == 1 }
 
 <form name="frmpost" action="index.php?module=invoices&amp;view=email&amp;stage=2&amp;id={$smarty.get.id|urlencode}" method="post">

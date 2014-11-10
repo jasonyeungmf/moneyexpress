@@ -1,16 +1,4 @@
 <?php
-/*
-* Script: add_invoice_item.php
-* 	add new invoice item in edit page
-*
-* License:
-*	 GPL v3 or above
-*
-* Website:
-* 	http://www.simpleinvoices.org
-*/
-
-
 if(isset($_POST['submit'])) {
 	insertInvoiceItem(
 		$_POST['id'],

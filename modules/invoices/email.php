@@ -1,16 +1,4 @@
 <?php
-/*
-* Script: email.php
-* 	Email invoice page
-*
-* License:
-*	 GPL v3 or above
-*
-* Website:
-* 	http://www.simpleinvoices.org
- */
-
-//stop the direct browsing to this file - let index.php handle which files get displayed
 checkLogin();
 
 #get the invoice id
