@@ -10,7 +10,7 @@
 	<li>et.</li>
 </ul>
 
-<img src="https://github.com/jesonyang001/moneyexpress/blob/master/images/money_exchange_system.jpg" alt="Money express screenshot" style="width:960px;height:459px">
+<img src="https://github.com/jesonyang001/moneyexpress/blob/master/images/money_exchange_system.jpg" alt="Money express screenshot">
 
 #Feature
 Include 4 modules:
