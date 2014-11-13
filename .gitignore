@@ -1,8 +1,8 @@
-.xls
-.log
+*.xls
+*.log
 
 
-/tmp/database_backups/*.*
-/tmp/cache/*.*
+tmp/database_backups/*.*
+tmp/cache/*.*
 
-/excelfile/*.*
+excelfile/
