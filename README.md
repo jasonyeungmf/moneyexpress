@@ -15,8 +15,8 @@
 #Feature
 Include 4 modules:
 <ul>
-	<li>Receipt manage</li>
-	<li>Account manage</li>
-	<li>Role manage</li>
-	<li>Product manage</li>
+	<li>Receipt manage(note and T/T)</li>
+	<li>Account manage(T/T)</li>
+	<li>Role manage(user,staff,customer)</li>
+	<li>Product manage(note,T/T)</li>
 </ul>
