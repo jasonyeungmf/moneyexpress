@@ -38060,3 +38060,25 @@
 2014-11-11T02:32:07+08:00 INFO (6): invoice created
 2014-11-11T02:32:08+08:00 INFO (6): Max Invoice: 11
 2014-11-11T02:32:11+08:00 INFO (6): Max Invoice: 11
+2014-11-13T00:15:50+08:00 INFO (6): Max Invoice: 11
+2014-11-13T00:15:51+08:00 INFO (6): Max Invoice: 11
+2014-11-13T00:15:51+08:00 INFO (6): Itemised invoice created
+2014-11-13T00:15:52+08:00 INFO (6): Max Invoice: 11
+2014-11-13T00:15:52+08:00 INFO (6): Invoice: 11 Item id: 12 Tax 0 Tax ID: 6
+2014-11-13T00:15:52+08:00 INFO (6): Invoice: 11 Item id: 13 Tax 0 Tax ID: 6
+2014-11-13T00:15:52+08:00 INFO (6): Invoice: 11 Item id: 12 Tax 0 Tax ID: 6
+2014-11-13T00:15:52+08:00 INFO (6): Invoice: 11 Item id: 13 Tax 0 Tax ID: 6
+2014-11-13T00:15:53+08:00 INFO (6): Max Invoice: 11
+2014-11-13T00:15:53+08:00 INFO (6): Invoice: 11 Item id: 12 Tax 0 Tax ID: 6
+2014-11-13T00:15:53+08:00 INFO (6): Invoice: 11 Item id: 13 Tax 0 Tax ID: 6
+2014-11-13T00:15:53+08:00 INFO (6): eway pre check: false
+2014-11-13T00:15:57+08:00 INFO (6): Max Invoice: 11
+2014-11-13T00:15:58+08:00 INFO (6): Invoice: 11 Item id: 12 Tax 0 Tax ID: 6
+2014-11-13T00:15:58+08:00 INFO (6): Invoice: 11 Item id: 13 Tax 0 Tax ID: 6
+2014-11-13T00:15:58+08:00 INFO (6): eway pre check: false
+2014-11-13T21:59:52+08:00 INFO (6): Max Invoice: 11
+2014-11-13T21:59:55+08:00 INFO (6): Max Invoice: 11
+2014-11-13T22:00:04+08:00 INFO (6): Max Invoice: 11
+2014-11-13T22:00:06+08:00 INFO (6): Max Invoice: 11
+2014-11-13T22:00:12+08:00 INFO (6): Max Invoice: 11
+2014-11-13T22:00:14+08:00 INFO (6): Max Invoice: 11

@@ -1,2 +1,8 @@
-#direct
-/excelfile
+.xls
+.log
+
+
+/tmp/database_backups/*.*
+/tmp/cache/*.*
+
+/excelfile/*.*
