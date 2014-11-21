@@ -94,19 +94,17 @@
 {else}
 {include file="$path/header.tpl" }
 <br/>
-<table align="left" border="0">
+<table align="left" border="1">
 	<tr>
 		<td colspan="3">
-		<table id="itemtable">
+		<table id="itemtable" border="1">
 			<tbody id="itemtable-tbody">
 			<tr>
 				<td class="details_screen"></td>
 				<td class="details_screen">{$LANG.quantity}</td>
 				<td class="details_screen">{$LANG.product}</td>
-				{section name=tax_header loop=$defaults.tax_per_line_item }
-				<td class="details_screen">{$LANG.tax} {if $defaults.tax_per_line_item > 1}{$smarty.section.tax_header.index+1|htmlsafe}{/if} </td>
-				{/section}
 				<td class="details_screen">{$LANG.unit_price}</td>
+				<td class="details_screen">{$LANG.charge}</td>
 				<td class="details_screen">{$LANG.total}</td>
 				<td class="details_screen">{$LANG.note_cost}</td>
 				
@@ -193,30 +191,6 @@
 					{/if}
 						</td>
 						
-						{section name=tax start=0 loop=$defaults.tax_per_line_item step=1}
-		                    		{ assign var="taxNumber" value=$smarty.section.tax.index } 
-						<td>				                				                
-							<select 
-								id="tax_id[{$smarty.section.line.index|htmlsafe}][{$smarty.section.tax.index|htmlsafe}]"
-								name="tax_id[{$smarty.section.line.index|htmlsafe}][{$smarty.section.tax.index|htmlsafe}]"
-							>
-							{*<option value=""></option>*}
-							{foreach from=$taxes item=tax}
-								<option 
-								    {if $tax.tax_id == $smarty.get.tax.$lineNumber.$taxNumber}
-									value="{$smarty.get.tax.$lineNumber.$taxNumber}"
-									selected
-								    {else}
-								       value="{$tax.tax_id|htmlsafe}"
-								    {/if}
-								>
-								    {$tax.tax_description|htmlsafe}
-								</option>
-							{/foreach}
-						</select>
-						</td>
-						{/section}			
-						
 						<td>
 							<input 
 								id="unit_price{$smarty.section.line.index|htmlsafe}" 
@@ -232,7 +206,20 @@
                                 				class="{if $smarty.section.line.index == "0"}validate[required]{/if} unit_price_change"
 							/>
 						</td>
-						
+						<td>
+							<input 
+			                                AUTOCOMPLETE="OFF"
+							type="text" 
+			                                class="{if $smarty.section.line.index == "0"}validate[required]{/if} charge_change"
+			                                name="charge{$smarty.section.line.index|htmlsafe}" 
+			                                id="charge{$smarty.section.line.index|htmlsafe}" 
+							size="20" 
+							rel="{$smarty.section.line.index|htmlsafe}"
+			                                {if $smarty.get.charge.$lineNumber}
+			                                	value="{$smarty.get.charge.$lineNumber}"
+			                                {/if}
+			                                />
+						</td>									
 						<td>
 							<input 
 								readonly="readonly"
@@ -375,7 +362,7 @@
 </tr>
 <tr>
 <td>
-<table class="buttons" align="center">
+<table class="buttons" align="center" border="1">
 	<tr>
 		<td>
 		<button type="submit" class="invoice_save positive" name="submit" value="{$LANG.save}">
