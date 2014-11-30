@@ -94,8 +94,9 @@
 {else}
 {include file="$path/header.tpl" }
 <br/>
-<table border="1">
-<tr><td>
+
+<table border="1"><tr><td>
+
 <table border="0">
 	<tr>
 		<td colspan="3">
@@ -103,13 +104,13 @@
 			<tbody id="itemtable-tbody">
 			<tr>
 				<td class="details_screen"></td>				
-				<td class="details_screen">{$LANG.product}</td>
+				<td class="details_screen">{$LANG.currency}</td>
 				<td class="details_screen">{$LANG.quantity}</td>				
 				<td class="details_screen">{$LANG.unit_price}</td>
 				<td class="details_screen">{$LANG.subtotal}</td>
 				<td class="details_screen">{$LANG.charge}</td>
 				<td class="details_screen">{$LANG.total}</td>
-				<td class="details_screen">{$LANG.note_cost}</td>
+				<td class="details_screen">{$LANG.cost}</td>
 				
 			</tr>
 			</tbody>
@@ -157,22 +158,22 @@
 					<p><em>{$LANG.no_currencys_note}</em></p>
 					{else}
 						<select 
-							id="products{$smarty.section.line.index|htmlsafe}"
-							name="products{$smarty.section.line.index|htmlsafe}"
+							id="currencys{$smarty.section.line.index|htmlsafe}"
+							name="currencys{$smarty.section.line.index|htmlsafe}"
 							rel="{$smarty.section.line.index|htmlsafe}"
-							class="validate[required] product_change"						
+							class="validate[required] currency_change"						
                         			>
 							<option value=""></option>
-							{foreach from=$currencys_note item=product}
+							{foreach from=$currencys_note item=currency}
 							<option 
-								{if $product.id == $smarty.get.product.$lineNumber}
-								    value="{$smarty.get.product.$lineNumber}"
+								{if $currency.id == $smarty.get.currency.$lineNumber}
+								    value="{$smarty.get.currency.$lineNumber}"
 								    selected
 								{else}
-								    value="{$product.id|htmlsafe}"
+								    value="{$currency.id|htmlsafe}"
 								{/if}
 							>
-								{$product.code|htmlsafe}
+								{$currency.code|htmlsafe}
 							</option>
 						{/foreach}
 						</select>
@@ -374,8 +375,9 @@
 	</tr>
 
 </table>
-</td></tr>
-</table>
+
+</td></tr></table>
+
 </td>
 </tr>
 <tr>

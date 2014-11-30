@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.18, created on 2014-11-02 19:00:25
+<?php /* Smarty version 2.6.18, created on 2014-11-30 23:59:14
          compiled from ../templates/default/invoices//header.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'htmlsafe', '../templates/default/invoices//header.tpl', 22, false),array('modifier', 'date_format', '../templates/default/invoices//header.tpl', 92, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'htmlsafe', '../templates/default/invoices//header.tpl', 20, false),array('modifier', 'date_format', '../templates/default/invoices//header.tpl', 92, false),)), $this); ?>
 <br />
 <br />
 
@@ -11,10 +11,8 @@ smarty_core_load_plugins(array('plugins' => array(array('modifier', 'htmlsafe', 
 <td>
 <table align="left" border="0">
 	<tr>
-        	<td class="details_screen">
-                	<?php echo $this->_tpl_vars['LANG']['trading_type']; ?>
-
-                </td>
+        	<td class="details_screen"><?php echo $this->_tpl_vars['LANG']['trading_type']; ?>
+</td>
 		
                 <td>
                 <?php if ($this->_tpl_vars['trading_types'] == null): ?>
@@ -38,6 +36,8 @@ smarty_core_load_plugins(array('plugins' => array(array('modifier', 'htmlsafe', 
                         </select>
                 <?php endif; ?>
                 </td>
+		
+		<td class="details_screen">Summary:</td>
         </tr>
 		       
                <tr>

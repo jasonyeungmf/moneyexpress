@@ -7,9 +7,7 @@
 <td>
 <table align="left" border="0">
 	<tr>
-        	<td class="details_screen">
-                	{$LANG.trading_type}
-                </td>
+        	<td class="details_screen">{$LANG.trading_type}</td>
 		
                 <td>
                 {if $trading_types == null }
@@ -28,6 +26,8 @@
                         </select>
                 {/if}
                 </td>
+		
+		<td class="details_screen">Summary:</td>
         </tr>
 		       
                <tr>

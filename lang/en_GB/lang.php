@@ -606,9 +606,11 @@ $LANG['insert_account'] = "Insert Account";//1
 $LANG['account_id'] = "Account ID";//1
 $LANG['add_to_invoice'] = "Add To Invoice";//1
 
-// Currency note
+// Currency notes
 $LANG['country'] = "Country";//1
 $LANG['symbol'] = "Symbol";//1
+$LANG['currency'] = "Currency";//1
+$LANG['currencies'] = "Currencies";//1
 $LANG['currency_en'] = "Currency(English)";//1
 $LANG['currency_local'] = "Currency(Local)";//1
 $LANG['code'] = "Code";//1

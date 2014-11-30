@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.18, created on 2014-11-29 10:33:35
+<?php /* Smarty version 2.6.18, created on 2014-12-01 01:52:04
          compiled from ../include/jquery/jquery.conf.js.tpl */ ?>
 <?php echo '
 <script type="text/javascript">
@@ -231,31 +231,31 @@ startclock();
 	$(".trading_type_change").livequery(\'change\',function () {
 		var $trading_type = $(this).val();
 		var $row_number;
-		var $product;
+		var $currency;
 		var $quantity;
 		var $charge;
 		count_invoice_line_items();
 		var $rowID_last = $("#max_items").attr("value");
 		for(var $i=0;$i<=$rowID_last;$i++){
       		$row_number = $i;
-      		$product = $("#products"+$row_number).val();
+      		$currency = $("#currencys"+$row_number).val();
       		$quantity = $("#quantity"+$row_number).attr("value");
 			$charge = $("#charge"+$row_number).attr("value");
- 			invoice_trading_type_change($trading_type,$row_number,$product,$quantity,$charge);
+ 			invoice_trading_type_change($trading_type,$row_number,$currency,$quantity,$charge);
 		}
 		siLog(\'debug\',\''; ?>
 <?php echo $this->_tpl_vars['LANG']['description']; ?>
 <?php echo '\');
      });
 	 
-	// Product change
-	$(".product_change").livequery(\'change\',function () { 
+	// Currency change
+	$(".currency_change").livequery(\'change\',function () { 
       	var $row_number = $(this).attr("rel");
-      	var $product = $(this).val();
+      	var $currency = $(this).val();
       	var $quantity = $("#quantity"+$row_number).attr("value");
 		var $charge = $("#charge"+$row_number).attr("value");
 		var $trading_type = $("#trading_type_id").val();
- 		invoice_product_change($product,$row_number,$quantity,$charge,$trading_type);
+ 		invoice_currency_change($currency,$row_number,$quantity,$charge,$trading_type);
 		siLog(\'debug\',\''; ?>
 <?php echo $this->_tpl_vars['LANG']['description']; ?>
 <?php echo '\');

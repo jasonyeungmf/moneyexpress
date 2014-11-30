@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.18, created on 2014-11-30 03:28:02
+<?php /* Smarty version 2.6.18, created on 2014-12-01 01:40:42
          compiled from ../templates/default/invoices/itemised.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'htmlsafe', '../templates/default/invoices/itemised.tpl', 119, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'htmlsafe', '../templates/default/invoices/itemised.tpl', 120, false),)), $this); ?>
 <form name="frmpost" action="index.php?module=invoices&amp;view=save" method="post" onsubmit="return frmpost_Validator(this)">
 
 <div id="gmail_loading" class="gmailLoader" style="float:right; display: none;">
@@ -115,8 +115,9 @@ $this->_tpl_vars = $_smarty_tpl_vars;
 unset($_smarty_tpl_vars);
  ?>
 <br/>
-<table border="1">
-<tr><td>
+
+<table border="1"><tr><td>
+
 <table border="0">
 	<tr>
 		<td colspan="3">
@@ -124,7 +125,7 @@ unset($_smarty_tpl_vars);
 			<tbody id="itemtable-tbody">
 			<tr>
 				<td class="details_screen"></td>				
-				<td class="details_screen"><?php echo $this->_tpl_vars['LANG']['product']; ?>
+				<td class="details_screen"><?php echo $this->_tpl_vars['LANG']['currency']; ?>
 </td>
 				<td class="details_screen"><?php echo $this->_tpl_vars['LANG']['quantity']; ?>
 </td>				
@@ -136,7 +137,7 @@ unset($_smarty_tpl_vars);
 </td>
 				<td class="details_screen"><?php echo $this->_tpl_vars['LANG']['total']; ?>
 </td>
-				<td class="details_screen"><?php echo $this->_tpl_vars['LANG']['note_cost']; ?>
+				<td class="details_screen"><?php echo $this->_tpl_vars['LANG']['cost']; ?>
 </td>
 				
 			</tr>
@@ -221,29 +222,29 @@ $this->_sections['line']['last']       = ($this->_sections['line']['iteration'] 
 </em></p>
 					<?php else: ?>
 						<select 
-							id="products<?php echo ((is_array($_tmp=$this->_sections['line']['index'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
+							id="currencys<?php echo ((is_array($_tmp=$this->_sections['line']['index'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
 "
-							name="products<?php echo ((is_array($_tmp=$this->_sections['line']['index'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
+							name="currencys<?php echo ((is_array($_tmp=$this->_sections['line']['index'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
 "
 							rel="<?php echo ((is_array($_tmp=$this->_sections['line']['index'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
 "
-							class="validate[required] product_change"						
+							class="validate[required] currency_change"						
                         			>
 							<option value=""></option>
 							<?php $_from = $this->_tpl_vars['currencys_note']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
-    foreach ($_from as $this->_tpl_vars['product']):
+    foreach ($_from as $this->_tpl_vars['currency']):
 ?>
 							<option 
-								<?php if ($this->_tpl_vars['product']['id'] == $_GET['product'][$this->_tpl_vars['lineNumber']]): ?>
-								    value="<?php echo $_GET['product'][$this->_tpl_vars['lineNumber']]; ?>
+								<?php if ($this->_tpl_vars['currency']['id'] == $_GET['currency'][$this->_tpl_vars['lineNumber']]): ?>
+								    value="<?php echo $_GET['currency'][$this->_tpl_vars['lineNumber']]; ?>
 "
 								    selected
 								<?php else: ?>
-								    value="<?php echo ((is_array($_tmp=$this->_tpl_vars['product']['id'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
+								    value="<?php echo ((is_array($_tmp=$this->_tpl_vars['currency']['id'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
 "
 								<?php endif; ?>
 							>
-								<?php echo ((is_array($_tmp=$this->_tpl_vars['product']['code'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
+								<?php echo ((is_array($_tmp=$this->_tpl_vars['currency']['code'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
 
 							</option>
 						<?php endforeach; endif; unset($_from); ?>
@@ -489,8 +490,9 @@ $this->_sections['line']['last']       = ($this->_sections['line']['iteration'] 
 	</tr>
 
 </table>
-</td></tr>
-</table>
+
+</td></tr></table>
+
 </td>
 </tr>
 <tr>

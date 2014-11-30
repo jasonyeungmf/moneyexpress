@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.18, created on 2014-11-30 03:41:27
+<?php /* Smarty version 2.6.18, created on 2014-12-01 02:23:27
          compiled from ../include/jquery/jquery.functions.js.tpl */ ?>
 <?php echo '
 <script type="text/javascript">
@@ -34,20 +34,20 @@
 	}
 	
 	//trading type change
-	function invoice_trading_type_change(trading_type, row_number, product, quantity, charge){
+	function invoice_trading_type_change(trading_type, row_number, currency, quantity, charge){
 		
 		if(trading_type == "1"){
-			var $product_ajax = \'product_ajax_note_buy\';
+			var $currency_ajax = \'currency_ajax_note_buy\';
 		}
 		if(trading_type == "2"){
-			var $product_ajax = \'product_ajax_note_sell\';
+			var $currency_ajax = \'currency_ajax_note_sell\';
 		}
 		
       	$(\'#gmail_loading\').show();
 		$.ajax({
 			type: \'GET\',
-			url: \'./index.php?module=invoices&view=\'+$product_ajax+\'&id=\'+product,
-			data: "id: "+product,
+			url: \'./index.php?module=invoices&view=\'+$currency_ajax+\'&id=\'+currency,
+			data: "id: "+currency,
 			dataType: "json",
 			success: function(data){
 				$(\'#gmail_loading\').hide();
@@ -102,21 +102,21 @@
    		 });
      }
 
-	/* Product change*/
-	function invoice_product_change(product, row_number, quantity, charge,trading_type){
+	/* Currency change*/
+	function invoice_currency_change(currency, row_number, quantity, charge,trading_type){
 		
 		if(trading_type == "1"){
-			var $product_ajax = \'product_ajax_note_buy\';
+			var $currency_ajax = \'currency_ajax_note_buy\';
 		}
 		if(trading_type == "2"){
-			var $product_ajax = \'product_ajax_note_sell\';
+			var $currency_ajax = \'currency_ajax_note_sell\';
 		}
 		
       	$(\'#gmail_loading\').show();
 		$.ajax({
 			type: \'GET\',
-			url: \'./index.php?module=invoices&view=\'+$product_ajax+\'&id=\'+product,
-			data: "id: "+product,
+			url: \'./index.php?module=invoices&view=\'+$currency_ajax+\'&id=\'+currency,
+			data: "id: "+currency,
 			dataType: "json",
 			success: function(data){
 				$(\'#gmail_loading\').hide();
@@ -185,28 +185,6 @@
    		 });
      }
     
-	/*
-	* Product Change -Inventory  - updates cost from  product info
-	*/
-	function product_inventory_change(product,existing_cost){
-	
-      	$(\'#gmail_loading\').show();
-		$.ajax({
-			type: \'GET\',
-			url: \'./index.php?module=invoices&view=product_inventory_ajax&id=\'+product,
-			data: "id: "+product,
-			dataType: "json",
-			success: function(data){
-				$(\'#gmail_loading\').hide();
-                if(existing_cost !==null)
-                {
-				    $("#cost").attr("value",data[\'cost\']);
-                }
-			}
-	
-   		 });
-     }
-
 	/*
 	 * Function: count_invoice_line_items
 	 * Purpose: find the last line item and update max_items so /modules/invoice/save.php can access it
@@ -297,11 +275,11 @@
 		clonedRow.find("#line_item"+rowID_new).attr("name", "line_item"+rowID_new);
 		clonedRow.find("#line_item"+rowID_new).val(\'\');
 	
-		//clonedRow.find("#products"+rowID_old).removeAttr("onchange");
-		clonedRow.find("#products"+rowID_old).attr("rel", rowID_new);
-		clonedRow.find("#products"+rowID_old).attr("id", "products"+rowID_new);
-		clonedRow.find("#products"+rowID_new).attr("name", "products"+rowID_new);
-		//clonedRow.find("#products"+rowID_new).removeClass("validate[required]");
+		//clonedRow.find("#currencys"+rowID_old).removeAttr("onchange");
+		clonedRow.find("#currencys"+rowID_old).attr("rel", rowID_new);
+		clonedRow.find("#currencys"+rowID_old).attr("id", "currencys"+rowID_new);
+		clonedRow.find("#currencys"+rowID_new).attr("name", "currencys"+rowID_new);
+		//clonedRow.find("#currencys"+rowID_new).removeClass("validate[required]");
 
 		clonedRow.find("#quantity"+rowID_old).attr("rel", rowID_new);
 		$("#quantity"+rowID_old, clonedRow).attr("id", "quantity"+rowID_new);
