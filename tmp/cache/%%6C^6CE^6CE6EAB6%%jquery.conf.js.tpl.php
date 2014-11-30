@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.18, created on 2014-02-22 02:58:02
+<?php /* Smarty version 2.6.18, created on 2014-11-29 10:33:35
          compiled from ../include/jquery/jquery.conf.js.tpl */ ?>
 <?php echo '
 <script type="text/javascript">
@@ -139,11 +139,16 @@ startclock();
 	
 	//quantity keyup
 	$(".quantity_change").livequery(\'keyup\',function (){
-       	//total count
+       	//subtotal and total count
 		var $row_number = $(this).attr("rel");
       	var $quantity = $(this).val();
 		var $unit_price = $("#unit_price"+$row_number).attr("value");
-		var $total = $quantity * $unit_price;
+		var $subtotal = $quantity * $unit_price;
+			$subtotal = Math.round($subtotal*100)/100;
+		var $charge = ($("#charge"+$row_number).attr("value") - 0);
+		var $total = $subtotal + $charge;
+			$total = Math.round($total*100)/100;
+		$("#subtotal"+$row_number).attr("value",$subtotal);
 		$("#total"+$row_number).attr("value",$total);
 		
 		//invoice total count
@@ -164,11 +169,16 @@ startclock();
 
 	//unit price keyup
 	$(".unit_price_change").livequery(\'keyup\',function (){
-       	//total count
+       	//subtotal and total count
 		var $row_number = $(this).attr("rel");
 		var $quantity = $("#quantity"+$row_number).attr("value");
       	var $unit_price = $(this).val();
-		var $total = $quantity * $unit_price;
+		var $subtotal = $quantity * $unit_price;
+			$subtotal = Math.round($subtotal*100)/100;
+		var $charge = ($("#charge"+$row_number).attr("value") - 0);
+		var $total = $subtotal + $charge;
+			$total = Math.round($total*100)/100;
+		$("#subtotal"+$row_number).attr("value",$subtotal);
 		$("#total"+$row_number).attr("value",$total);
 		
 		//invoice total count
@@ -187,19 +197,51 @@ startclock();
 <?php echo '\');
     });
 	
+	//charge keyup
+	$(".charge_change").livequery(\'keyup\',function (){
+       	//subtotal and total count
+		var $row_number = $(this).attr("rel");
+      	var $quantity = $("#quantity"+$row_number).attr("value");
+		var $unit_price = $("#unit_price"+$row_number).attr("value");
+		var $subtotal = $quantity * $unit_price;
+			$subtotal = Math.round($subtotal*100)/100;
+		var $charge = ($(this).val() - 0);
+		var $total = $subtotal + $charge;
+			$total = Math.round($total*100)/100;
+		$("#subtotal"+$row_number).attr("value",$subtotal);
+		$("#total"+$row_number).attr("value",$total);
+		
+		//invoice total count
+		count_invoice_line_items();
+		var $rowID_last = $("#max_items").attr("value");
+		var $invoice_total = 0;
+		for(var $i=0;$i<=$rowID_last;$i++)
+		{
+			$invoice_total += ($("#total"+$i).attr("value") - 0);
+		}
+		$invoice_total = Math.round($invoice_total*100)/100;
+		$("#invoice_total").attr("value",$invoice_total);					
+		
+		siLog(\'debug\',\''; ?>
+<?php echo $this->_tpl_vars['LANG']['description']; ?>
+<?php echo '\');
+    });
+	
 	//trading type change
 	$(".trading_type_change").livequery(\'change\',function () {
 		var $trading_type = $(this).val();
 		var $row_number;
 		var $product;
 		var $quantity;
+		var $charge;
 		count_invoice_line_items();
 		var $rowID_last = $("#max_items").attr("value");
 		for(var $i=0;$i<=$rowID_last;$i++){
       		$row_number = $i;
       		$product = $("#products"+$row_number).val();
       		$quantity = $("#quantity"+$row_number).attr("value");
- 			invoice_trading_type_change($product, $row_number, $quantity, $trading_type);
+			$charge = $("#charge"+$row_number).attr("value");
+ 			invoice_trading_type_change($trading_type,$row_number,$product,$quantity,$charge);
 		}
 		siLog(\'debug\',\''; ?>
 <?php echo $this->_tpl_vars['LANG']['description']; ?>
@@ -211,8 +253,9 @@ startclock();
       	var $row_number = $(this).attr("rel");
       	var $product = $(this).val();
       	var $quantity = $("#quantity"+$row_number).attr("value");
+		var $charge = $("#charge"+$row_number).attr("value");
 		var $trading_type = $("#trading_type_id").val();
- 		invoice_product_change($product, $row_number, $quantity, $trading_type);
+ 		invoice_product_change($product,$row_number,$quantity,$charge,$trading_type);
 		siLog(\'debug\',\''; ?>
 <?php echo $this->_tpl_vars['LANG']['description']; ?>
 <?php echo '\');

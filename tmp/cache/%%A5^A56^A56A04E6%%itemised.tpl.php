@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.18, created on 2014-11-22 00:14:46
+<?php /* Smarty version 2.6.18, created on 2014-11-30 03:28:02
          compiled from ../templates/default/invoices/itemised.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'htmlsafe', '../templates/default/invoices/itemised.tpl', 116, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'htmlsafe', '../templates/default/invoices/itemised.tpl', 119, false),)), $this); ?>
 <form name="frmpost" action="index.php?module=invoices&amp;view=save" method="post" onsubmit="return frmpost_Validator(this)">
 
 <div id="gmail_loading" class="gmailLoader" style="float:right; display: none;">
@@ -115,18 +115,22 @@ $this->_tpl_vars = $_smarty_tpl_vars;
 unset($_smarty_tpl_vars);
  ?>
 <br/>
-<table align="left" border="1">
+<table border="1">
+<tr><td>
+<table border="0">
 	<tr>
 		<td colspan="3">
-		<table id="itemtable" border="1">
+		<table id="itemtable" border="0">
 			<tbody id="itemtable-tbody">
 			<tr>
-				<td class="details_screen"></td>
-				<td class="details_screen"><?php echo $this->_tpl_vars['LANG']['quantity']; ?>
-</td>
+				<td class="details_screen"></td>				
 				<td class="details_screen"><?php echo $this->_tpl_vars['LANG']['product']; ?>
 </td>
+				<td class="details_screen"><?php echo $this->_tpl_vars['LANG']['quantity']; ?>
+</td>				
 				<td class="details_screen"><?php echo $this->_tpl_vars['LANG']['unit_price']; ?>
+</td>
+				<td class="details_screen"><?php echo $this->_tpl_vars['LANG']['subtotal']; ?>
 </td>
 				<td class="details_screen"><?php echo $this->_tpl_vars['LANG']['charge']; ?>
 </td>
@@ -209,26 +213,7 @@ $this->_sections['line']['last']       = ($this->_sections['line']['iteration'] 
 								<img src="./images/common/delete_item.png" alt="" />
 							</a>
 							<?php endif; ?>
-						</td>
-						
-						<td>
-							<input 
-			                                AUTOCOMPLETE="OFF"
-							type="text" 
-			                                class="<?php if ($this->_sections['line']['index'] == '0'): ?>validate[required]<?php endif; ?> quantity_change"
-			                                name="quantity<?php echo ((is_array($_tmp=$this->_sections['line']['index'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
-" 
-			                                id="quantity<?php echo ((is_array($_tmp=$this->_sections['line']['index'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
-" 
-							size="20" 
-							rel="<?php echo ((is_array($_tmp=$this->_sections['line']['index'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
-"
-			                                <?php if ($_GET['quantity'][$this->_tpl_vars['lineNumber']]): ?>
-			                                	value="<?php echo $_GET['quantity'][$this->_tpl_vars['lineNumber']]; ?>
-"
-			                                <?php endif; ?>
-			                                />
-						</td>							
+						</td>		
 						
 						<td>
 					<?php if ($this->_tpl_vars['currencys_note'] == null): ?>
@@ -242,7 +227,7 @@ $this->_sections['line']['last']       = ($this->_sections['line']['iteration'] 
 "
 							rel="<?php echo ((is_array($_tmp=$this->_sections['line']['index'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
 "
-							class="<?php if ($this->_sections['line']['index'] == '0'): ?>validate[required]<?php endif; ?> product_change"						
+							class="validate[required] product_change"						
                         			>
 							<option value=""></option>
 							<?php $_from = $this->_tpl_vars['currencys_note']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
@@ -265,7 +250,26 @@ $this->_sections['line']['last']       = ($this->_sections['line']['iteration'] 
 						</select>
 					<?php endif; ?>
 						</td>
-						
+						<td>
+							<input 
+				                                AUTOCOMPLETE="OFF"
+								type="text"
+				                                name="quantity<?php echo ((is_array($_tmp=$this->_sections['line']['index'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
+" 
+				                                id="quantity<?php echo ((is_array($_tmp=$this->_sections['line']['index'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
+" 
+								size="20" 
+								rel="<?php echo ((is_array($_tmp=$this->_sections['line']['index'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
+"
+				                                <?php if ($_GET['quantity'][$this->_tpl_vars['lineNumber']]): ?>
+				                                	value="<?php echo $_GET['quantity'][$this->_tpl_vars['lineNumber']]; ?>
+"
+								<?php else: ?>
+									value=""
+				                                <?php endif; ?> 
+				                                class="validate[required] quantity_change"				                                
+			                                />
+						</td>								
 						<td>
 							<input 
 								id="unit_price<?php echo ((is_array($_tmp=$this->_sections['line']['index'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
@@ -277,32 +281,55 @@ $this->_sections['line']['last']       = ($this->_sections['line']['iteration'] 
 								size="20"
 								AUTOCOMPLETE="OFF"
 								<?php if ($_GET['unit_price'][$this->_tpl_vars['lineNumber']]): ?>
-								    value="<?php echo $_GET['unit_price'][$this->_tpl_vars['lineNumber']]; ?>
+								    	value="<?php echo $_GET['unit_price'][$this->_tpl_vars['lineNumber']]; ?>
+"
+								<?php else: ?>
+								   	value=""
+								<?php endif; ?>
+                                				class="validate[required] unit_price_change"
+							/>
+						</td>
+														
+						<td>
+							<input 
+								readonly="readonly"
+								id="subtotal<?php echo ((is_array($_tmp=$this->_sections['line']['index'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
+" 
+								name="subtotal<?php echo ((is_array($_tmp=$this->_sections['line']['index'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
+"
+								rel="<?php echo ((is_array($_tmp=$this->_sections['line']['index'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
+" 
+								size="20"
+								AUTOCOMPLETE="OFF"
+								<?php if ($_GET['subtotal'][$this->_tpl_vars['lineNumber']]): ?>
+								    value="<?php echo $_GET['subtotal'][$this->_tpl_vars['lineNumber']]; ?>
 "
 								<?php else: ?>
 								   value=""
 								<?php endif; ?>
-                                				class="<?php if ($this->_sections['line']['index'] == '0'): ?>validate[required]<?php endif; ?> unit_price_change"
+								class="validate[required]"
 							/>
 						</td>
 						<td>
 							<input 
-			                                AUTOCOMPLETE="OFF"
-							type="text" 
-			                                class="<?php if ($this->_sections['line']['index'] == '0'): ?>validate[required]<?php endif; ?> charge_change"
-			                                name="charge<?php echo ((is_array($_tmp=$this->_sections['line']['index'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
+				                                AUTOCOMPLETE="OFF"
+								type="text" 
+				                                id="charge<?php echo ((is_array($_tmp=$this->_sections['line']['index'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
 " 
-			                                id="charge<?php echo ((is_array($_tmp=$this->_sections['line']['index'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
+				                                name="charge<?php echo ((is_array($_tmp=$this->_sections['line']['index'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
 " 
-							size="20" 
-							rel="<?php echo ((is_array($_tmp=$this->_sections['line']['index'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
+								size="20" 
+								rel="<?php echo ((is_array($_tmp=$this->_sections['line']['index'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
 "
-			                                <?php if ($_GET['charge'][$this->_tpl_vars['lineNumber']]): ?>
-			                                	value="<?php echo $_GET['charge'][$this->_tpl_vars['lineNumber']]; ?>
+				                                <?php if ($_GET['charge'][$this->_tpl_vars['lineNumber']]): ?>
+				                                	value="<?php echo $_GET['charge'][$this->_tpl_vars['lineNumber']]; ?>
 "
-			                                <?php endif; ?>
+								<?php else: ?>
+									value="0"
+				                                <?php endif; ?>
+								 class="validate[required] charge_change"
 			                                />
-						</td>									
+						</td>
 						<td>
 							<input 
 								readonly="readonly"
@@ -320,44 +347,67 @@ $this->_sections['line']['last']       = ($this->_sections['line']['iteration'] 
 								<?php else: ?>
 								   value=""
 								<?php endif; ?>
-								<?php if ($this->_sections['line']['index'] == '0'): ?> class="validate[required]" <?php endif; ?>
+								class="validate[required]"
 							/>
-						</td>
-						
+						</td>													
 						<td>
 							<input 
-																id="note_cost<?php echo ((is_array($_tmp=$this->_sections['line']['index'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
+								readonly="readonly"
+								AUTOCOMPLETE="OFF"
+								id="note_cost<?php echo ((is_array($_tmp=$this->_sections['line']['index'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
 " 
 								name="note_cost<?php echo ((is_array($_tmp=$this->_sections['line']['index'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
 "
 								rel="<?php echo ((is_array($_tmp=$this->_sections['line']['index'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
 " 
 								size="20"
-								AUTOCOMPLETE="OFF"
 								<?php if ($_GET['note_cost'][$this->_tpl_vars['lineNumber']]): ?>
 									value="<?php echo $_GET['note_cost'][$this->_tpl_vars['lineNumber']]; ?>
 "
 								<?php else: ?>
 									value=""
 								<?php endif; ?>
-						                class="<?php if ($this->_sections['line']['index'] == '0'): ?>validate[required]<?php endif; ?> trading_type_change product_change"
+						                class="validate[required]"
 							/>
 						</td>
 														
 					</tr>
 							
 					<tr class="note">
-							<td>
-							</td>
-							<td colspan="4">
-								<textarea input type="text" class="note" name="description<?php echo ((is_array($_tmp=$this->_sections['line']['index'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
+						<td></td>
+						<td colspan="3">
+							<textarea input type="text" class="note" name="description<?php echo ((is_array($_tmp=$this->_sections['line']['index'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
 " id="description<?php echo ((is_array($_tmp=$this->_sections['line']['index'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
-" rows="3" cols=3 WRAP=nowrap></textarea>
-								
-								</td>
+" rows="2" cols="50" WRAP=nowrap></textarea>
+						</td>
 					</tr>
-				</tbody>
-	        <?php endfor; endif; ?>
+					
+				</tbody>				
+				
+	        <?php endfor; endif; ?>					
+		</table>
+		
+		<table border=0>
+			<tr>
+				<td class="details_screen">*********************************************************************************<?php echo $this->_tpl_vars['LANG']['invoice_total']; ?>
+</td>
+				<td>
+					<input 
+					readonly="readonly"
+					id="invoice_total" 
+					name="invoice_total" 
+					size="20"
+					AUTOCOMPLETE="OFF"
+					<?php if ($_GET['invoice_total']): ?>
+						 value="<?php echo $_GET['invoice_total']; ?>
+"
+					<?php else: ?>
+						 value=""
+					<?php endif; ?>
+					class="validate[required]"
+					/>********************
+				</td>
+			</tr>
 		</table>
 		</td>
 	</tr>
@@ -365,8 +415,8 @@ $this->_sections['line']['last']       = ($this->_sections['line']['iteration'] 
 		<td>
 			<table class="buttons" align="left">
 				<tr>
-					<td>
-												<a 
+					<td>						
+						<a 
 							href="#" 
 							class="add_line_item"
 						>
@@ -394,33 +444,7 @@ $this->_sections['line']['last']       = ($this->_sections['line']['iteration'] 
 		 </table>
 		</td>
 	</tr>
-			<?php echo $this->_tpl_vars['show_custom_field']['1']; ?>
 
-			<?php echo $this->_tpl_vars['show_custom_field']['2']; ?>
-
-			<?php echo $this->_tpl_vars['show_custom_field']['3']; ?>
-
-			<?php echo $this->_tpl_vars['show_custom_field']['4']; ?>
-
-				<tr>
-		<td align="right" class="details_screen"><?php echo $this->_tpl_vars['LANG']['invoice_total']; ?>
-************************************************** 
-		<input 
-		readonly="readonly"
-		id="invoice_total" 
-		name="invoice_total" 
-		size="20"
-		AUTOCOMPLETE="OFF"
-		class="validate[required]"
-		<?php if ($_GET['invoice_total']): ?>
-			 value="<?php echo $_GET['invoice_total']; ?>
-"
-		<?php else: ?>
-			 value=""
-		<?php endif; ?>
-		/>
-		</td>		
-	</tr>
 	<tr>
 	        <td colspan="1" class="details_screen"><?php echo $this->_tpl_vars['LANG']['notes']; ?>
 </td>
@@ -428,10 +452,8 @@ $this->_sections['line']['last']       = ($this->_sections['line']['iteration'] 
 	
 	<tr>
 		<td colspan="4">
-			<textarea input type="text" class="editor" name="note" rows="5" cols="50" wrap="nowrap">
-				<?php echo $_GET['note']; ?>
-
-			</textarea>
+			<textarea input type="text" name="note" rows="2" cols="50" wrap="nowrap"><?php echo $_GET['note']; ?>
+</textarea>
 		</td>
 	</tr>
 	</tr>
@@ -467,11 +489,13 @@ $this->_sections['line']['last']       = ($this->_sections['line']['iteration'] 
 	</tr>
 
 </table>
+</td></tr>
+</table>
 </td>
 </tr>
 <tr>
 <td>
-<table class="buttons" align="center" border="1">
+<table class="buttons" align="center" border="0">
 	<tr>
 		<td>
 		<button type="submit" class="invoice_save positive" name="submit" value="<?php echo $this->_tpl_vars['LANG']['save']; ?>

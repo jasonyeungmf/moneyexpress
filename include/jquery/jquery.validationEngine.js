@@ -21,7 +21,7 @@ jQuery.fn.validationEngine = function(settings) {
 	if($.validationEngineLanguage){					// IS THERE A LANGUAGE LOCALISATION ?
 		allRules = $.validationEngineLanguage.allRules
 	}else{
-		allRules = {"required":{    			  // Add your regex rules here, you can take telephone as an example
+		allRules = {	"required":{    			  // Add your regex rules here, you can take telephone as an example
 							"regex":"none",
 							"alertText":"* This field is required",
 							"alertTextCheckboxMultiple":"* Please select an option",

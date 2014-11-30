@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.18, created on 2014-02-22 01:38:27
+<?php /* Smarty version 2.6.18, created on 2014-11-30 03:41:27
          compiled from ../include/jquery/jquery.functions.js.tpl */ ?>
 <?php echo '
 <script type="text/javascript">
@@ -34,7 +34,7 @@
 	}
 	
 	//trading type change
-	function invoice_trading_type_change(product, row_number, quantity, trading_type){
+	function invoice_trading_type_change(trading_type, row_number, product, quantity, charge){
 		
 		if(trading_type == "1"){
 			var $product_ajax = \'product_ajax_note_buy\';
@@ -67,9 +67,14 @@
 					$("#note_cost"+row_number).attr("value",data[\'note_cost\']);
 				}		
 				
-				//total count
+				//subtotal and total count
 				var $quantity = $("#quantity"+row_number).attr("value");
-				var $total = $quantity * $("#unit_price"+row_number).attr("value");
+				var $subtotal = $quantity * $("#unit_price"+row_number).attr("value");
+					$subtotal = Math.round($subtotal*100)/100;
+				var $charge = ($("#charge"+row_number).attr("value") - 0);
+				var $total = $subtotal + $charge;
+					$total = Math.round($total*100)/100;
+				$("#subtotal"+row_number).attr("value",$subtotal);
 				$("#total"+row_number).attr("value",$total);
 				
 				//invoice total count
@@ -98,7 +103,7 @@
      }
 
 	/* Product change*/
-	function invoice_product_change(product, row_number, quantity, trading_type){
+	function invoice_product_change(product, row_number, quantity, charge,trading_type){
 		
 		if(trading_type == "1"){
 			var $product_ajax = \'product_ajax_note_buy\';
@@ -119,7 +124,7 @@
 				/*if ( (quantity.length==0) || (quantity.value==null) ) */
 				if (quantity=="") 
 				{	
-					$("#quantity"+row_number).attr("value","1");
+					$("#quantity"+row_number).attr("value","0");
 				}
 				
 				$("#unit_price"+row_number).attr("value",data[\'unit_price\']);
@@ -132,11 +137,16 @@
 					$("#note_cost"+row_number).attr("value",data[\'note_cost\']);
 				}				
 				
-				//total count
+				//subtotal and total count
 				var $quantity = $("#quantity"+row_number).attr("value");
-				var $total = $quantity * $("#unit_price"+row_number).attr("value");
+				var $subtotal = $quantity * $("#unit_price"+row_number).attr("value");
+					$subtotal = Math.round($subtotal*100)/100;
+				var $charge = ($("#charge"+row_number).attr("value") - 0);
+				var $total = $subtotal + $charge;
+					$total = Math.round($total*100)/100;
+				$("#subtotal"+row_number).attr("value",$subtotal);
 				$("#total"+row_number).attr("value",$total);
-				
+						
 				//invoice total count
 				count_invoice_line_items();
 				var $rowID_last = $("#max_items").attr("value");
@@ -286,39 +296,48 @@
 		clonedRow.find("#line_item"+rowID_old).attr("id", "line_item"+rowID_new);
 		clonedRow.find("#line_item"+rowID_new).attr("name", "line_item"+rowID_new);
 		clonedRow.find("#line_item"+rowID_new).val(\'\');
-
-
-		clonedRow.find("#quantity"+rowID_old).attr("rel", rowID_new);
-		$("#quantity"+rowID_old, clonedRow).attr("id", "quantity"+rowID_new);
-		$("#quantity"+rowID_new, clonedRow).attr("name", "quantity"+rowID_new);
-		clonedRow.find("#quantity"+rowID_new).removeAttr("value");
-		clonedRow.find("#quantity"+rowID_new).removeClass("validate[required]");
 	
 		//clonedRow.find("#products"+rowID_old).removeAttr("onchange");
 		clonedRow.find("#products"+rowID_old).attr("rel", rowID_new);
 		clonedRow.find("#products"+rowID_old).attr("id", "products"+rowID_new);
 		clonedRow.find("#products"+rowID_new).attr("name", "products"+rowID_new);
-		clonedRow.find("#products"+rowID_new).removeClass("validate[required]");
+		//clonedRow.find("#products"+rowID_new).removeClass("validate[required]");
 
-		//clonedRow.find("#products"+rowID_new).attr("onChange", "invoice_product_change_price($(this).val(), "+rowID_new+", jQuery(\'#quantity"+rowID_new+"\').val() )");
-	
+		clonedRow.find("#quantity"+rowID_old).attr("rel", rowID_new);
+		$("#quantity"+rowID_old, clonedRow).attr("id", "quantity"+rowID_new);
+		$("#quantity"+rowID_new, clonedRow).attr("name", "quantity"+rowID_new);
+		clonedRow.find("#quantity"+rowID_new).removeAttr("value");
+		//clonedRow.find("#quantity"+rowID_new).removeClass("validate[required]");
+
 		clonedRow.find("#unit_price"+rowID_old).attr("rel", rowID_new);
 		$("#unit_price"+rowID_old, clonedRow).attr("id", "unit_price"+rowID_new);
 		$("#unit_price"+rowID_new, clonedRow).attr("name", "unit_price"+rowID_new);
 		$("#unit_price"+rowID_new, clonedRow).val("");
-		$("#unit_price"+rowID_new, clonedRow).removeClass("validate[required]");
+		//$("#unit_price"+rowID_new, clonedRow).removeClass("validate[required]");
 		
-		clonedRow.find("#note_cost"+rowID_old).attr("rel", rowID_new);
-		$("#note_cost"+rowID_old, clonedRow).attr("id", "note_cost"+rowID_new);
-		$("#note_cost"+rowID_new, clonedRow).attr("name", "note_cost"+rowID_new);
-		$("#note_cost"+rowID_new, clonedRow).val("");
-		$("#note_cost"+rowID_new, clonedRow).removeClass("validate[required]");
+		clonedRow.find("#subtotal"+rowID_old).attr("rel", rowID_new);
+		$("#subtotal"+rowID_old, clonedRow).attr("id", "subtotal"+rowID_new);
+		$("#subtotal"+rowID_new, clonedRow).attr("name", "subtotal"+rowID_new);
+		clonedRow.find("#subtotal"+rowID_new).removeAttr("value");
+		//clonedRow.find("#subtotal"+rowID_new).removeClass("validate[required]");
+		
+		clonedRow.find("#charge"+rowID_old).attr("rel", rowID_new);
+		$("#charge"+rowID_old, clonedRow).attr("id", "charge"+rowID_new);
+		$("#charge"+rowID_new, clonedRow).attr("name", "charge"+rowID_new);
+		$("#charge"+rowID_new, clonedRow).val("0");
+		//clonedRow.find("#charge"+rowID_new).removeClass("validate[required]");
 		
 		clonedRow.find("#total"+rowID_old).attr("rel", rowID_new);
 		$("#total"+rowID_old, clonedRow).attr("id", "total"+rowID_new);
 		$("#total"+rowID_new, clonedRow).attr("name", "total"+rowID_new);
 		clonedRow.find("#total"+rowID_new).removeAttr("value");
-		clonedRow.find("#total"+rowID_new).removeClass("validate[required]");
+		//clonedRow.find("#total"+rowID_new).removeClass("validate[required]");
+		
+		clonedRow.find("#note_cost"+rowID_old).attr("rel", rowID_new);
+		$("#note_cost"+rowID_old, clonedRow).attr("id", "note_cost"+rowID_new);
+		$("#note_cost"+rowID_new, clonedRow).attr("name", "note_cost"+rowID_new);
+		$("#note_cost"+rowID_new, clonedRow).val("");
+		//$("#note_cost"+rowID_new, clonedRow).removeClass("validate[required]");
 	
 		$("#description"+rowID_old, clonedRow).attr("id", "description"+rowID_new);
 		$("#description"+rowID_new, clonedRow).attr("name", "description"+rowID_new);
@@ -326,11 +345,6 @@
 <?php echo $this->_tpl_vars['LANG']['description']; ?>
 <?php echo '");
 		//$("#description"+rowID_new, clonedRow).css({ color: "#b2adad" });
-	
-		$("#tax_id\\\\["+rowID_old+"\\\\]\\\\[0\\\\]", clonedRow).attr("id", "tax_id["+rowID_new+"][0]");
-		$("#tax_id\\\\["+rowID_new+"\\\\]\\\\[0\\\\]", clonedRow).attr("name", "tax_id["+rowID_new+"][0]");
-		$("#tax_id\\\\["+rowID_old+"\\\\]\\\\[1\\\\]", clonedRow).attr("id", "tax_id["+rowID_new+"][1]");
-		$("#tax_id\\\\["+rowID_new+"\\\\]\\\\[1\\\\]", clonedRow).attr("name", "tax_id["+rowID_new+"][1]");
 	
 		$(\'#itemtable\').append(clonedRow);
 		

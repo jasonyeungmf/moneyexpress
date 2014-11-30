@@ -94,16 +94,19 @@
 {else}
 {include file="$path/header.tpl" }
 <br/>
-<table align="left" border="1">
+<table border="1">
+<tr><td>
+<table border="0">
 	<tr>
 		<td colspan="3">
-		<table id="itemtable" border="1">
+		<table id="itemtable" border="0">
 			<tbody id="itemtable-tbody">
 			<tr>
-				<td class="details_screen"></td>
-				<td class="details_screen">{$LANG.quantity}</td>
+				<td class="details_screen"></td>				
 				<td class="details_screen">{$LANG.product}</td>
+				<td class="details_screen">{$LANG.quantity}</td>				
 				<td class="details_screen">{$LANG.unit_price}</td>
+				<td class="details_screen">{$LANG.subtotal}</td>
 				<td class="details_screen">{$LANG.charge}</td>
 				<td class="details_screen">{$LANG.total}</td>
 				<td class="details_screen">{$LANG.note_cost}</td>
@@ -147,22 +150,7 @@
 								<img src="./images/common/delete_item.png" alt="" />
 							</a>
 							{/if}
-						</td>
-						
-						<td>
-							<input 
-			                                AUTOCOMPLETE="OFF"
-							type="text" 
-			                                class="{if $smarty.section.line.index == "0"}validate[required]{/if} quantity_change"
-			                                name="quantity{$smarty.section.line.index|htmlsafe}" 
-			                                id="quantity{$smarty.section.line.index|htmlsafe}" 
-							size="20" 
-							rel="{$smarty.section.line.index|htmlsafe}"
-			                                {if $smarty.get.quantity.$lineNumber}
-			                                	value="{$smarty.get.quantity.$lineNumber}"
-			                                {/if}
-			                                />
-						</td>							
+						</td>		
 						
 						<td>
 					{if $currencys_note == null }
@@ -172,7 +160,7 @@
 							id="products{$smarty.section.line.index|htmlsafe}"
 							name="products{$smarty.section.line.index|htmlsafe}"
 							rel="{$smarty.section.line.index|htmlsafe}"
-							class="{if $smarty.section.line.index == "0"}validate[required]{/if} product_change"						
+							class="validate[required] product_change"						
                         			>
 							<option value=""></option>
 							{foreach from=$currencys_note item=product}
@@ -190,7 +178,22 @@
 						</select>
 					{/if}
 						</td>
-						
+						<td>
+							<input 
+				                                AUTOCOMPLETE="OFF"
+								type="text"
+				                                name="quantity{$smarty.section.line.index|htmlsafe}" 
+				                                id="quantity{$smarty.section.line.index|htmlsafe}" 
+								size="20" 
+								rel="{$smarty.section.line.index|htmlsafe}"
+				                                {if $smarty.get.quantity.$lineNumber}
+				                                	value="{$smarty.get.quantity.$lineNumber}"
+								{else}
+									value=""
+				                                {/if} 
+				                                class="validate[required] quantity_change"				                                
+			                                />
+						</td>								
 						<td>
 							<input 
 								id="unit_price{$smarty.section.line.index|htmlsafe}" 
@@ -199,27 +202,46 @@
 								size="20"
 								AUTOCOMPLETE="OFF"
 								{if $smarty.get.unit_price.$lineNumber}
-								    value="{$smarty.get.unit_price.$lineNumber}"
+								    	value="{$smarty.get.unit_price.$lineNumber}"
+								{else}
+								   	value=""
+								{/if}
+                                				class="validate[required] unit_price_change"
+							/>
+						</td>
+														
+						<td>
+							<input 
+								readonly="readonly"
+								id="subtotal{$smarty.section.line.index|htmlsafe}" 
+								name="subtotal{$smarty.section.line.index|htmlsafe}"
+								rel="{$smarty.section.line.index|htmlsafe}" 
+								size="20"
+								AUTOCOMPLETE="OFF"
+								{if $smarty.get.subtotal.$lineNumber}
+								    value="{$smarty.get.subtotal.$lineNumber}"
 								{else}
 								   value=""
 								{/if}
-                                				class="{if $smarty.section.line.index == "0"}validate[required]{/if} unit_price_change"
+								class="validate[required]"
 							/>
 						</td>
 						<td>
 							<input 
-			                                AUTOCOMPLETE="OFF"
-							type="text" 
-			                                class="{if $smarty.section.line.index == "0"}validate[required]{/if} charge_change"
-			                                name="charge{$smarty.section.line.index|htmlsafe}" 
-			                                id="charge{$smarty.section.line.index|htmlsafe}" 
-							size="20" 
-							rel="{$smarty.section.line.index|htmlsafe}"
-			                                {if $smarty.get.charge.$lineNumber}
-			                                	value="{$smarty.get.charge.$lineNumber}"
-			                                {/if}
+				                                AUTOCOMPLETE="OFF"
+								type="text" 
+				                                id="charge{$smarty.section.line.index|htmlsafe}" 
+				                                name="charge{$smarty.section.line.index|htmlsafe}" 
+								size="20" 
+								rel="{$smarty.section.line.index|htmlsafe}"
+				                                {if $smarty.get.charge.$lineNumber}
+				                                	value="{$smarty.get.charge.$lineNumber}"
+								{else}
+									value="0"
+				                                {/if}
+								 class="validate[required] charge_change"
 			                                />
-						</td>									
+						</td>
 						<td>
 							<input 
 								readonly="readonly"
@@ -233,39 +255,59 @@
 								{else}
 								   value=""
 								{/if}
-								{if $smarty.section.line.index == "0"} class="validate[required]" {/if}
+								class="validate[required]"
 							/>
-						</td>
-						
+						</td>													
 						<td>
 							<input 
-								{* readonly="readonly" *}
+								readonly="readonly"
+								AUTOCOMPLETE="OFF"
 								id="note_cost{$smarty.section.line.index|htmlsafe}" 
 								name="note_cost{$smarty.section.line.index|htmlsafe}"
 								rel="{$smarty.section.line.index|htmlsafe}" 
 								size="20"
-								AUTOCOMPLETE="OFF"
 								{if $smarty.get.note_cost.$lineNumber}
 									value="{$smarty.get.note_cost.$lineNumber}"
 								{else}
 									value=""
 								{/if}
-						                class="{if $smarty.section.line.index == "0"}validate[required]{/if} trading_type_change product_change"
+						                class="validate[required]"
 							/>
 						</td>
 														
 					</tr>
 							
 					<tr class="note">
-							<td>
-							</td>
-							<td colspan="4">
-								<textarea input type="text" class="note" name="description{$smarty.section.line.index|htmlsafe}" id="description{$smarty.section.line.index|htmlsafe}" rows="3" cols=3 WRAP=nowrap></textarea>
-								
-								</td>
+						<td></td>
+						<td colspan="3">
+							<textarea input type="text" class="note" name="description{$smarty.section.line.index|htmlsafe}" id="description{$smarty.section.line.index|htmlsafe}" rows="2" cols="50" WRAP=nowrap></textarea>
+						</td>
 					</tr>
-				</tbody>
-	        {/section}
+					
+				</tbody>				
+				
+	        {/section}					
+		</table>
+		
+		<table border=0>
+			<tr>
+				<td class="details_screen">*********************************************************************************{$LANG.invoice_total}</td>
+				<td>
+					<input 
+					readonly="readonly"
+					id="invoice_total" 
+					name="invoice_total" 
+					size="20"
+					AUTOCOMPLETE="OFF"
+					{if $smarty.get.invoice_total}
+						 value="{$smarty.get.invoice_total}"
+					{else}
+						 value=""
+					{/if}
+					class="validate[required]"
+					/>********************
+				</td>
+			</tr>
 		</table>
 		</td>
 	</tr>
@@ -273,8 +315,7 @@
 		<td>
 			<table class="buttons" align="left">
 				<tr>
-					<td>
-						{* onclick="add_line_item();" *}
+					<td>						
 						<a 
 							href="#" 
 							class="add_line_item"
@@ -298,39 +339,14 @@
 		 </table>
 		</td>
 	</tr>
-			{$show_custom_field.1}
-			{$show_custom_field.2}
-			{$show_custom_field.3}
-			{$show_custom_field.4}
-			{*
-				{showCustomFields categorieId="4" itemId=""}
-			*}
-	<tr>
-		<td align="right" class="details_screen">{$LANG.invoice_total}************************************************** 
-		<input 
-		readonly="readonly"
-		id="invoice_total" 
-		name="invoice_total" 
-		size="20"
-		AUTOCOMPLETE="OFF"
-		class="validate[required]"
-		{if $smarty.get.invoice_total}
-			 value="{$smarty.get.invoice_total}"
-		{else}
-			 value=""
-		{/if}
-		/>
-		</td>		
-	</tr>
+
 	<tr>
 	        <td colspan="1" class="details_screen">{$LANG.notes}</td>
 	</tr>
 	
 	<tr>
 		<td colspan="4">
-			<textarea input type="text" class="editor" name="note" rows="5" cols="50" wrap="nowrap">
-				{$smarty.get.note}
-			</textarea>
+			<textarea input type="text" name="note" rows="2" cols="50" wrap="nowrap">{$smarty.get.note}</textarea>
 		</td>
 	</tr>
 	</tr>
@@ -358,11 +374,13 @@
 	</tr>
 
 </table>
+</td></tr>
+</table>
 </td>
 </tr>
 <tr>
 <td>
-<table class="buttons" align="center" border="1">
+<table class="buttons" align="center" border="0">
 	<tr>
 		<td>
 		<button type="submit" class="invoice_save positive" name="submit" value="{$LANG.save}">

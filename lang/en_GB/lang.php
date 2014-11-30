@@ -662,6 +662,7 @@ $LANG['end_date'] = "End Date";//1
 $LANG['gross_total'] = "Gross Total";//1
 $LANG['invoice_total'] = "Invoice Total";//1
 $LANG['charge_total'] = "Charge Total";//1
+$LANG['subtotal'] = "Subtotal";//1
 $LANG['date_time_formatted'] = "Date And Time (YYYY-MM-DD HH:MM:SS)";//1
 $LANG['date_time'] = "Date/Time";//1
 $LANG['date_between'] = "Date Between";//1
