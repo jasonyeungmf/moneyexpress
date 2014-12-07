@@ -35,20 +35,10 @@
 	{display: '{/literal}{$LANG.biller}{literal}', name : 'biller', width :5 * percentage_width, sortable : true, align: 'left'},
 	{display: '{/literal}{$LANG.customer}{literal}', name : 'customer', width :15 * percentage_width, sortable : true, align: 'left'},
 	{display: '{/literal}{$LANG.trading_type}{literal}', name : 'trading_type', width :10 * percentage_width, sortable : true, align: 'left'},
-	{display: '{/literal}{$LANG.product_detail}{literal}', name : 'product_detail', width :15 * percentage_width, sortable : true, align: 'left'},				
+	{display: '{/literal}{$LANG.currency_detail}{literal}', name : 'currency_detail', width :15 * percentage_width, sortable : true, align: 'left'},				
 	{display: '{/literal}{$LANG.total}{literal}', name : 'invoice_total', width : 10 * percentage_width, sortable : true, align: 'left'},
 	{display: '{/literal}{$LANG.profit}{literal}', name : 'profit', width : 10 * percentage_width, sortable : true, align: 'left'},
-//	{display: '{/literal}{$LANG.owing}{literal}', name : 'owing', width : 10 * percentage_width, sortable : true, align: 'left'},
-//	{display: '{/literal}{$LANG.aging}{literal}', name : 'aging', width : 10 * percentage_width, sortable : true, align: 'left'}
-				
 	],
-				/*
-			buttons : [
-				{name: 'Add', bclass: 'add', onpress : test},
-				{name: 'Delete', bclass: 'delete', onpress : test},
-				{separator: true}
-				],
-			*/
 	searchitems : [
 		{display: '{/literal}{$LANG.index_id}{literal}', name : 'iv.index_id', isdefault: true},
 		{display: '{/literal}{$LANG.date}{literal}', name : 'iv.date'},

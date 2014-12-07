@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.18, created on 2014-02-25 22:20:02
+<?php /* Smarty version 2.6.18, created on 2014-12-08 01:25:27
          compiled from ../modules/invoices/manage.js.php */ ?>
 <script type="text/javascript">
 <?php echo '
@@ -54,29 +54,15 @@
 <?php echo $this->_tpl_vars['LANG']['trading_type']; ?>
 <?php echo '\', name : \'trading_type\', width :10 * percentage_width, sortable : true, align: \'left\'},
 	{display: \''; ?>
-<?php echo $this->_tpl_vars['LANG']['product_detail']; ?>
-<?php echo '\', name : \'product_detail\', width :15 * percentage_width, sortable : true, align: \'left\'},				
+<?php echo $this->_tpl_vars['LANG']['currency_detail']; ?>
+<?php echo '\', name : \'currency_detail\', width :15 * percentage_width, sortable : true, align: \'left\'},				
 	{display: \''; ?>
 <?php echo $this->_tpl_vars['LANG']['total']; ?>
 <?php echo '\', name : \'invoice_total\', width : 10 * percentage_width, sortable : true, align: \'left\'},
 	{display: \''; ?>
 <?php echo $this->_tpl_vars['LANG']['profit']; ?>
 <?php echo '\', name : \'profit\', width : 10 * percentage_width, sortable : true, align: \'left\'},
-//	{display: \''; ?>
-<?php echo $this->_tpl_vars['LANG']['owing']; ?>
-<?php echo '\', name : \'owing\', width : 10 * percentage_width, sortable : true, align: \'left\'},
-//	{display: \''; ?>
-<?php echo $this->_tpl_vars['LANG']['aging']; ?>
-<?php echo '\', name : \'aging\', width : 10 * percentage_width, sortable : true, align: \'left\'}
-				
 	],
-				/*
-			buttons : [
-				{name: \'Add\', bclass: \'add\', onpress : test},
-				{name: \'Delete\', bclass: \'delete\', onpress : test},
-				{separator: true}
-				],
-			*/
 	searchitems : [
 		{display: \''; ?>
 <?php echo $this->_tpl_vars['LANG']['index_id']; ?>

@@ -48,23 +48,9 @@
                      {$LANG.setup_add_products}&nbsp;  
                 </td>
                 <td>
-                    <a href="./index.php?module=products&amp;view=add" class="positive">
+                    <a href="./index.php?module=currencys_note&amp;view=add" class="positive">
                         <img src="./images/common/cart_add.png" alt="" />
                         {$LANG.add_new_product}
-                    </a>
-                </td>
-            </tr>
-
-    {/if}
-    {if $taxes == null}
-            <tr>
-                <td>
-                     {$LANG.setup_add_taxrate}&nbsp;  
-                </td>
-                <td>
-                    <a href="index.php?module=tax_rates&amp;view=add" class="positive">
-                        <img src="./images/common/money_delete.png" alt="" />
-                        {$LANG.add_new_tax_rate}
                     </a>
                 </td>
             </tr>
@@ -110,7 +96,7 @@
 				<td class="details_screen">{$LANG.subtotal}</td>
 				<td class="details_screen">{$LANG.charge}</td>
 				<td class="details_screen">{$LANG.total}</td>
-				<td class="details_screen">{$LANG.cost}</td>
+				<td class="details_screen">{$LANG.note_cost}</td>
 				
 			</tr>
 			</tbody>
@@ -385,23 +371,17 @@
 <table class="buttons" align="center" border="0">
 	<tr>
 		<td>
-		<button type="submit" class="invoice_save positive" name="submit" value="{$LANG.save}">
-                <img class="button_img" src="./images/common/tick.png" alt="" /> 
-                {$LANG.save}
-            </button>
-            
+			<button type="submit" class="invoice_save positive" name="submit" value="{$LANG.save}">
+	                <img class="button_img" src="./images/common/tick.png" alt="" /> 
+	                {$LANG.save}
+	            	</button>
 		</td>
+		
 		<td>
-		<input type="hidden" id="max_items" name="max_items" value="{$smarty.section.line.index|htmlsafe}" />
-        	<input type="hidden" name="type" value="2" />
-        	
-            <a href="./index.php?module=invoices&amp;view=manage" class="negative">
-                <img src="./images/common/cross.png" alt="" />
-                {$LANG.cancel}
-            </a>
-    
-        </td>
-    </tr>
+			<input type="hidden" id="max_items" name="max_items" value="{$smarty.section.line.index|htmlsafe}" />	        	
+	            	<a href="./index.php?module=invoices&amp;view=manage" class="negative"><img src="./images/common/cross.png" alt="" />{$LANG.cancel}</a>    
+        	</td>
+	</tr>
 </table>
 </table>
 

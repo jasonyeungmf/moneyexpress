@@ -65,7 +65,6 @@
 		<input type="submit" name="submit" value="{$LANG.add_item|htmlsafe}" />
 		<input type="hidden" name="id" value="{$smarty.get.id|htmlsafe}" />
 		<input type="hidden" name="type" value="{$smarty.get.type|htmlsafe}" />
-		<input type="hidden" name="tax_id" value="{$smarty.get.tax_id|htmlsafe}" />
 	</div>
 </form>
 {/if}

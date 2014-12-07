@@ -1,9 +1,8 @@
-<?php /* Smarty version 2.6.18, created on 2014-11-02 18:37:54
+<?php /* Smarty version 2.6.18, created on 2014-12-05 00:28:00
          compiled from ../templates/default/invoices/manage.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'date_format', '../templates/default/invoices/manage.tpl', 60, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'date_format', '../templates/default/invoices/manage.tpl', 59, false),)), $this); ?>
 <!-- <link href="include/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen"> -->
-
 <table class="buttons" align="center">
     <tr>
         <td>
@@ -117,15 +116,6 @@ smarty_core_load_plugins(array('plugins' => array(array('modifier', 'date_format
 </a> |
 	<a href="index.php?module=invoices&amp;view=manage&amp;having=today_note_buy"><?php echo $this->_tpl_vars['LANG']['today']; ?>
 </a>
-<!--    	<a href="index.php?module=invoices&amp;view=manage&amp;having=due"><?php echo $this->_tpl_vars['LANG']['due']; ?>
-</a> : 
-    	<a href="index.php?module=invoices&amp;view=manage&amp;having=paid"><?php echo $this->_tpl_vars['LANG']['paid']; ?>
-</a> : 
-    	<a href="index.php?module=invoices&amp;view=manage&amp;having=draft"><?php echo $this->_tpl_vars['LANG']['draft']; ?>
-</a> : 
-    	<a href="index.php?module=invoices&amp;view=manage&amp;having=real"><?php echo $this->_tpl_vars['LANG']['real']; ?>
-</a>
--->
    </span>
    <span class="welcome">
         <a style="font-weight:bold"><?php echo $this->_tpl_vars['LANG']['sell']; ?>

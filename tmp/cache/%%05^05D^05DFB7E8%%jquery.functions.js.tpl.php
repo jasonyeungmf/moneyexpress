@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.18, created on 2014-12-01 02:23:27
+<?php /* Smarty version 2.6.18, created on 2014-12-03 01:22:39
          compiled from ../include/jquery/jquery.functions.js.tpl */ ?>
 <?php echo '
 <script type="text/javascript">
@@ -419,6 +419,15 @@ function showtime()
 			{
 				Dates = "0" + Dates;
 			}
+		if ( hours < 10 ){var hours2 = "0" + hours;}
+		if ( hours >= 10 ){hours2 = hours;}
+		
+		if ( minutes < 10 ){var minutes2 = "0" + minutes;}
+		if ( minutes >= 10 ){minutes2 = minutes;}
+		
+		if ( seconds < 10 ){var seconds2 = "0" + seconds;}
+		if ( seconds >= 10 ){seconds2 = seconds;}
+		
 		if ( milliseconds < 10 )
 			{
 				milliseconds = "00" + milliseconds;
@@ -435,7 +444,7 @@ function showtime()
 		timeValue_1 += "-" + milliseconds;
 //		$("#index_id").attr("value",timeValue_1);//use in input
 		
-		var index_no = Years + "" + Months + "" + Dates + "-";
+		var index_no = Years + "" + Months + "" + Dates + "-" + hours2 + "" + minutes2 + "" + seconds2 + "-";
 		var maxNum = 100000;  
 		var minNum = 0;
 		var no = Math.floor(Math.random() * (maxNum - minNum + 1)) + minNum;
@@ -460,17 +469,13 @@ function showtime()
 		var $trading_type = $("#trading_type_id").val();
 		if($trading_type == "1"){
 			$("#index_id").attr("value","NB" + index_no);
+			$("#index_id_tt").attr("value","TB" + index_no);
 		}
 		if($trading_type == "2"){
 			$("#index_id").attr("value","NS" + index_no);
+			$("#index_id_tt").attr("value","TS" + index_no);
 		}
-		if($trading_type == "3"){
-			$("#index_id").attr("value","TB" + index_no);
-		}
-		if($trading_type == "4"){
-			$("#index_id").attr("value","TS" + index_no);
-		}
-		
+				
 		//show date time	
 		var timeValue_2 = Years + "-" + Months + "-" + Dates + " ";
 		timeValue_2 += ((hours < 10) ? "0" : "") + hours;

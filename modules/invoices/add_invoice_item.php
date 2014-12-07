@@ -5,7 +5,7 @@ if(isset($_POST['submit'])) {
 		$_POST['quantity1'],
 		$_POST['product1'],
 		$_POST['trading_type_id'],
-		$_POST['tax_id'],
+		$_POST['charge'],
 		$_POST['description'],
 		$_POST['unit_price1']
 		$_POST['note_cost1']

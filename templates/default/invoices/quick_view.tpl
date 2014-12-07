@@ -29,15 +29,15 @@
 <br />
 <br />
 
-<table align="center" width="" border="0">
+<table align="center" width="100%" border="1">
 	<tr>
 		<td><b>{$LANG.biller}:</b></td>
 		<td>{$biller.name|htmlsafe}</td>
-		<td></td>
+		<td colspan="3"></td>
 		<td colspan="2"><b>{$LANG.summary}:</b></td>
 	</tr>
 	<tr>
-		<td colspan="3"></td>
+		<td colspan="5"></td>
 		<td><b>{$LANG.index_id}:</b></td>
 		<td>{$invoice.index_id|htmlsafe}</td>
 	</tr>
@@ -45,63 +45,59 @@
 	<tr>
 		<td><b>{$LANG.customer}:</b></td>
 		<td>{$customer.customer_no|htmlsafe}-{$customer.name|htmlsafe}-{$customer.mobile_phone|htmlsafe}-{$customer.phone|htmlsafe}</td>
-		<td></td>
+		<td colspan="3"></td>
 		<td><b>{$LANG.date_time}:</b></td>
 		<td>{$invoice.date|date_format:"%Y-%m-%d %H:%M:%S"}</td>
 	</tr>	
 	
 	<tr>
-		<td colspan="6"><br/></td>
+		<td colspan="7"><br/></td>
 	</tr>	
 		
 	<tr>
 		<td class="align_right"><b>{$LANG.description}</b></td>
-		<td class="align_right"><b>{$LANG.product}</b></td>
+		<td class="align_right"><b>{$LANG.currency}</b></td>
        		<td class="align_right"><b>{$LANG.quantity}</b></td>
 		<td class="align_right"><b>{$LANG.unit_price}</b></td>
+		<td class="align_right"><b>{$LANG.subtotal}</b></td>		
 		<td class="align_right"><b>{$LANG.charge}</b></td>
-		<td class="align_right"><b>{$LANG.gross_total}</b></td>
+		<td class="align_right"><b>{$LANG.total}</b></td>
 	</tr>
 	
 {foreach from=$invoiceItems item=invoiceItem }
 	<tr>
 		<td style="text-align:right">{$invoiceItem.description|htmlsafe}</td>
-		<td style="text-align:right">{$invoiceItem.product.code|htmlsafe}</td>
+		<td style="text-align:right">{$invoiceItem.currency.code|htmlsafe}</td>
 		<td style="text-align:right">{$invoiceItem.quantity|siLocal_number_trim}</td>
 		<td style="text-align:right">{$preference.pref_currency_sign}{$invoiceItem.unit_price|siLocal_number_clean}</td>
-		<td style="text-align:right">{$preference.pref_currency_sign}{$invoiceItem.tax_amount|siLocal_number_clean}</td>
-		<td style="text-align:right">{$preference.pref_currency_sign}{$invoiceItem.gross_total|siLocal_number_trim}</td>
+		<td style="text-align:right">{$preference.pref_currency_sign}{$invoiceItem.subtotal|siLocal_number_trim}</td>
+		<td style="text-align:right">{$preference.pref_currency_sign}{$invoiceItem.charge|siLocal_number_clean}</td>
+		<td style="text-align:right">{$preference.pref_currency_sign}{$invoiceItem.total|siLocal_number_trim}</td>		
         </tr>
 {/foreach}
 
 	<tr>
-		<td colspan="6"><b>{$LANG.notes}:{$invoice.note|outhtml}</b></td>
+		<td colspan="7"><b>{$LANG.notes}:{$invoice.note|outhtml}</b></td>
 	</tr>
 	<tr>
-		<td colspan="6"><br/></td>
+		<td colspan="7"><br/></td>
 	</tr>
 
 	<tr>
-        	<td colspan="4"></td>
-		<td colspan="1" class="align_right"><b>{$preference.pref_inv_wording|htmlsafe} {$LANG.gross}&nbsp;</b></td>
-		<td colspan="1" class="align_right">{if $invoice_number_of_taxes > 1}<u>{/if}{$preference.pref_currency_sign|htmlsafe}{$invoice.gross|siLocal_number_trim}{if $invoice_number_of_taxes > 1}</u>{/if}</td>
+        	<td colspan="5"></td>
+		<td colspan="1" class="align_right"><b>{$preference.pref_inv_wording|htmlsafe} {$LANG.subtotal}</b></td>
+		<td colspan="1" class="align_right">{$preference.pref_currency_sign|htmlsafe}{$invoice.subtotal|siLocal_number_trim}</td>
 	</tr>
-
-
-{section name=line start=0 loop=$invoice.tax_grouped step=1}
-
-{if ($invoice.tax_grouped[line].tax_amount) }
-	<tr class="details_screen">
-		<td colspan="4"></td>
-		<td colspan="1" class="align_right"><b>{$invoice.tax_grouped[line].tax_name|htmlsafe}&nbsp;</b></td>
-		<td colspan="1" class="align_right">{$preference.pref_currency_sign|htmlsafe}{$invoice.tax_grouped[line].tax_amount|siLocal_number_clean}</td>
-	</tr>
-{/if}
-{/section}
 	
+	<tr>
+        	<td colspan="5"></td>
+		<td colspan="1" class="align_right"><b>{$preference.pref_inv_wording|htmlsafe} {$LANG.charge}</b></td>
+		<td colspan="1" class="align_right">{$preference.pref_currency_sign|htmlsafe}{$invoice.charge|siLocal_number_trim}</td>
+	</tr>	
+
 	<tr class="details_screen">
-	        <td colspan="4"></td>
-		<td colspan="1" class="align_right"><b>{$preference.pref_inv_wording|htmlsafe} {$LANG.total}&nbsp;</b></td>
+	        <td colspan="5"></td>
+		<td colspan="1" class="align_right"><b>{$preference.pref_inv_wording|htmlsafe} {$LANG.total}</b></td>
 		<td colspan="1" class="align_right"><span class="double_underline">{$preference.pref_currency_sign|htmlsafe}{$invoice.total|siLocal_number_trim}</span></td>
 	</tr>
 </table>

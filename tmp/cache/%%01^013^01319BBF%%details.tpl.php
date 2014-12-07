@@ -1,8 +1,7 @@
-<?php /* Smarty version 2.6.18, created on 2014-02-23 01:25:30
+<?php /* Smarty version 2.6.18, created on 2014-12-02 23:27:23
          compiled from ../templates/default/invoices_tt/details.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'htmlsafe', '../templates/default/invoices_tt/details.tpl', 32, false),)), $this); ?>
-
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'htmlsafe', '../templates/default/invoices_tt/details.tpl', 17, false),)), $this); ?>
 <br />
 <div id="gmail_loading" class="gmailLoader" style="float:right; display: none;">
         	<img src="images/common/gmail-loader.gif" alt="<?php echo $this->_tpl_vars['LANG']['loading']; ?>

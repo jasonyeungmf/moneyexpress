@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.18, created on 2014-12-01 01:40:42
+<?php /* Smarty version 2.6.18, created on 2014-12-06 00:20:39
          compiled from ../templates/default/invoices/itemised.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'htmlsafe', '../templates/default/invoices/itemised.tpl', 120, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'htmlsafe', '../templates/default/invoices/itemised.tpl', 106, false),)), $this); ?>
 <form name="frmpost" action="index.php?module=invoices&amp;view=save" method="post" onsubmit="return frmpost_Validator(this)">
 
 <div id="gmail_loading" class="gmailLoader" style="float:right; display: none;">
@@ -60,25 +60,9 @@ smarty_core_load_plugins(array('plugins' => array(array('modifier', 'htmlsafe', 
 &nbsp;  
                 </td>
                 <td>
-                    <a href="./index.php?module=products&amp;view=add" class="positive">
+                    <a href="./index.php?module=currencys_note&amp;view=add" class="positive">
                         <img src="./images/common/cart_add.png" alt="" />
                         <?php echo $this->_tpl_vars['LANG']['add_new_product']; ?>
-
-                    </a>
-                </td>
-            </tr>
-
-    <?php endif; ?>
-    <?php if ($this->_tpl_vars['taxes'] == null): ?>
-            <tr>
-                <td>
-                     <?php echo $this->_tpl_vars['LANG']['setup_add_taxrate']; ?>
-&nbsp;  
-                </td>
-                <td>
-                    <a href="index.php?module=tax_rates&amp;view=add" class="positive">
-                        <img src="./images/common/money_delete.png" alt="" />
-                        <?php echo $this->_tpl_vars['LANG']['add_new_tax_rate']; ?>
 
                     </a>
                 </td>
@@ -137,7 +121,7 @@ unset($_smarty_tpl_vars);
 </td>
 				<td class="details_screen"><?php echo $this->_tpl_vars['LANG']['total']; ?>
 </td>
-				<td class="details_screen"><?php echo $this->_tpl_vars['LANG']['cost']; ?>
+				<td class="details_screen"><?php echo $this->_tpl_vars['LANG']['note_cost']; ?>
 </td>
 				
 			</tr>
@@ -500,27 +484,21 @@ $this->_sections['line']['last']       = ($this->_sections['line']['iteration'] 
 <table class="buttons" align="center" border="0">
 	<tr>
 		<td>
-		<button type="submit" class="invoice_save positive" name="submit" value="<?php echo $this->_tpl_vars['LANG']['save']; ?>
+			<button type="submit" class="invoice_save positive" name="submit" value="<?php echo $this->_tpl_vars['LANG']['save']; ?>
 ">
-                <img class="button_img" src="./images/common/tick.png" alt="" /> 
-                <?php echo $this->_tpl_vars['LANG']['save']; ?>
+	                <img class="button_img" src="./images/common/tick.png" alt="" /> 
+	                <?php echo $this->_tpl_vars['LANG']['save']; ?>
 
-            </button>
-            
+	            	</button>
 		</td>
+		
 		<td>
-		<input type="hidden" id="max_items" name="max_items" value="<?php echo ((is_array($_tmp=$this->_sections['line']['index'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
-" />
-        	<input type="hidden" name="type" value="2" />
-        	
-            <a href="./index.php?module=invoices&amp;view=manage" class="negative">
-                <img src="./images/common/cross.png" alt="" />
-                <?php echo $this->_tpl_vars['LANG']['cancel']; ?>
-
-            </a>
-    
-        </td>
-    </tr>
+			<input type="hidden" id="max_items" name="max_items" value="<?php echo ((is_array($_tmp=$this->_sections['line']['index'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
+" />	        	
+	            	<a href="./index.php?module=invoices&amp;view=manage" class="negative"><img src="./images/common/cross.png" alt="" /><?php echo $this->_tpl_vars['LANG']['cancel']; ?>
+</a>    
+        	</td>
+	</tr>
 </table>
 </table>
 

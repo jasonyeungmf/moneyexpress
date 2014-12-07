@@ -197,21 +197,19 @@ function lastInsertId() {
 // In every instance of insertion into / updation  of the invoice table, we only pick from dropdown boxes which are sourced from the respective lookup tables.
 // Hence is this function necessary to be used at all?
 
-function _invoice_check_fk($biller, $customer, $type, $preference) {
+function _invoice_check_fk($biller, $customer, $preference) {
 	global $dbh;
 
 	//Check biller
 	$sth = $dbh->prepare('SELECT count(id) FROM '.TB_PREFIX.'biller WHERE id = :id');
 	$sth->execute(array(':id' => $biller));
 	if ($sth->fetchColumn() == 0) { return false; }
+	
 	//Check customer
 	$sth = $dbh->prepare('SELECT count(id) FROM '.TB_PREFIX.'customers WHERE id = :id');
 	$sth->execute(array(':id' => $customer));
 	if ($sth->fetchColumn() == 0) { return false; }
-	//Check invoice type
-	$sth = $dbh->prepare('SELECT count(inv_ty_id) FROM '.TB_PREFIX.'invoice_type WHERE inv_ty_id = :id');
-	$sth->execute(array(':id' => $type));
-	if ($sth->fetchColumn() == 0) { return false; }
+	
 	//Check preferences
 	$sth = $dbh->prepare('SELECT count(pref_id) FROM '.TB_PREFIX.'preferences WHERE pref_id = :id');
 	$sth->execute(array(':id' => $preference));
@@ -227,7 +225,7 @@ function _invoice_check_fk($biller, $customer, $type, $preference) {
  *     will return true.  Returning false indicates that if the INSERT or
  *     UPDATE were to proceed, bad data could be written to the database.
  */
-function _invoice_items_check_fk($invoice, $product, $tax, $update) {
+function _invoice_items_check_fk($invoice, $currency, $update) {
 	global $dbh;
 
 	//Check invoice
@@ -236,15 +234,12 @@ function _invoice_items_check_fk($invoice, $product, $tax, $update) {
 		$sth->execute(array(':id' => $invoice));
 		if ($sth->fetchColumn() == 0) { return false; }
 	}
-	//Check product
-	$sth = $dbh->prepare('SELECT count(id) FROM '.TB_PREFIX.'products WHERE id = :id');
-	$sth->execute(array(':id' => $product));
+	
+	//Check currencys_note
+	$sth = $dbh->prepare('SELECT count(id) FROM '.TB_PREFIX.'currencys_note WHERE id = :id');
+	$sth->execute(array(':id' => $currency));
 	if ($sth->fetchColumn() == 0) { return false; }
-	//Check tax id
-	$sth = $dbh->prepare('SELECT count(tax_id) FROM '.TB_PREFIX.'tax WHERE tax_id = :id');
-	$sth->execute(array(':id' => $tax));
-	if ($sth->fetchColumn() == 0) { return false; }
-
+	
 	//All good
 	return true;
 }
@@ -277,32 +272,12 @@ function getCustomFieldLabels() {
 	return $customFields;
 }
 
-//function progressPayments($sth) {
-//	$payments = null;
-//	global $auth_session;
-//
-//	for($i=0;$payment = $sth->fetch();$i++) {
-//
-//		$sql = "SELECT pt_description FROM ".TB_PREFIX."payment_types WHERE pt_id = :id and domain_id = :domain_id";
-//		$tth = dbQuery($sql, ':id', $payment['ac_payment_type'], ':domain_id', $auth_session->domain_id);
-//
-//		$pt = $tth->fetch();
-//		
-//		$payments[$i] = $payment;
-///		$payments[$i]['description'] = $pt['pt_description'];
-//		
-//	}
-//	
-//	return $payments;
-//}
-
 function getInvoiceTotal($invoice_id) {
 	global $LANG;
 	
 	$sql ="SELECT SUM(total) AS total FROM ".TB_PREFIX."invoice_items WHERE invoice_id =  :invoice_id";
 	$sth = dbQuery($sql, ':invoice_id', $invoice_id);
 	$res = $sth->fetch();
-	//echo "TOTAL".$res['total'];
 	return $res['total'];
 }
 
@@ -332,49 +307,26 @@ function getInvoice($id) {
 	$invoice['calc_date'] = date('Y-m-d', strtotime( $invoice['date'] ) );
 //	$invoice['date'] = siLocal::date( $invoice['date'] );
 	$invoice['total'] = getInvoiceTotal($invoice['id']);
-	$invoice['gross'] = invoice::getInvoiceGross($invoice['id']);
-	$invoice['paid'] = calc_invoice_paid($invoice['id']);
-	$invoice['owing'] = $invoice['total'] - $invoice['paid'];
-
-	
-	#invoice total tax
-	$sql ="SELECT SUM(tax_amount) AS total_tax, SUM(total) AS total FROM ".TB_PREFIX."invoice_items WHERE invoice_id =  :id";
-	$sth = dbQuery($sql, ':id', $id) or die(htmlsafe(end($dbh->errorInfo())));
-	$result = $sth->fetch();
-	//$invoice['total'] = number_format($result['total'],2);
-	$invoice['total_tax'] = $result['total_tax'];
-		
-	$invoice['tax_grouped'] = taxesGroupedForInvoice($id);
+	$invoice['subtotal'] = invoice::getInvoiceGross($invoice['id']);
+	$invoice['charge'] = invoice::getInvoiceCharge($invoice['id']);
 
 	return $invoice;
 }
 
+function getInvoices($sth) {
+	global $config;
+	$invoice = null;
 
-/*
-Function: taxesGroupedForInvoice
-Purpose: to show a nice summary of total $ for tax for an invoice
-*/
-function numberOfTaxesForInvoice($invoice_id)
-{
-	$sql = "select 
-				DISTINCT tax.tax_id
-			from 
-				".TB_PREFIX."invoice_item_tax item_tax, 
-				".TB_PREFIX."invoice_items item, 
-				".TB_PREFIX."tax tax 
-			where 
-				item.id = item_tax.invoice_item_id 
-				AND 
-				tax.tax_id = item_tax.tax_id 
-				AND 
-				item.invoice_id = :invoice_id
-				GROUP BY 
-				tax.tax_id;";
-	$sth = dbQuery($sql, ':invoice_id', $invoice_id) or die(htmlsafe(end($dbh->errorInfo())));
-	$result = $sth->rowCount();
+	if($invoice = $sth->fetch()) {
 
-	return $result;
-
+		$invoice['calc_date'] = date( 'Y-m-d', strtotime( $invoice['date'] ) );
+		$invoice['date'] = siLocal::date($invoice['date']);
+			
+		#invoice total total - start
+		$invoice['total'] = getInvoiceTotal($invoice['id']);
+		#invoice total total - end
+	}
+	return $invoice;
 }
 
 function setStatusExtension($extension_id, $status=2) {
@@ -407,38 +359,6 @@ function getExtensionID($extension_name = "none") {
 	if (! $extension_info) { return -2; }			// -2 = no result set = extension not found
 	if ($extension_info['enabled'] == 0) { return -1; }	// -1 = extension not enabled
 	return $extension_info['id'];				//  0 = core, >0 is extension id
-}
-
-function getInvoiceType($id) {
-	global $dbh;
-	
-	$sql = "SELECT * FROM ".TB_PREFIX."invoice_type WHERE inv_ty_id = :id";
-	$sth = dbQuery($sql, ':id', $id) or die(htmlsafe(end($dbh->errorInfo())));
-	return $sth->fetch();
-}
-
-function getInvoices(&$sth) {
-	global $config;
-	$invoice = null;
-
-	if($invoice = $sth->fetch()) {
-
-		$invoice['calc_date'] = date( 'Y-m-d', strtotime( $invoice['date'] ) );
-		$invoice['date'] = siLocal::date($invoice['date']);
-			
-		#invoice total total - start
-		$invoice['total'] = getInvoiceTotal($invoice['id']);
-		#invoice total total - end
-		
-		#amount paid calc - start
-		$invoice['paid'] = calc_invoice_paid($invoice['id']);
-		#amount paid calc - end
-		
-		#amount owing calc - start
-		$invoice['owing'] = $invoice['total'] - $invoice['paid'];
-		#amount owing calc - end
-	}
-	return $invoice;
 }
 
 function getCustomerInvoices($id) {
@@ -587,14 +507,12 @@ function getTopBiller() {
   return $biller;
 }
 
-function insertInvoice($type) {
+function insertInvoice() {
 	global $dbh;
 	global $db_server;
 	global $auth_session;
 	
-	if ($db_server == 'mysql' && !_invoice_check_fk(
-		$_POST['biller_id'], $_POST['customer_id'],
-		$type, $_POST['preference_id'])) {
+	if ($db_server == 'mysql' && !_invoice_check_fk($_POST['biller_id'], $_POST['customer_id'],$_POST['preference_id'])) {
 		return null;
 	}
 	$sql = "INSERT 
@@ -604,16 +522,11 @@ function insertInvoice($type) {
             index_id,
 			domain_id,
 			biller_id, 
-			customer_id, 
-			type_id,
+			customer_id,
 			preference_id,
 			trading_type_id, 
 			date, 
-			note,
-			custom_field1,
-			custom_field2,
-			custom_field3,
-			custom_field4
+			note
 		)
 		VALUES
 		(
@@ -622,52 +535,12 @@ function insertInvoice($type) {
 			:domain_id,
 			:biller_id,
 			:customer_id,
-			:type,
 			:preference_id,
 			:trading_type_id,
 			:date,
-			:note,
-			:customField1,
-			:customField2,
-			:customField3,
-			:customField4
+			:note
 			)";
-
-	if ($db_server == 'pgsql') {
-		$sql = "INSERT 
-				INTO
-			".TB_PREFIX."invoices (
-				index_id,
-				domain_id,
-				biller_id, 
-				customer_id, 
-				type_id,
-				preference_id,
-				trading_type_id,
-				date, 
-				note,
-				custom_field1,
-				custom_field2,
-				custom_field3,
-				custom_field4
-			)
-			VALUES
-			(
-				:index_id,
-				:domain_id,
-				:biller_id,
-				:customer_id,
-				:type,
-				:preference_id,
-				:trading_type_id,
-				:date,
-				:note,
-				:customField1,
-				:customField2,
-				:customField3,
-				:customField4
-				)";
-	}
+	
 	//echo $sql;
     $pref_group=getPreference($_POST[preference_id]);
 
@@ -678,44 +551,20 @@ function insertInvoice($type) {
 		':domain_id', $auth_session->domain_id,
 		':biller_id', $_POST[biller_id],
 		':customer_id', $_POST[customer_id],
-		':type', $type,
 		':preference_id', $_POST[preference_id],
 		':trading_type_id', $_POST[trading_type_id],
 		':date', $_POST[date],
-		':note', $_POST[note],
-		':customField1', $_POST[customField1],
-		':customField2', $_POST[customField2],
-		':customField3', $_POST[customField3],
-		':customField4', $_POST[customField4]
+		':note', $_POST[note]
 		);
 
     #index::increment('invoice',$pref_group[index_group],$_POST[biller_id]);
     index::increment('invoice',$pref_group[index_group]);
-
     return $sth;
 }
 
 function updateInvoice($invoice_id) {
-	
     global $logger;
-
-//    $current_invoice = invoice::select($_POST['id']);
-//    $current_pref_group = getPreference($current_invoice[preference_id]);
-
-//    $new_pref_group=getPreference($_POST[preference_id]);
-
-//    $index_id = $current_invoice['index_id'];
-
-//	$logger->log('Curent Index Group: '.$description, Zend_Log::INFO);
-//	$logger->log('Description: '.$description, Zend_Log::INFO);
-
-//    if ($current_pref_group['index_group'] != $new_pref_group['index_group'])
-//    {
-//        //$index_id = index::increment('invoice',$new_pref_group['index_group']);
-//		$index_id = index::increment($new_pref_group['index_group']);
-//    }
-
-	if ($db_server == 'mysql' && !_invoice_check_fk($_POST['biller_id'], $_POST['customer_id'],$type, $_POST['preference_id']))
+	if ($db_server == 'mysql' && !_invoice_check_fk($_POST['biller_id'], $_POST['customer_id'],$_POST['preference_id']))
 	{
 		return null;
 	}
@@ -728,11 +577,7 @@ function updateInvoice($invoice_id) {
 			preference_id = :preference_id,
 			trading_type_id = :trading_type_id,
 			date = :date,
-			note = :note,
-			custom_field1 = :customField1,
-			custom_field2 = :customField2,
-			custom_field3 = :customField3,
-			custom_field4 = :customField4
+			note = :note
 		WHERE
 			id = :invoice_id";
 			
@@ -744,34 +589,32 @@ function updateInvoice($invoice_id) {
 		':trading_type_id', $_POST['trading_type_id'],
 		':date', $_POST['date'],
 		':note', $_POST['note'],
-		':customField1', $_POST['customField1'],
-		':customField2', $_POST['customField2'],
-		':customField3', $_POST['customField3'],
-		':customField4', $_POST['customField4'],
 		':invoice_id', $invoice_id
 		);
 }
 
-function insertInvoiceItem($invoice_id,$quantity,$product_id,$trading_type_id,$line_number,$line_item_tax_id,$description="", $unit_price="", $note_cost) {
+function insertInvoiceItem(	$invoice_id,
+							$trading_type_id,
+							$description,
+							$currency_id,
+							$quantity,
+							$unit_price,
+							$charge,
+							$note_cost,
+							$line_number
+							){
 
 	global $logger;
 	global $LANG;
-	//do taxes
-
-	
-	$tax_total = getTaxesPerLineItem($line_item_tax_id,$quantity, $unit_price);
 
 	$logger->log(' ', Zend_Log::INFO);
 	$logger->log(' ', Zend_Log::INFO);
-	$logger->log('Invoice: '.$invoice_id.' Tax '.$line_item_tax_id.' for line item '.$line_number.': '.$tax_total, Zend_Log::INFO);
+	//$logger->log('Invoice: '.$invoice_id.' Tax '.$line_item_tax_id.' for line item '.$line_number.': '.$tax_total, Zend_Log::INFO);
 	$logger->log('Description: '.$description, Zend_Log::INFO);
 	$logger->log(' ', Zend_Log::INFO);
 
-	//line item gross total
-	$gross_total = $unit_price * $quantity;
-
-	//line item total
-	$total = $gross_total + $tax_total;	
+	$subtotal = $unit_price * $quantity;
+	$total = $subtotal + $charge;	
 
 	//Remove jquery auto-fill description - refer jquery.conf.js.tpl autofill section
 	if ($description == $LANG['description'])
@@ -779,78 +622,73 @@ function insertInvoiceItem($invoice_id,$quantity,$product_id,$trading_type_id,$l
 		$description ="";
 	}
 
-
-	if ($db_server == 'mysql' && !_invoice_items_check_fk(
-		$invoice_id, $product_id, $tax['tax_id'])) {
+	if ($db_server == 'mysql' && !_invoice_items_check_fk($invoice_id,$currency_id)) {
 		return null;
 	}
 	$sql = "INSERT INTO ".TB_PREFIX."invoice_items 
 			(
-				invoice_id, 
-				quantity, 
-				product_id,
-				trading_type_id,
+				invoice_id,
+				trading_type_id, 
+				description,
+				currency_id,
+				quantity,
 				unit_price, 
-				note_cost,
-				tax_amount, 
-				gross_total, 
-				description, 
-				total
+				subtotal,
+				charge,
+				total,
+				note_cost				
 			) 
 			VALUES 
 			(
-				:invoice_id, 
-				:quantity, 
-				:product_id,
-				:trading_type_id, 
-				:unit_price, 
-				:note_cost, 
-				:tax_amount, 
-				:gross_total, 
-				:description, 
-				:total
+				:invoice_id,
+				:trading_type_id,
+				:description,
+				:currency_id,
+				:quantity,
+				:unit_price,
+				:subtotal,
+				:charge,
+				:total,
+				:note_cost
 			)";
 
-	//echo $sql;
 	dbQuery($sql,
 		':invoice_id', $invoice_id,
-		':quantity', $quantity,
-		':product_id', $product_id,
 		':trading_type_id', $trading_type_id,
-		':unit_price', $unit_price,
-		':note_cost', $note_cost,
-	//	':tax_id', $tax[tax_id],
-	//	':tax_percentage', $tax[tax_percentage],
-		':tax_amount', $tax_total,
-		':gross_total', $gross_total,
 		':description', $description,
-		':total', $total
+		':currency_id', $currency_id,
+		':quantity', $quantity,
+		':unit_price', $unit_price,
+		':subtotal', $subtotal,
+		':charge', $charge,
+		':total', $total,
+		':note_cost', $note_cost
 		);
-	
-	invoice_item_tax(lastInsertId(),$line_item_tax_id,$unit_price,$quantity,"insert");
-
-	//TODO fix this
 	return true;
 }
 
-function updateInvoiceItem($id,$quantity,$product_id,$trading_type_id,$line_number,$line_item_tax_id,$description,$unit_price,$note_cost) {
+function updateInvoiceItem(	$id,
+							$trading_type_id,
+							$description,
+							$currency_id,
+							$quantity,
+							$unit_price,
+							$charge,
+							$note_cost,
+							$line_number
+							){
 
 	global $logger;
 	global $LANG;
-	//$product = getProduct($product_id);
-	//$tax = getTaxRate($tax_id);
-	
-	$tax_total = getTaxesPerLineItem($line_item_tax_id,$quantity, $unit_price);
-
-	$logger->log('Invoice: '.$invoice_id.' Tax '.$line_item_tax_id.' for line item '.$line_number.': '.$tax_total, Zend_Log::INFO);
+	//$logger->log('Invoice: '.$invoice_id.' Tax '.$line_item_tax_id.' for line item '.$line_number.': '.$tax_total, Zend_Log::INFO);
 	$logger->log('Description: '.$description, Zend_Log::INFO);
 	$logger->log(' ', Zend_Log::INFO);
 
 	//line item gross total
-	$gross_total = $unit_price  * $quantity;
+	$subtotal = $unit_price * $quantity;
 
 	//line item total
-	$total = $gross_total + $tax_total;	
+	$total = $subtotal + $charge;	
 
 	//Remove jquery auto-fill description - refer jquery.conf.js.tpl autofill section
 	if ($description == $LANG['description'])
@@ -858,42 +696,41 @@ function updateInvoiceItem($id,$quantity,$product_id,$trading_type_id,$line_numb
 		$description ="";
 	}
 
-
-	if ($db_server == 'mysql' && !_invoice_items_check_fk(
-		null, $product_id, $tax_id, 'update')) {
+	if ($db_server == 'mysql' && !_invoice_items_check_fk(null, $currency_id, 'update'))
+	{
 		return null;
 	}
 
-	$sql = "UPDATE ".TB_PREFIX."invoice_items 
-	SET quantity =  :quantity,
-	product_id = :product_id,
+	$sql = "UPDATE ".TB_PREFIX."invoice_items SET	
 	trading_type_id = :trading_type_id,
-	unit_price = :unit_price,
-	note_cost = :note_cost,
-	tax_amount = :tax_amount,
-	gross_total = :gross_total,
 	description = :description,
-	total = :total			
+	currency_id = :currency_id,
+	quantity =  :quantity,
+	unit_price = :unit_price,
+	subtotal = :subtotal,
+	charge = :charge,
+	total = :total,
+	note_cost = :note_cost
 	WHERE id = :id";
 	
 	//echo $sql;
 		
-	dbQuery($sql,
-		':quantity', $quantity,
-		':product_id', $product_id,
+	dbQuery($sql,		
+		':id', $id,
 		':trading_type_id', $trading_type_id,
-		':unit_price', $unit_price,
-		':note_cost', $note_cost,
-		':tax_amount', $tax_total,
-		':gross_total', $gross_total,
 		':description', $description,
+		':currency_id', $currency_id,
+		':quantity', $quantity,
+		':unit_price', $unit_price,
+		':subtotal', $subtotal,
+		':charge', $charge,
 		':total', $total,
-		':id', $id
+		':note_cost', $note_cost
 		);
 
 	//if from a new invoice item in the edit page user lastInsertId()
-	($id == null) ? $id = lastInsertId() : $id  =$id ;
-	invoice_item_tax($id,$line_item_tax_id,$unit_price,$quantity,"update");
+	//($id == null) ? $id = lastInsertId() : $id  =$id ;
+	//invoice_item_tax($id,$line_item_tax_id,$unit_price,$quantity,"update");
 
 	return true;
 }

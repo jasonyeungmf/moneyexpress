@@ -15,14 +15,12 @@
                 {else}
                         <select name="trading_type_id" id="trading_type_id" class="trading_type_change" >
                             	{foreach from=$trading_types item=trading_type}
-				    	{if $trading_type.id == 1 || $trading_type.id == 2}
-		                            	<option {if $trading_type.id == $defaults.trading_type} selected {/if} 
+				    		<option {if $trading_type.id == $defaults.trading_type} selected {/if} 
 					    		value="{$trading_type.id|htmlsafe}"
 						>
 						{$trading_type.description|htmlsafe}
 						</option>
-					{/if}
-                            	{/foreach}
+				{/foreach}
                         </select>
                 {/if}
                 </td>

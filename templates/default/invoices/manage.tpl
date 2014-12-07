@@ -1,5 +1,4 @@
 <!-- <link href="include/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen"> -->
-
 <table class="buttons" align="center">
     <tr>
         <td>
@@ -84,11 +83,6 @@
     	<a href="index.php?module=invoices&amp;view=manage&amp;having=this_year_note_buy">{$LANG.this_year}</a> |
 	<a href="index.php?module=invoices&amp;view=manage&amp;having=this_month_note_buy">{$LANG.this_month}</a> |
 	<a href="index.php?module=invoices&amp;view=manage&amp;having=today_note_buy">{$LANG.today}</a>
-<!--    	<a href="index.php?module=invoices&amp;view=manage&amp;having=due">{$LANG.due}</a> : 
-    	<a href="index.php?module=invoices&amp;view=manage&amp;having=paid">{$LANG.paid}</a> : 
-    	<a href="index.php?module=invoices&amp;view=manage&amp;having=draft">{$LANG.draft}</a> : 
-    	<a href="index.php?module=invoices&amp;view=manage&amp;having=real">{$LANG.real}</a>
--->
    </span>
    <span class="welcome">
         <a style="font-weight:bold">{$LANG.sell}</a>:

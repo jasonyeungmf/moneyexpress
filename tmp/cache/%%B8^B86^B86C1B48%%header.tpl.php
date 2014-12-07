@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.18, created on 2014-11-30 23:59:14
+<?php /* Smarty version 2.6.18, created on 2014-12-02 23:19:23
          compiled from ../templates/default/invoices//header.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'htmlsafe', '../templates/default/invoices//header.tpl', 20, false),array('modifier', 'date_format', '../templates/default/invoices//header.tpl', 92, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'htmlsafe', '../templates/default/invoices//header.tpl', 19, false),array('modifier', 'date_format', '../templates/default/invoices//header.tpl', 90, false),)), $this); ?>
 <br />
 <br />
 
@@ -23,16 +23,14 @@ smarty_core_load_plugins(array('plugins' => array(array('modifier', 'htmlsafe', 
                             	<?php $_from = $this->_tpl_vars['trading_types']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
     foreach ($_from as $this->_tpl_vars['trading_type']):
 ?>
-				    	<?php if ($this->_tpl_vars['trading_type']['id'] == 1 || $this->_tpl_vars['trading_type']['id'] == 2): ?>
-		                            	<option <?php if ($this->_tpl_vars['trading_type']['id'] == $this->_tpl_vars['defaults']['trading_type']): ?> selected <?php endif; ?> 
+				    		<option <?php if ($this->_tpl_vars['trading_type']['id'] == $this->_tpl_vars['defaults']['trading_type']): ?> selected <?php endif; ?> 
 					    		value="<?php echo ((is_array($_tmp=$this->_tpl_vars['trading_type']['id'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
 "
 						>
 						<?php echo ((is_array($_tmp=$this->_tpl_vars['trading_type']['description'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
 
 						</option>
-					<?php endif; ?>
-                            	<?php endforeach; endif; unset($_from); ?>
+				<?php endforeach; endif; unset($_from); ?>
                         </select>
                 <?php endif; ?>
                 </td>
