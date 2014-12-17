@@ -30,7 +30,7 @@
 	colModel : [
 	{display: '{/literal}{$LANG.actions}{literal}', name : 'actions', width : action_menu, sortable : false, align: 'center'},
 	{display: '{/literal}{$LANG.id}{literal}', name : 'id', width :5 * percentage_width, sortable : true, align: 'left'},
-	{display: '{/literal}{$LANG.index_id}{literal}', name : 'index_id', width :10 * percentage_width, sortable : true, align: 'left'},
+	{display: '{/literal}{$LANG.index_id}{literal}', name : 'index_id', width :15 * percentage_width, sortable : true, align: 'left'},
 	{display: '{/literal}{$LANG.date_upper}{literal}', name : 'date', width : 12 * percentage_width, sortable : true, align: 'left'},
 	{display: '{/literal}{$LANG.biller}{literal}', name : 'biller', width :5 * percentage_width, sortable : true, align: 'left'},
 	{display: '{/literal}{$LANG.customer}{literal}', name : 'customer', width :15 * percentage_width, sortable : true, align: 'left'},

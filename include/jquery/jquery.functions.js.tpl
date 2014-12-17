@@ -16,22 +16,27 @@
 		return row[0] + "<br><i>" + row[1] + "</i>";
 	}
 	
-	//delete line item in new invoice page
+//delete line item in new invoice page
 	function delete_row(row_number)
 	{
 	//	$('#row'+row_number).hide(); 
 		$('#row'+row_number).remove();
 	}
 	
-	//dlete line item in EDIT page
+//dlete line item in EDIT page
 	function delete_line_item(row_number)
 	{
-		$('#row'+row_number).hide(); 
-		$('#quantity'+row_number).removeAttr('value');
+		$('#row'+row_number).hide();
+		//$('#currencys'+row_number).removeAttr('value');
+		//$('#quantity'+row_number).removeAttr('value');
+		//$('#unit_price'+row_number).removeAttr('value');
+		$('#subtotal'+row_number).removeAttr('value');
+		//$('#charge'+row_number).removeAttr('value');
+		$('#total'+row_number).removeAttr('value');
 		$('#delete'+row_number).attr('value','yes');
 	}
 	
-	//trading type change
+//trading type change
 	function invoice_trading_type_change(trading_type, row_number, currency, quantity, charge){
 		
 		if(trading_type == "1"){
@@ -53,7 +58,7 @@
 				/*if ( (quantity.length==0) || (quantity.value==null) ) */
 				if (quantity=="") 
 				{	
-					$("#quantity"+row_number).attr("value","1");
+					$("#quantity"+row_number).attr("value","");
 				}
 				
 				$("#unit_price"+row_number).attr("value",data['unit_price']);
@@ -65,7 +70,7 @@
 					$("#note_cost"+row_number).attr("value",data['note_cost']);
 				}		
 				
-				//subtotal and total count
+				//subtotal & total
 				var $quantity = $("#quantity"+row_number).attr("value");
 				var $subtotal = $quantity * $("#unit_price"+row_number).attr("value");
 					$subtotal = Math.round($subtotal*100)/100;
@@ -75,7 +80,7 @@
 				$("#subtotal"+row_number).attr("value",$subtotal);
 				$("#total"+row_number).attr("value",$total);
 				
-				//invoice total count
+				//invoice total
 				//count_invoice_line_items();
 				var $rowID_last = $("#max_items").attr("value");
 				var $invoice_total = 0;
@@ -84,19 +89,8 @@
 					$invoice_total += ($("#total"+$i).attr("value") - 0);
 				}
 				$invoice_total = Math.round($invoice_total*100)/100;
-				$("#invoice_total").attr("value",$invoice_total);	
-				
-				$("#tax_id\\["+row_number+"\\]\\[0\\]").val(data['default_tax_id']);
-				if (data['default_tax_id_2']== null)
-				{
-					$("#tax_id\\["+row_number+"\\]\\[1\\]").val('');
-				}
-				if (data['default_tax_id_2'] !== null)
-				{
-					$("#tax_id\\["+row_number+"\\]\\[1\\]").val(data['default_tax_id_2']);
-				}
+				$("#invoice_total").attr("value",$invoice_total);
 			}
-	
    		 });
      }
 
@@ -122,7 +116,7 @@
 				/*if ( (quantity.length==0) || (quantity.value==null) ) */
 				if (quantity=="") 
 				{	
-					$("#quantity"+row_number).attr("value","0");
+					$("#quantity"+row_number).attr("value","");
 				}
 				
 				$("#unit_price"+row_number).attr("value",data['unit_price']);
@@ -155,16 +149,6 @@
 				}
 				$invoice_total = Math.round($invoice_total*100)/100;
 				$("#invoice_total").attr("value",$invoice_total);	
-				
-				$("#tax_id\\["+row_number+"\\]\\[0\\]").val(data['default_tax_id']);
-				if (data['default_tax_id_2'] == null)
-				{
-					$("#tax_id\\["+row_number+"\\]\\[1\\]").val('');
-				}
-				if (data['default_tax_id_2'] !== null)
-				{
-					$("#tax_id\\["+row_number+"\\]\\[1\\]").val(data['default_tax_id_2']);
-				}
 			}
    		 });
      }

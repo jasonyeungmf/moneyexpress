@@ -25,61 +25,62 @@ if($this->file_name ==''){
                 }
         }
 }
-//echo "export show data";
-	switch ($this->format)
-	{
-		case "print":
-		{
-			echo($data);
-			break;
-		}	
-			
-		case "pdf":
-		{	
-			$invoice = invoice::select($this->id);
-			$this->file_name = $invoice['index_id'];
-			pdfThis($data, $this->file_location, $this->file_name);
-			$this->file_location == "download" ? exit():"" ;	
-			break;
-		}
-				
-		case "file":
-		{
-			$invoice = getInvoice($this->id);
-			$preference = getPreference($invoice['preference_id']);
-			$this->file_name = $invoice['index_id'];
-			//xls/doc export no longer uses the export template
-			//$template = "export";
-				
-			header("Content-type: application/octet-stream");
-			//header("Content-type: application/x-msdownload");
-			switch ($this->module)
-			{
-				case "statement":
-				{
-					header('Content-Disposition: attachment; filename="statement.'.addslashes($this->file_type).'"');
-					break;
-				}
-				case "payment":
-				{
-					header('Content-Disposition: attachment; filename="payment'.addslashes($this->id.'.'.$this->file_type).'"');
-					break;
-				}
-				default:
-				{
-					header('Content-Disposition: attachment; filename="'.addslashes($this->file_name.'.'.$this->file_type).'"');
-					break;
-				}
-			}
 
-				header("Pragma: no-cache");
-				header("Expires: 0");
-				
-				echo($data);
-				
-				break;
-		}
+//echo "export show data";
+switch ($this->format)
+{
+	case "print":
+	{
+		echo($data);
+		break;
+	}	
+		
+	case "pdf":
+	{	
+		$invoice = invoice::select($this->id);
+		$this->file_name = $invoice['index_id'];
+		pdfThis($data, $this->file_location, $this->file_name);
+		$this->file_location == "download" ? exit():"" ;	
+		break;
 	}
+				
+	case "file":
+	{
+		$invoice = getInvoice($this->id);
+		$preference = getPreference($invoice['preference_id']);
+		$this->file_name = $invoice['index_id'];
+		//xls/doc export no longer uses the export template
+		//$template = "export";
+			
+		header("Content-type: application/octet-stream");
+		//header("Content-type: application/x-msdownload");
+		switch ($this->module)
+		{
+			case "statement":
+			{
+				header('Content-Disposition: attachment; filename="statement.'.addslashes($this->file_type).'"');
+				break;
+			}
+			case "payment":
+			{
+				header('Content-Disposition: attachment; filename="payment'.addslashes($this->id.'.'.$this->file_type).'"');
+				break;
+			}
+			default:
+			{
+				header('Content-Disposition: attachment; filename="'.addslashes($this->file_name.'.'.$this->file_type).'"');
+				break;
+			}
+		}
+
+			header("Pragma: no-cache");
+			header("Expires: 0");
+				
+			echo($data);
+			
+			break;
+	}
+}
 }
 	
 	function getData()
@@ -210,9 +211,13 @@ if($this->file_name ==''){
 		$user_logo = str_replace(" ", "%20", $user_logo);
 				
 		$invoice = invoice::select($this->id);
- 	        $invoice_number_of_taxes = numberOfTaxesForInvoice($this->id);
-		$customer = getCustomer($invoice['customer_id']);
+		$currentid = $invoice['id'];
+		$previousid = previousid($currentid);
+	  	$nextid = nextid($currentid);
 				
+		$customer = getCustomer($invoice['customer_id']);		
+		$trading_type = getTradingType($invoice['trading_type_id']);		
+		
 		$biller = biller::select($invoice['biller_id']);
 		$logo = getLogo($biller);
 		$logo = str_replace(" ", "%20", $logo);
@@ -224,56 +229,42 @@ if($this->file_name ==''){
 		$spc2us_pref = str_replace(" ", "_", $invoice['index_name']);
 		$this->file_name = $spc2us_pref;
 				
-		$customFieldLabels = getCustomFieldLabels();
-	
 		/*Set the template to the default*/
 		$template = $defaults['template'];
-			
 		$templatePath = "./templates/invoices/${template}/template.tpl";
 		$template_path = "../templates/invoices/${template}";
 		$css = $siUrl."/templates/invoices/${template}/style.css";
 		$pluginsdir = "./templates/invoices/${template}/plugins/";
-
-		//$smarty = new Smarty();
-				
 		$smarty -> plugins_dir = $pluginsdir;
-				 
 		$pageActive = "invoices";
 		$smarty->assign('pageActive', $pageActive);
-				
 		if(file_exists($templatePath)) {
-			//echo "test";
+			$smarty -> assign('trading_type',$trading_type);
 			$smarty -> assign('biller',$biller);
 			$smarty -> assign('customer',$customer);
 			$smarty -> assign('invoice',$invoice);
-			$smarty -> assign('invoice_number_of_taxes',$invoice_number_of_taxes);
+			$smarty -> assign('previousid',$previousid);
+			$smarty -> assign('nextid',$nextid);
 			$smarty -> assign('preference',$preference);
 			$smarty -> assign('logo',$logo);
 			$smarty -> assign('template',$template);
 			$smarty -> assign('invoiceItems',$invoiceItems);
 			$smarty -> assign('template_path',$template_path);
 			$smarty -> assign('css',$css);
-			$smarty -> assign('customFieldLabels',$customFieldLabels);
 			$smarty -> assign('user',$user);
 			$smarty -> assign('user_logo',$user_logo);
 					
-			$data = $smarty -> fetch(".".$templatePath);
-				
-		}
-				
+			$data = $smarty -> fetch(".".$templatePath);				
+		}				
 		break;			
-	}
-			
+	}			
 }
-		
-return $data;
-		
+return $data;		
 }
 	
 function execute()
 {
 	$this->showData( $this->getData() );	
 }
-	
 }
 ?>

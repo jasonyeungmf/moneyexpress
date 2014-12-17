@@ -1,15 +1,14 @@
-<?php /* Smarty version 2.6.18, created on 2014-12-02 23:19:23
+<?php /* Smarty version 2.6.18, created on 2014-12-13 01:00:22
          compiled from ../templates/default/invoices//header.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'htmlsafe', '../templates/default/invoices//header.tpl', 19, false),array('modifier', 'date_format', '../templates/default/invoices//header.tpl', 90, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'htmlsafe', '../templates/default/invoices//header.tpl', 18, false),array('modifier', 'date_format', '../templates/default/invoices//header.tpl', 89, false),)), $this); ?>
 <br />
 <br />
-
 <input type="hidden" name="action" value="insert" />
-<table align="center">
+<table align="center" width="100%" border="1">
 <tr>
 <td>
-<table align="left" border="0">
+<table align="center" width="100%" border="1">
 	<tr>
         	<td class="details_screen"><?php echo $this->_tpl_vars['LANG']['trading_type']; ?>
 </td>

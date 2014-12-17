@@ -568,6 +568,15 @@ function updateInvoice($invoice_id) {
 	{
 		return null;
 	}
+	
+	//index_id is NB...(buy) or NS...(sell) when trading type change.
+	if($_POST['trading_type_id'] == 1){
+		$index_id = "NB".substr($_POST['index_id'],2);
+	}
+	if($_POST['trading_type_id'] == 2){
+		$index_id = "NS".substr($_POST['index_id'],2);
+	}
+	
 	$sql = "UPDATE
 			".TB_PREFIX."invoices
 		SET
@@ -582,7 +591,8 @@ function updateInvoice($invoice_id) {
 			id = :invoice_id";
 			
 	return dbQuery($sql,
-        ':index_id', $_POST['index_id'],
+        //':index_id', $_POST['index_id'],
+		':index_id', $index_id,//W.F. Yang
 		':biller_id', $_POST['biller_id'],
 		':customer_id', $_POST['customer_id'],
 		':preference_id', $_POST['preference_id'],
@@ -591,6 +601,7 @@ function updateInvoice($invoice_id) {
 		':note', $_POST['note'],
 		':invoice_id', $invoice_id
 		);
+		echo $index_id;
 }
 
 function insertInvoiceItem(	$invoice_id,
@@ -667,24 +678,15 @@ function insertInvoiceItem(	$invoice_id,
 	return true;
 }
 
-function updateInvoiceItem(	$id,
-							$trading_type_id,
-							$description,
-							$currency_id,
-							$quantity,
-							$unit_price,
-							$charge,
-							$note_cost,
-							$line_number
-							){
-
+function updateInvoiceItem($line_number,$trading_type_id,$description,$currency_id,$quantity,$unit_price,$charge,$note_cost,$id)
+{
 	global $logger;
 	global $LANG;
-	//$logger->log('Invoice: '.$invoice_id.' Tax '.$line_item_tax_id.' for line item '.$line_number.': '.$tax_total, Zend_Log::INFO);
+	$logger->log('Invoice: '.$invoice_id.' for line item '.$line_number, Zend_Log::INFO);
 	$logger->log('Description: '.$description, Zend_Log::INFO);
 	$logger->log(' ', Zend_Log::INFO);
 
-	//line item gross total
+	//line item subtotal
 	$subtotal = $unit_price * $quantity;
 
 	//line item total
@@ -702,19 +704,18 @@ function updateInvoiceItem(	$id,
 	}
 
 	$sql = "UPDATE ".TB_PREFIX."invoice_items SET	
-	trading_type_id = :trading_type_id,
-	description = :description,
-	currency_id = :currency_id,
-	quantity =  :quantity,
-	unit_price = :unit_price,
-	subtotal = :subtotal,
-	charge = :charge,
-	total = :total,
-	note_cost = :note_cost
-	WHERE id = :id";
+		trading_type_id = :trading_type_id,
+		description = :description,
+		currency_id = :currency_id,
+		quantity =  :quantity,
+		unit_price = :unit_price,
+		subtotal = :subtotal,
+		charge = :charge,
+		total = :total,
+		note_cost = :note_cost
+	WHERE
+		id = :id";
 	
-	//echo $sql;
-		
 	dbQuery($sql,		
 		':id', $id,
 		':trading_type_id', $trading_type_id,
@@ -729,7 +730,7 @@ function updateInvoiceItem(	$id,
 		);
 
 	//if from a new invoice item in the edit page user lastInsertId()
-	//($id == null) ? $id = lastInsertId() : $id  =$id ;
+	($id == null) ? $id = lastInsertId() : $id  =$id ;
 	//invoice_item_tax($id,$line_item_tax_id,$unit_price,$quantity,"update");
 
 	return true;
@@ -801,82 +802,73 @@ function delete($module,$idField,$id) {
 	 *     have rows deleted using this function.  This is used for
 	 *     whitelisting deletion targets.
 	 */
-	$valid_tables = array('invoices', 'invoice_items', 'invoice_item_tax', 'products');
+	$valid_tables = array('invoices', 'invoice_items', 'currencys');
 
-	if (in_array($lctable, $valid_tables)) {
-		// A quick once-over on the dependencies of the possible tables
-		if ($lctable == 'invoice_item_tax') 
-        {
-			// Not required by any FK relationships
-			if (!in_array($idField, array('invoice_item_id'))) {
-				// Fail, invalid identity field
-				return false;
-			} else {
-				$s_idField = $idField;
-			}
-        } elseif ($lctable == 'invoice_items') {
-			// Not required by any FK relationships
-			if (!in_array($idField, array('id', 'invoice_id'))) {
-				// Fail, invalid identity field
-				return false;
-			} else {
-				$s_idField = $idField;
-			}
-		} elseif ($lctable == 'products') {
-			// Check for use of product
-			$sth = $dbh->prepare('SELECT count(*)
-				FROM '.TB_PREFIX.'invoice_items
-				WHERE product_id = :id');
-			$sth->execute(array(':id' => $id));
-			$ref = $sth->fetch();
-			if ($sth->fetchColumn() != 0) {
-				// Fail, product still in use
-				return false;
-			}
-			$sth = null;
-
-			if (!in_array($idField, array('id'))) {
-				// Fail, invalid identity field
-				return false;
-			} else {
-				$s_idField = $idField;
-			}
-		} elseif ($lctable == 'invoices') {
-			// Check for existant payments and line items
-			$sth = $dbh->prepare('SELECT count(*) FROM (
-				SELECT id FROM '.TB_PREFIX.'invoice_items
-				WHERE invoice_id = :id
-				UNION ALL
-				SELECT id FROM '.TB_PREFIX.'payment
-				WHERE ac_inv_id = :id) x');
-			$sth->execute(array(':id' => $id));
-			if ($sth->fetchColumn() != 0) {
-				// Fail, line items or payments still exist
-				return false;
-			}
-			$sth = null;
-
-			//SC: Later, may accept other values for $idField
-			if (!in_array($idField, array('id'))) {
-				// Fail, invalid identity field
-				return false;
-			} else {
-				$s_idField = $idField;
-			}
-		} else {
-			// Fail, no checks for this table exist yet
+if (in_array($lctable, $valid_tables)) {
+	// A quick once-over on the dependencies of the possible tables
+	if($lctable == 'invoice_items'){
+		// Not required by any FK relationships
+		if(!in_array($idField, array('id', 'invoice_id'))){
+			// Fail, invalid identity field
 			return false;
 		}
-	} else {
-		// Fail, invalid table name
-		return false;
-	}
-
-	if ($s_idField == '') {
-		// Fail, column whitelisting not performed
-		return false;
+		else{$s_idField = $idField;}
 	}
 		
+	elseif($lctable == 'currencys'){
+		// Check for use of currency
+		$sth = $dbh->prepare('SELECT count(*) FROM '.TB_PREFIX.'invoice_items WHERE currency_id = :id');
+		$sth->execute(array(':id' => $id));
+		$ref = $sth->fetch();
+		if($sth->fetchColumn() != 0) {
+			// Fail, currency still in use
+			return false;
+		}
+		$sth = null;
+		if(!in_array($idField, array('id'))){
+			// Fail, invalid identity field
+			return false;
+		}
+		else{
+			$s_idField = $idField;
+		}
+	}
+		
+	elseif($lctable == 'invoices'){
+		// Check for existant payments and line items
+		$sth = $dbh->prepare('SELECT count(*) FROM (SELECT id FROM '.TB_PREFIX.'invoice_items WHERE invoice_id = :id) x');
+		$sth->execute(array(':id' => $id));
+		if($sth->fetchColumn() != 0){
+			// Fail, line items or payments still exist
+			return false;
+		}
+		$sth = null;
+		//SC: Later, may accept other values for $idField
+		if(!in_array($idField, array('id'))){
+			// Fail, invalid identity field
+			return false;
+		}
+		else{
+			$s_idField = $idField;
+		}
+	}
+		
+	else{
+		// Fail, no checks for this table exist yet
+		return false;
+	}
+} 
+
+else{
+	// Fail, invalid table name
+	return false;
+}
+
+if($s_idField == ''){
+	// Fail, column whitelisting not performed
+	return false;
+}
+	
 	// Tablename and column both pass whitelisting and FK checks
 	$sql = "DELETE FROM ".TB_PREFIX."$module WHERE $s_idField = :id";
     $logger->log("Item deleted: ".$sql, ZEND_Log::INFO);
@@ -1156,5 +1148,40 @@ function pdfThis($html,$file_location="",$pdfname)
 
 	//echo "location: ".$file_location;
 	convert_to_pdf($html, $pdfname, $file_location);
+}
 
+function previousid($currentid)
+{
+	global $logger;
+	global $db;
+	global $auth_session;
+$previousquery = "SELECT * FROM ".TB_PREFIX."invoices WHERE id < $currentid AND domain_id=$auth_session->domain_id ORDER BY id DESC LIMIT 1"; 
+	$previousresult = dbQuery($previousquery);
+  	$previousrow = $previousresult->fetch();
+  	$previousid  = $previousrow['id'];
+	if($previousid)
+	{	
+		return $previousid;
+	}
+	else{
+		return $currentid;
+	}
+}
+
+function nextid($currentid)
+{
+	global $logger;
+	global $db;
+	global $auth_session;
+	$nextquery = "SELECT * FROM ".TB_PREFIX."invoices WHERE id > $currentid AND domain_id = $auth_session->domain_id ORDER BY id ASC LIMIT 1"; 
+	$nextresult = dbQuery($nextquery);
+	$nextrow = $nextresult->fetch();
+	$nextid  = $nextrow['id'];
+	if($nextid)
+	{
+		return $nextid;
+	}
+	else{
+		return $currentid;
+	}
 }

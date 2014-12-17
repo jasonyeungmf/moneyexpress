@@ -1,16 +1,16 @@
-<?php /* Smarty version 2.6.18, created on 2014-12-06 01:35:32
+<?php /* Smarty version 2.6.18, created on 2014-12-13 14:24:43
          compiled from ../templates/default/invoices/save.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'urlencode', '../templates/default/invoices/save.tpl', 13, false),)), $this); ?>
 <?php if ($this->_tpl_vars['saved'] == true): ?>
 	<br />
-	 <?php echo $this->_tpl_vars['LANG']['save_invoice_success']; ?>
+	 	<?php echo $this->_tpl_vars['LANG']['save_invoice_success']; ?>
 
 	<br />
 	<br />
 <?php else: ?>
 	<br />
-	 <?php echo $this->_tpl_vars['LANG']['save_invoice_failure']; ?>
+	 	<?php echo $this->_tpl_vars['LANG']['save_invoice_failure']; ?>
 
 	<br />
 	<br />

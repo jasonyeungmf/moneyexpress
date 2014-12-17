@@ -6,13 +6,11 @@ $invoice_id = $_GET['id'];
 $invoice = getInvoice($invoice_id);
 $preference = getPreference($invoice['preference_id']);
 $defaults = getSystemDefaults();
-$invoicePaid = calc_invoice_paid($invoice_id);
 $invoiceItems = invoice::getInvoiceItems($invoice_id);
 
 $smarty -> assign("invoice",$invoice);
 $smarty -> assign("preference",$preference);
 $smarty -> assign("defaults",$defaults);
-$smarty -> assign("invoicePaid",$invoicePaid);
 $smarty -> assign("invoiceItems",$invoiceItems);
 
 /*If delete is disabled - dont allow people to view this page*/
@@ -46,14 +44,6 @@ delInvoicesUpdateCurrencyNote($invoiceItems[$key]['trading_type_id'],$invoiceIte
 // Start by deleting the line items
 if (! delete('invoice_items','invoice_id',$invoice_id)) {
 	$error = true;
-}
-
-//delete products from producsts table for total style
-if ($invoice['type_id'] == 1) 
-{
-	if ($error || ! delete('products','id',$invoiceItems['0']['product']['id'])) {
-	$error = true;
-	}
 }
 
 //delete the info from the invoice table

@@ -257,17 +257,7 @@ startclock();
 		siLog('debug','{/literal}{$LANG.description}{literal}');
      });
 	 
-	/*
-	* Product Inventory Change - updates line item with product price info
-	*/
-	$(".product_inventory_change").livequery('change',function () { 
-      	var $product = $(this).val();
-      	var $existing_cost = $("#cost").val();
- 		product_inventory_change($product,$existing_cost);
-     });
- 
-    
-	//delete line in invoice
+//delete line in invoice
 	$(".trash_link").livequery('click',function () { 
       id = $(this).attr("rel");
 	{/literal}
@@ -295,7 +285,7 @@ startclock();
 		}			
     });
 	
-	//delete line in invoice
+//delete line in invoice
 	$(".trash_link_edit").livequery('click',function () { 
       id = $(this).attr("rel");
 
@@ -314,14 +304,14 @@ startclock();
 	{literal}
     });
 
-	//add new lien item in invoices
+//add new lien item in invoices
 	$("a.add_line_item").click(function () { 
 		add_line_item();
 		//autoFill($(".note"), "Description");
     });
 
 
-	//calc number of line items 
+//calc number of line items 
 	$(".invoice_save").click(function () {
 		$('#gmail_loading').show();
 		siLog('debug','invoice save');
@@ -332,7 +322,7 @@ startclock();
 	});
 
 	
-	//Autofill "Description" into the invoice items description/notes textarea
+//Autofill "Description" into the invoice items description/notes textarea
 	$(".note").livequery(function(){
 			
 			$description = $(".note").val();

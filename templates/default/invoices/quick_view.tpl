@@ -29,15 +29,18 @@
 <br />
 <br />
 
-<table align="center" width="100%" border="1">
+<table align="center" width="100%" border="0">
+	<tr>
+		<td><b>{$LANG.trading_type}:</b></td>
+		<td>{$trading_type.description|htmlsafe}</td>
+		<td colspan="3"></td>
+		<td><b>{$LANG.summary}:</b></td>
+		<td><br/></td>
+	</tr>
 	<tr>
 		<td><b>{$LANG.biller}:</b></td>
 		<td>{$biller.name|htmlsafe}</td>
 		<td colspan="3"></td>
-		<td colspan="2"><b>{$LANG.summary}:</b></td>
-	</tr>
-	<tr>
-		<td colspan="5"></td>
 		<td><b>{$LANG.index_id}:</b></td>
 		<td>{$invoice.index_id|htmlsafe}</td>
 	</tr>
@@ -68,8 +71,8 @@
 	<tr>
 		<td style="text-align:right">{$invoiceItem.description|htmlsafe}</td>
 		<td style="text-align:right">{$invoiceItem.currency.code|htmlsafe}</td>
-		<td style="text-align:right">{$invoiceItem.quantity|siLocal_number_trim}</td>
-		<td style="text-align:right">{$preference.pref_currency_sign}{$invoiceItem.unit_price|siLocal_number_clean}</td>
+		<td style="text-align:right">{$preference.pref_currency_sign}{$invoiceItem.quantity|siLocal_number_trim}</td>
+		<td style="text-align:right">{$invoiceItem.unit_price|siLocal_number_clean}</td>
 		<td style="text-align:right">{$preference.pref_currency_sign}{$invoiceItem.subtotal|siLocal_number_trim}</td>
 		<td style="text-align:right">{$preference.pref_currency_sign}{$invoiceItem.charge|siLocal_number_clean}</td>
 		<td style="text-align:right">{$preference.pref_currency_sign}{$invoiceItem.total|siLocal_number_trim}</td>		
@@ -77,31 +80,14 @@
 {/foreach}
 
 	<tr>
+		<td colspan="5"></td>
+		<td class="align_right"><b>{$preference.pref_inv_wording|htmlsafe} {$LANG.total}</b></td>		
+		<td class="align_right"><span class="double_underline">{$preference.pref_currency_sign|htmlsafe}{$invoice.total|siLocal_number_trim}</span></td>
+	</tr>
+
+	<tr>
 		<td colspan="7"><b>{$LANG.notes}:{$invoice.note|outhtml}</b></td>
 	</tr>
-	<tr>
-		<td colspan="7"><br/></td>
-	</tr>
-
-	<tr>
-        	<td colspan="5"></td>
-		<td colspan="1" class="align_right"><b>{$preference.pref_inv_wording|htmlsafe} {$LANG.subtotal}</b></td>
-		<td colspan="1" class="align_right">{$preference.pref_currency_sign|htmlsafe}{$invoice.subtotal|siLocal_number_trim}</td>
-	</tr>
-	
-	<tr>
-        	<td colspan="5"></td>
-		<td colspan="1" class="align_right"><b>{$preference.pref_inv_wording|htmlsafe} {$LANG.charge}</b></td>
-		<td colspan="1" class="align_right">{$preference.pref_currency_sign|htmlsafe}{$invoice.charge|siLocal_number_trim}</td>
-	</tr>	
-
-	<tr class="details_screen">
-	        <td colspan="5"></td>
-		<td colspan="1" class="align_right"><b>{$preference.pref_inv_wording|htmlsafe} {$LANG.total}</b></td>
-		<td colspan="1" class="align_right"><span class="double_underline">{$preference.pref_currency_sign|htmlsafe}{$invoice.total|siLocal_number_trim}</span></td>
-	</tr>
 </table>
-
 <br /><br />
-
 <br />

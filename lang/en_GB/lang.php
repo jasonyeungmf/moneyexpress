@@ -632,6 +632,8 @@ $LANG['update_currency_note_rate_success'] = "Successfully updated,<br />you wil
 $LANG['update_currency_note_rate_failure'] = "Something went wrong, Please try updating the note rate again";//1
 $LANG['setup_add_currencysnote'] = "Add some currency, click ";//1
 $LANG['add_new_currencynote'] = "Add New Currency";//1
+$LANG['previous'] = "Previous";//1
+$LANG['next'] = "Next";//1
 
 // Currency T/T
 $LANG['tt_buy'] = "TT Buy";//1
@@ -682,6 +684,9 @@ $LANG['today'] = "Today";//1
 $LANG['total'] = "Total";//1
 $LANG['tt_invoices'] = "T/T Invoices";//1
 $LANG['zip_code'] = "Zip Code";//1
+$LANG['number'] = "Number";//1
+$LANG['show_description'] = "Show description";//1
+$LANG['hide_description'] = "Hide description";//1
 
 // Trading type
 $LANG['index_id'] = "Index ID";//1

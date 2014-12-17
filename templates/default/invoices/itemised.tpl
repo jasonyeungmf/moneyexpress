@@ -1,92 +1,137 @@
 <form name="frmpost" action="index.php?module=invoices&amp;view=save" method="post" onsubmit="return frmpost_Validator(this)">
 
-<div id="gmail_loading" class="gmailLoader" style="float:right; display: none;">
-        	<img src="images/common/gmail-loader.gif" alt="{$LANG.loading} ..." /> {$LANG.loading} ...
-</div>
-
+<div id="gmail_loading" class="gmailLoader" style="float:right; display: none;"><img src="images/common/gmail-loader.gif" alt="{$LANG.loading} ..." />{$LANG.loading} ...</div>
 
 {if $first_run_wizard == true}
+<br /><br />
+<span class="welcome">{$LANG.before_starting}</span>
+<br /><br /><br />
 
-        <br />
-        <br />
-        <span class="welcome">
-            {$LANG.before_starting}
-        </span>
-        <br />
-        <br />
-        <br />
-        <table class="buttons" align="center">
-    {if $billers == null}
-        <tr>
-                <td>
-                     {$LANG.setup_as_biller}&nbsp;  
-                </td>
-                <td>
-                    <a href="./index.php?module=billers&amp;view=add" class="positive">
-                        <img src="./images/common/user_add.png" alt="" />
-                        {$LANG.add_new_biller}
-                    </a>
-                </td>
-        </tr>
-    {/if}
-    {if $customers == null}
-            <tr>
-                <td>
-                     {$LANG.setup_add_customer}&nbsp;  
-                </td>
-                <td>
-                    <a href="./index.php?module=customers&amp;view=add" class="positive">
-                        <img src="./images/common/vcard_add.png" alt="" />
-                        {$LANG.customer_add}
-                    </a>
-                </td>
-            </tr>
-    {/if}
-    {if $products == null}
-            <tr>
-                <td>
-                     {$LANG.setup_add_products}&nbsp;  
-                </td>
-                <td>
-                    <a href="./index.php?module=currencys_note&amp;view=add" class="positive">
-                        <img src="./images/common/cart_add.png" alt="" />
-                        {$LANG.add_new_product}
-                    </a>
-                </td>
-            </tr>
+<table class="buttons" align="center">
 
-    {/if}
-    {if $preferences == null}
-            <tr>
-                <td>
-                     {$LANG.setup_add_inv_pref}&nbsp;  
-                </td>
-                <td>
-                    </a>
-                    <a href="./index.php?module=preferences&amp;view=add" class="positive">
-                        <img src="./images/common/page_white_edit.png" alt="" />
-                        {$LANG.add_new_preference}
-                    </a>
-                </td>
-            </tr>
+{if $billers == null}
+<tr>
+	<td>{$LANG.setup_as_biller}&nbsp;</td>
+        <td><a href="./index.php?module=billers&amp;view=add" class="positive"><img src="./images/common/user_add.png" alt="" />{$LANG.add_new_biller}</a></td>
+</tr>
+{/if}
 
+{if $customers == null}
+ <tr>
+	<td>{$LANG.setup_add_customer}&nbsp;</td>
+	<td><a href="./index.php?module=customers&amp;view=add" class="positive"><img src="./images/common/vcard_add.png" alt="" />{$LANG.customer_add}</a></td>
+</tr>
+{/if}
+	    
+{if $products == null}
+<tr>
+	<td>{$LANG.setup_add_products}&nbsp;</td>
+	<td><a href="./index.php?module=currencys_note&amp;view=add" class="positive"><img src="./images/common/cart_add.png" alt="" />{$LANG.add_new_product}</a></td>
+</tr>
+{/if}
 
-    {/if}
-                </td>
-            </tr>
-            </table>
-        <br />
+{if $preferences == null}
+<tr>
+	<td>{$LANG.setup_add_inv_pref}&nbsp;</td>
+	<td><a href="./index.php?module=preferences&amp;view=add" class="positive"><img src="./images/common/page_white_edit.png" alt="" />{$LANG.add_new_preference}</a></td>
+</tr>
+{/if}
+</table>
+
+<br />
 
 {else}
-{include file="$path/header.tpl" }
-<br/>
-
-<table border="1"><tr><td>
-
-<table border="0">
+<br />
+<br />
+<input type="hidden" name="action" value="insert" />
+<table align="center" width="100%" border="1">
 	<tr>
-		<td colspan="3">
-		<table id="itemtable" border="0">
+        	<td class="details_screen">{$LANG.trading_type}</td>		
+                <td>
+                {if $trading_types == null }
+                	<p><em>{$LANG.no_trading_types}</em></p>
+                {else}
+                        <select name="trading_type_id" id="trading_type_id" class="trading_type_change" >
+                            	{foreach from=$trading_types item=trading_type}
+				    		<option {if $trading_type.id == $defaults.trading_type} selected {/if} 
+					    		value="{$trading_type.id|htmlsafe}"
+						>
+						{$trading_type.description|htmlsafe}
+						</option>
+				{/foreach}
+                        </select>
+                {/if}
+                </td>		
+		<td class="details_screen">Summary:</td>
+        </tr>
+		       
+        <tr>
+                <td class="details_screen">{$LANG.biller}</td>
+                <td>
+			{if $billers == null }
+                        	<p><em>{$LANG.no_billers}</em></p>
+                        {else}
+                            <select name="biller_id" >
+                            {foreach from=$billers item=biller}
+                            <option {if $biller.id == $defaults.biller} selected {/if} value="{$biller.id|htmlsafe}">{$biller.name|htmlsafe}</option>
+                            {/foreach}
+                            </select>
+                        {/if}
+                </td>
+			
+		<td class="details_screen">{$LANG.index_id}</td>		
+		<td>
+			<input
+				id="index_id" 
+				name="index_id"
+				type="text"
+				class="validate[required]"
+				size="40"
+				{if $smarty.get.index_id}
+					 value="{$smarty.get.index_id}"
+				{else}
+					 value=""
+				{/if}
+			/>
+		</td>		
+	</tr>
+
+	<tr>
+		<td class="details_screen">{$LANG.customer}</td>
+                <td>
+                        {if $customers == null }
+                        	<em>{$LANG.no_customers}</em>
+                        {else}
+                            <select name="customer_id">
+                            {foreach from=$customers item=customer}
+                                <option {if $customer.customer_no == $defaultCustomerID} selected {/if} value="{$customer.customer_no|htmlsafe}">{$customer.customer_no|htmlsafe}-{$customer.name|htmlsafe}</option>
+                            {/foreach}
+                            </select>
+                        {/if}
+                </td>		    
+		<td class="details_screen">{$LANG.date_time}</td>
+		<td wrap="nowrap">
+			<input
+		    	type="text" 
+		    	class="validate[required,custom[date],length[0,19]]" 
+		    	size="40" 
+		    	name="date" 
+		    	id="date1" 
+		    	{if $smarty.get.date}
+				value="{$smarty.get.date}"
+		    	{else}
+				value="{$smarty.now|date_format:"%Y-%m-%d %H:%M:%S"}"
+		    	{/if} 
+		    	/>   
+		</td>
+        </tr>
+
+	<tr><td><br/></td></tr>
+	
+	<tr>
+
+		<td colspan="4">
+		<table id="itemtable" border="1" width="100%">
 			<tbody id="itemtable-tbody">
 			<tr>
 				<td class="details_screen"></td>				
@@ -210,7 +255,7 @@
 								{else}
 								   value=""
 								{/if}
-								class="validate[required]"
+								class=""
 							/>
 						</td>
 						<td>
@@ -242,7 +287,7 @@
 								{else}
 								   value=""
 								{/if}
-								class="validate[required]"
+								class=""
 							/>
 						</td>													
 						<td>
@@ -258,7 +303,7 @@
 								{else}
 									value=""
 								{/if}
-						                class="validate[required]"
+						                class=""
 							/>
 						</td>
 														
@@ -267,122 +312,79 @@
 					<tr class="note">
 						<td></td>
 						<td colspan="3">
-							<textarea input type="text" class="note" name="description{$smarty.section.line.index|htmlsafe}" id="description{$smarty.section.line.index|htmlsafe}" rows="2" cols="50" WRAP=nowrap></textarea>
+							<textarea input type="text" class="note" name="description{$smarty.section.line.index|htmlsafe}" id="description{$smarty.section.line.index|htmlsafe}" rows="1" cols="50" WRAP=nowrap></textarea>
 						</td>
 					</tr>
 					
 				</tbody>				
-				
 	        {/section}					
-		</table>
-		
-		<table border=0>
-			<tr>
-				<td class="details_screen">*********************************************************************************{$LANG.invoice_total}</td>
-				<td>
-					<input 
-					readonly="readonly"
-					id="invoice_total" 
-					name="invoice_total" 
-					size="20"
-					AUTOCOMPLETE="OFF"
-					{if $smarty.get.invoice_total}
-						 value="{$smarty.get.invoice_total}"
-					{else}
-						 value=""
-					{/if}
-					class="validate[required]"
-					/>********************
-				</td>
-			</tr>
 		</table>
 		</td>
 	</tr>
+	
 	<tr>
 		<td>
 			<table class="buttons" align="left">
 				<tr>
-					<td>						
-						<a 
-							href="#" 
-							class="add_line_item"
-						>
-							<img 
-								src="./images/common/add.png"
-								alt=""
-							/>
-							{$LANG.add_new_row}
-						</a>
-				
-					</td>
+					<td><a href="#" class="add_line_item"><img src="./images/common/add.png" alt="" />{$LANG.add_new_row}</a></td>
 					<td>
 					<a href='#' class="show-note" onclick="javascript: $('.note').show();$('.show-note').hide();">
-						<img src="./images/common/page_white_add.png" title="{$LANG.show_details}" alt="" />{$LANG.show_details}</a>
+						<img src="./images/common/page_white_add.png" title="{$LANG.show_description}" alt="" />{$LANG.show_description}</a>
 					<a href='#' class="note" onclick="javascript: $('.note').hide();$('.show-note').show();">
-						<img src="./images/common/page_white_delete.png" title="{$LANG.hide_details}" alt="" />{$LANG.hide_details}</a>
+						<img src="./images/common/page_white_delete.png" title="{$LANG.hide_description}" alt="" />{$LANG.hide_description}</a>
 					</td>
 					
 				</tr>
-		 </table>
+		 	</table>
 		</td>
 	</tr>
-
-	<tr>
-	        <td colspan="1" class="details_screen">{$LANG.notes}</td>
-	</tr>
 	
 	<tr>
-		<td colspan="4">
-			<textarea input type="text" name="note" rows="2" cols="50" wrap="nowrap">{$smarty.get.note}</textarea>
+		<td class="details_screen">{$LANG.invoice_total}</td>
+		<td>
+			<input 
+			readonly="readonly"
+			id="invoice_total" 
+			name="invoice_total" 
+			size="40"
+			AUTOCOMPLETE="OFF"
+			{if $smarty.get.invoice_total}
+				 value="{$smarty.get.invoice_total}"
+			{else}
+				 value=""
+			{/if}
+			/>
 		</td>
-	</tr>
-	</tr>
-	
-	<tr>
-	<td class="details_screen">{$LANG.inv_pref}
-	&nbsp; 
-	&nbsp; 
-	{if $preferences == null }
-		<p><em>{$LANG.no_preferences}</em></p>
-	{else}
-		<select name="preference_id">
-		{foreach from=$preferences item=preference}
-			<option {if $preference.pref_id == $defaults.preference} selected {/if} value="{$preference.pref_id|htmlsafe}">{$preference.pref_description|htmlsafe}</option>
-		{/foreach}
-		</select>
-	{/if}
-	
-	</td>
 	</tr>	
+
 	<tr>
-		<td class=""> 
-			<a class="cluetip" href="#" rel="index.php?module=documentation&amp;view=view&amp;page=help_invoice_custom_fields" title="{$LANG.want_more_fields}"><img src="./images/common/help-small.png" alt="" /> {$LANG.want_more_fields}</a>
+		<td class="details_screen">{$LANG.notes}</td>
+		<td><textarea input type="text" name="note" rows="2" cols="34" wrap="nowrap">{$smarty.get.note}</textarea></td>
+	</tr>
+	
+	<tr>
+		<td class="details_screen">{$LANG.inv_pref}</td>
+		<td>
+		{if $preferences == null }
+			<p><em>{$LANG.no_preferences}</em></p>
+		{else}
+			<select name="preference_id">
+			{foreach from=$preferences item=preference}
+				<option {if $preference.pref_id == $defaults.preference} selected {/if} value="{$preference.pref_id|htmlsafe}">{$preference.pref_description|htmlsafe}</option>
+			{/foreach}
+			</select>
+		{/if}
 		</td>
 	</tr>
-
 </table>
 
-</td></tr></table>
-
-</td>
-</tr>
-<tr>
-<td>
 <table class="buttons" align="center" border="0">
 	<tr>
-		<td>
-			<button type="submit" class="invoice_save positive" name="submit" value="{$LANG.save}">
-	                <img class="button_img" src="./images/common/tick.png" alt="" /> 
-	                {$LANG.save}
-	            	</button>
-		</td>
-		
-		<td>
-			<input type="hidden" id="max_items" name="max_items" value="{$smarty.section.line.index|htmlsafe}" />	        	
-	            	<a href="./index.php?module=invoices&amp;view=manage" class="negative"><img src="./images/common/cross.png" alt="" />{$LANG.cancel}</a>    
-        	</td>
+		<td><button type="submit" class="invoice_save positive" name="submit" value="{$LANG.save}"><img class="button_img" src="./images/common/tick.png" alt="" />{$LANG.save}</button></td>
+		<td><input type="hidden" id="max_items" name="max_items" value="{$smarty.section.line.index|htmlsafe}" />	        	
+			<a href="./index.php?module=invoices&amp;view=manage" class="negative"><img src="./images/common/cross.png" alt="" />{$LANG.cancel}</a>    
+	        </td>
 	</tr>
-</table>
 </table>
 
 </form>

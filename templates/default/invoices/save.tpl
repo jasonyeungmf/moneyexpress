@@ -1,11 +1,11 @@
 {if $saved == true }
 	<br />
-	 {$LANG.save_invoice_success}
+	 	{$LANG.save_invoice_success}
 	<br />
 	<br />
 {else}
 	<br />
-	 {$LANG.save_invoice_failure}
+	 	{$LANG.save_invoice_failure}
 	<br />
 	<br />
 {/if}

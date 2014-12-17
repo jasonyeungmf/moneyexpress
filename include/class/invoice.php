@@ -20,18 +20,14 @@ public $get_this_year;
 public $get_this_month;
 public $get_today;
 
-
 	public function insert()
 	{
-		//insert in si)invoice
-
 		global $dbh;
 		global $db_server;
 		global $auth_session;
 		
-		$sql = "INSERT 
-				INTO
-			".TB_PREFIX."invoices (
+		$sql = "INSERT INTO ".TB_PREFIX."invoices
+			(
 				id, 
 		 		index_id,
 				domain_id,
@@ -56,7 +52,6 @@ public $get_today;
 				)";
 
 		$pref_group=getPreference($this->preference_id);
-
 		$sth= dbQuery($sql,
 			':index_id', index::next('invoice',$pref_group[index_group],$this->biller_id),
 			':domain_id', $auth_session->domain_id,
@@ -67,10 +62,7 @@ public $get_today;
 			':date', $this->date,
 			':note', $this->note
 			);
-
 	    index::increment('invoice',$pref_group[index_group],$this->biller_id);
-
-	    //return $sth;
 	    return lastInsertID();
 	}
 
@@ -102,8 +94,7 @@ public $get_today;
 					:total,
 					note_cost
 				)";
-
-		//echo $sql;
+		
 		dbQuery($sql,
 			':invoice_id', $this->invoice_id,
 			':quantity', $this->quantity,
@@ -116,7 +107,6 @@ public $get_today;
 			':total', $this->total,
 			':note_cost', $this->note_cost
 			);
-
 		//invoice_item_tax(lastInsertId(),$this->tax,$this->unit_price,$this->quantity,"insert");
 	}
 
@@ -125,7 +115,6 @@ public $get_today;
 		global $logger;
 		global $db;
 		global $auth_session;
-
 		$sql = "SELECT 
                     i.*,
 		    i.date as date_original,
@@ -144,23 +133,18 @@ public $get_today;
 		$sth = $db->query($sql, ':id', $id, ':domain_id', $auth_session->domain_id);
 
         $invoice = $sth->fetch();
-
 	$invoice['calc_date'] = date('Y-m-d', strtotime( $invoice['date'] ) );
 //	$invoice['date'] = siLocal::date( $invoice['date'] );
 	$invoice['total'] = getInvoiceTotal($invoice['id']);
 	$invoice['subtotal'] = invoice::getInvoiceGross($invoice['id']);
-
 	$invoice['invoice_items'] = invoice::getInvoiceItems($id);
-
-	return $invoice;
-    
+	return $invoice;    
 	}
 
     public static function get_all()
     {
 	global $logger;
 	global $auth_session;
-
 		$sql = "SELECT 
                     i.id as id,
                     (SELECT CONCAT(p.pref_inv_wording,' ',i.index_id)) as index_id
@@ -174,24 +158,19 @@ public $get_today;
                 order by 
                     index_id";
 		$sth = dbQuery($sql, ':domain_id', $auth_session->domain_id);
-
         return $sth->fetchAll();
-
     }
 
 function select_all($type='', $dir='DESC', $rp='25', $page='1', $having='')
     {
         global $config;
         global $auth_session;
-
         if(empty($having))
         {
             $having = $this->having;
         }
-
         if ($this->having_and) $having_and  = $this->having_and;
         $sort = $this->sort;
-
         /*SQL Limit - start*/
         $start = (($page-1) * $rp);
         $limit = "LIMIT ".$start.", ".$rp;
@@ -211,18 +190,15 @@ function select_all($type='', $dir='DESC', $rp='25', $page='1', $having='')
         if ($this->customer) $where .= " AND c.customer_no = '$this->customer' ";
 	if ($this->trading_type) $where .= " AND t.id = '$this->trading_type' ";
         if ($this->where_field) $where .= " AND $this->where_field = '$this->where_value' ";
-        /*SQL where - end*/
-	
+        /*SQL where - end*/	
 
         /*Check that the sort field is OK*/
         $validFields = array('index_id','iv.id', 'biller', 'customer', 'trading_type', 'invoice_total','date','preference');
-
         if (in_array($sort, $validFields)) {
             $sort = $sort;
         } else {
             $sort = "id";
         }
-
         if($type =="count")
         {
             //unset($limit);
@@ -354,88 +330,61 @@ function select_all($type='', $dir='DESC', $rp='25', $page='1', $having='')
         {
             $where = "and date between '$this->start_date' and '$this->end_date'";
         }
-
 		$sql = "SELECT i.*, p.pref_description as preference FROM ".TB_PREFIX."invoices i,".TB_PREFIX."preferences p  WHERE i.domain_id = :domain_id and i.preference_id = p.pref_id  order by i.id";
 		$sth = dbQuery($sql, ':domain_id', $auth_session->domain_id);
-
         return $sth->fetchAll();
-
     }
 
-	public static function getInvoiceItems($id) {
-	
-		global $logger;
-		$sql = "SELECT * FROM ".TB_PREFIX."invoice_items WHERE invoice_id = :id order by id";
-		$sth = dbQuery($sql, ':id', $id);
-		
-		$invoiceItems = null;
-		
-		for($i=0;$invoiceItem = $sth->fetch();$i++) {
-		
-			$invoiceItem['quantity'] = $invoiceItem['quantity'];
-			$invoiceItem['unit_price'] = $invoiceItem['unit_price'];
-			$invoiceItem['charge'] = $invoiceItem['charge'];
-			$invoiceItem['subtotal'] = $invoiceItem['subtotal'];
-			$invoiceItem['total'] = $invoiceItem['total'];
-			$invoiceItem['note_cost'] = $invoiceItem['note_cost'];
-			$invoiceItem['trading_type'] = $invoiceItem['trading_type'];
-			
-			$sql = "SELECT * FROM ".TB_PREFIX."currencys_note WHERE id = :id";
-			$tth = dbQuery($sql, ':id', $invoiceItem['currency_id']) or die(htmlsafe(end($dbh->errorInfo())));
-			$invoiceItem['currency'] = $tth->fetch();	
-
-		//	foreach ($tax as $key => $value)
-		//	{
-		//		$invoiceItem['tax'][$key] = $value['tax_id'];
-		//		$logger->log('Invoice: '.$invoiceItem['invoice_id'].' Item id: '.$invoiceItem['id'].' Tax '.$key.' Tax ID: '.$value['tax_id'], Zend_Log::INFO);
-		//	}
-			$invoiceItems[$i] = $invoiceItem;
-		}
-		
-		return $invoiceItems;
-	}
-    
-
-    /**
-    * Function: are_there_any
-    * 
-    * Used to see if there are any invoices in the database for a given domain
-    **/
+public static function getInvoiceItems($id) {	
+	global $logger;
+	$sql = "SELECT * FROM ".TB_PREFIX."invoice_items WHERE invoice_id = :id order by id";
+	$sth = dbQuery($sql, ':id', $id);		
+	$invoiceItems = null;		
+	for($i=0;$invoiceItem = $sth->fetch();$i++) {		
+		$invoiceItem['quantity'] = $invoiceItem['quantity'];
+		$invoiceItem['unit_price'] = $invoiceItem['unit_price'];
+		$invoiceItem['charge'] = $invoiceItem['charge'];
+		$invoiceItem['subtotal'] = $invoiceItem['subtotal'];
+		$invoiceItem['total'] = $invoiceItem['total'];
+		$invoiceItem['note_cost'] = $invoiceItem['note_cost'];
+		$invoiceItem['trading_type_id'] = $invoiceItem['trading_type_id'];			
+		$sql = "SELECT * FROM ".TB_PREFIX."currencys_note WHERE id = :id";
+		$tth = dbQuery($sql, ':id', $invoiceItem['currency_id']) or die(htmlsafe(end($dbh->errorInfo())));
+		$invoiceItem['currency'] = $tth->fetch();	
+		$invoiceItems[$i] = $invoiceItem;
+	}		
+	return $invoiceItems;
+}
+  
+//Function: are_there_any * Used to see if there are any invoices in the database for a given domain
     public static function are_there_any()
     {
 	    global $auth_session;
-
 		$sql = "SELECT count(*) as count FROM ".TB_PREFIX."invoices where domain_id = :domain_id limit 2";
 		$sth = dbQuery($sql, ':domain_id', $auth_session->domain_id);
-
         $count = $sth->fetch();
         return $count['count'];
     }
-
     
-   //Used to get the gross total for a given invoice number
-    public static function getInvoiceGross($invoice_id)
-    {
-        global $LANG;
-        
-        $sql ="SELECT SUM(subtotal) AS subtotal FROM ".TB_PREFIX."invoice_items WHERE invoice_id =  :invoice_id";
-        $sth = dbQuery($sql, ':invoice_id', $invoice_id);
-        $res = $sth->fetch();
-                //echo "TOTAL".$res['total'];
-        return $res['subtotal'];
-    }
+//Used to get the gross total for a given invoice number
+public static function getInvoiceGross($invoice_id)
+{
+    global $LANG;
+    $sql ="SELECT SUM(subtotal) AS subtotal FROM ".TB_PREFIX."invoice_items WHERE invoice_id =  :invoice_id";
+    $sth = dbQuery($sql, ':invoice_id', $invoice_id);
+    $res = $sth->fetch();
+    return $res['subtotal'];
+}
     
 public static function getInvoiceCharge($invoice_id)
 {
         global $LANG;
-        
         $sql ="SELECT SUM(charge) AS charge FROM ".TB_PREFIX."invoice_items WHERE invoice_id =  :invoice_id";
         $sth = dbQuery($sql, ':invoice_id', $invoice_id);
         $res = $sth->fetch();
-
 	return $res['charge'];
 }    
-    
+
 //Used to get the max invoice id
 public static function max()
 {
@@ -450,7 +399,6 @@ public static function max()
             $sql ="SELECT max(id) as max FROM ".TB_PREFIX."invoices WHERE domain_id = :domain_id";
 		    $sth = $db->query($sql, ':domain_id', $auth_session->domain_id);
         }
-
         $count = $sth->fetch();
 	$logger->log('Max Invoice: '.$count['max'], Zend_Log::INFO);
 	return $count['max'];
