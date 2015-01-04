@@ -244,7 +244,7 @@ if($this->file_name ==''){
 			$trading_type = getTradingType($invoice['trading_type_id']);
 			$payment_type = getPaymentType($invoice['payment_type_id']);
 			$account = getAccount($invoice['account_id']);
-			$product = getCurrencyTT($invoice['product_id']);
+			$currency = getCurrencyTT($invoice['currency_id']);
 			
 			if($invoice['customer_id'] != "1")
 			{
@@ -300,7 +300,7 @@ if($this->file_name ==''){
 				$smarty -> assign("trading_type",$trading_type);
 				$smarty -> assign("payment_type",$payment_type);
 				$smarty -> assign("account",$account);
-				$smarty -> assign("product",$product);
+				$smarty -> assign("currency",$currency);
 				$smarty -> assign("customer_detail",$customer_detail);
 				$smarty -> assign("test",$test);
 						

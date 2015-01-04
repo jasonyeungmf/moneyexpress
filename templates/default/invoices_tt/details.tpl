@@ -237,16 +237,16 @@
     </tr>
 
     <tr>
-    	<td>{$LANG.product}</br>{$LANG.calculation_type}</br>{$LANG.payable_amount}</td>
+    	<td>{$LANG.currency}</br>{$LANG.calculation_type}</br>{$LANG.payable_amount}</td>
     	<td>
-    		{if $products == null }
+    		{if $currencys_tt == null }
 				<p><em>{$LANG.no_currencys_tt}</em></p>
 			{else}
-				<select name="product_id"	id="product_id" class="validate[required]" tabIndex="8">
-					{foreach from=$products item=product}
-						<option {if $product.id == $invoice.product_id} selected {/if} 
-							value="{$product.id|htmlsafe}"
-						>{$product.code|htmlsafe}
+				<select name="currency_id"	id="currency_id" class="validate[required]" tabIndex="8">
+					{foreach from=$currencys_tt item=currency}
+						<option {if $currency.id == $invoice.currency_id} selected {/if} 
+							value="{$currency.id|htmlsafe}"
+						>{$currency.code|htmlsafe}
 						</option>
 					{/foreach}
 				</select>

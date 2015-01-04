@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.18, created on 2015-01-04 02:52:34
+<?php /* Smarty version 2.6.18, created on 2015-01-04 23:39:47
          compiled from ../templates/default/invoices_tt/details.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'htmlsafe', '../templates/default/invoices_tt/details.tpl', 15, false),)), $this); ?>
@@ -286,23 +286,23 @@ smarty_core_load_plugins(array('plugins' => array(array('modifier', 'htmlsafe', 
     </tr>
 
     <tr>
-    	<td><?php echo $this->_tpl_vars['LANG']['product']; ?>
+    	<td><?php echo $this->_tpl_vars['LANG']['currency']; ?>
 </br><?php echo $this->_tpl_vars['LANG']['calculation_type']; ?>
 </br><?php echo $this->_tpl_vars['LANG']['payable_amount']; ?>
 </td>
     	<td>
-    		<?php if ($this->_tpl_vars['products'] == null): ?>
+    		<?php if ($this->_tpl_vars['currencys_tt'] == null): ?>
 				<p><em><?php echo $this->_tpl_vars['LANG']['no_currencys_tt']; ?>
 </em></p>
 			<?php else: ?>
-				<select name="product_id"	id="product_id" class="validate[required]" tabIndex="8">
-					<?php $_from = $this->_tpl_vars['products']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
-    foreach ($_from as $this->_tpl_vars['product']):
+				<select name="currency_id"	id="currency_id" class="validate[required]" tabIndex="8">
+					<?php $_from = $this->_tpl_vars['currencys_tt']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+    foreach ($_from as $this->_tpl_vars['currency']):
 ?>
-						<option <?php if ($this->_tpl_vars['product']['id'] == $this->_tpl_vars['invoice']['product_id']): ?> selected <?php endif; ?> 
-							value="<?php echo ((is_array($_tmp=$this->_tpl_vars['product']['id'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
+						<option <?php if ($this->_tpl_vars['currency']['id'] == $this->_tpl_vars['invoice']['currency_id']): ?> selected <?php endif; ?> 
+							value="<?php echo ((is_array($_tmp=$this->_tpl_vars['currency']['id'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
 "
-						><?php echo ((is_array($_tmp=$this->_tpl_vars['product']['code'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
+						><?php echo ((is_array($_tmp=$this->_tpl_vars['currency']['code'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
 
 						</option>
 					<?php endforeach; endif; unset($_from); ?>

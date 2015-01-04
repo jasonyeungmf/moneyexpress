@@ -15,7 +15,7 @@ public $where_value;
 public $trading_type;
 public $payment_type;
 public $account;
-public $product;
+public $currency;
 public $this_year;
 public $this_month;
 public $today;
@@ -40,7 +40,7 @@ public $get_today;
 				payment_type_id,
 				calculation_type_id,
 				account_id,
-				product_id,
+				currency_id,
 				date, 
 				quantity,
 				unit_price,
@@ -61,7 +61,7 @@ public $get_today;
 				:payment_type_id,
 				:calculation_type_id,
 				:account_id,
-				:product_id,
+				:currency_id,
 				:date, 
 				:quantity,
 				:unit_price,
@@ -82,7 +82,7 @@ public $get_today;
 			':payment_type_id', $_POST[payment_type_id],
 			':calculation_type_id', $_POST[calculation_type_id],
 			':account_id', $_POST[account_id],
-			':product_id', $_POST[product_id],
+			':currency_id', $_POST[currency_id],
 			':date', $_POST[date],
 			':quantity', $_POST[quantity],
 			':unit_price', $_POST[unit_price],
@@ -217,7 +217,7 @@ public $get_today;
 	
 
         /*Check that the sort field is OK*/
-        $validFields = array('id','date','index_id','biller','customer_detail','customer_detail_2','account_detail','payment_type','quantity','unit_price','charge','total','trading_type','product','calculation_type','payable_amount','spell_number','note','preference');
+        $validFields = array('id','date','index_id','biller','customer_detail','customer_detail_2','account_detail','payment_type','quantity','unit_price','charge','total','trading_type','currency','calculation_type','payable_amount','spell_number','note','preference');
 
         if (in_array($sort, $validFields)) {
             $sort = $sort;
@@ -308,7 +308,7 @@ public $get_today;
 					iv.payment_type_id AS payment_type_id,
 					iv.calculation_type_id AS calculation_type_id,
 					iv.account_id AS account_id,
-					iv.product_id AS product_id,
+					iv.currency_id AS currency_id,
 
 	                iv.quantity AS quantity,
 	                iv.unit_price AS unit_price,
@@ -336,7 +336,7 @@ public $get_today;
 
 	                ct.description AS calculation_type,
 
-	                p.code AS product,
+	                ctt.code AS currency,
 
 			       	pt.pt_description AS payment_type,
 
@@ -356,7 +356,7 @@ public $get_today;
                 LEFT JOIN " . TB_PREFIX . "biller b ON b.id = iv.biller_id
                 LEFT JOIN " . TB_PREFIX . "customers c ON c.customer_no = iv.customer_id
                 LEFT JOIN " . TB_PREFIX . "calculation_types ct ON ct.id = iv.calculation_type_id
-                LEFT JOIN " . TB_PREFIX . "currencys_tt p ON p.id = iv.product_id
+                LEFT JOIN " . TB_PREFIX . "currencys_tt ctt ON ctt.id = iv.currency_id
                 LEFT JOIN " . TB_PREFIX . "preferences pf ON pf.pref_id = iv.preference_id
 			    LEFT JOIN " . TB_PREFIX . "payment_types pt ON pt.pt_id = iv.payment_type_id
 			    LEFT JOIN " . TB_PREFIX . "trading_types tt ON tt.id = iv.trading_type_id

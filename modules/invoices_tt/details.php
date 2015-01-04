@@ -18,7 +18,7 @@ $preferences = getActivePreferences();
 $trading_types = getActiveTradingTypes();
 $payment_types = getActivePaymentTypes();
 $accounts = getActiveAccounts();
-$products = getActiveCurrencysTT();
+$currencys_tt = getActiveCurrencysTT();
 $calculation_types = getActiveCalculationTypes();
 
 $smarty -> assign("invoice",$invoice);
@@ -36,7 +36,7 @@ $smarty -> assign("preferences",$preferences);
 $smarty -> assign("trading_types",$trading_types);
 $smarty -> assign("payment_types",$payment_types);
 $smarty -> assign("accounts",$accounts);
-$smarty -> assign("products",$products);
+$smarty -> assign("currencys_tt",$currencys_tt);
 $smarty -> assign("calculation_types",$calculation_types);
 
 $smarty -> assign('pageActive', 'invoice_tt');

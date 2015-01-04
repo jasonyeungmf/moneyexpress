@@ -108,7 +108,7 @@
 
 	<tr>
 		<td class="title">{$LANG.payable_amount}</td>
-		<td class="data_1">{$product.code|htmlsafe}: {$invoice.payable_amount|siLocal_number_trim}</td>
+		<td class="data_1">{$currency.code|htmlsafe}: {$invoice.payable_amount|siLocal_number_trim}</td>
 
 		<td class="title">{$LANG.spell_number}</td>
 		<td colspan="3" class="data_2">{$invoice.spell_number|htmlsafe}</td>

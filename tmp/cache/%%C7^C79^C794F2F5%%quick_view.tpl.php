@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.18, created on 2015-01-04 00:04:04
+<?php /* Smarty version 2.6.18, created on 2015-01-04 23:39:28
          compiled from ../templates/default/invoices_tt/quick_view.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'htmlsafe', '../templates/default/invoices_tt/quick_view.tpl', 6, false),array('modifier', 'urlencode', '../templates/default/invoices_tt/quick_view.tpl', 6, false),array('modifier', 'date_format', '../templates/default/invoices_tt/quick_view.tpl', 45, false),array('modifier', 'siLocal_number_trim', '../templates/default/invoices_tt/quick_view.tpl', 67, false),array('modifier', 'siLocal_number_clean', '../templates/default/invoices_tt/quick_view.tpl', 75, false),)), $this); ?>
@@ -200,7 +200,7 @@ smarty_core_load_plugins(array('plugins' => array(array('modifier', 'htmlsafe', 
 	<tr>
 		<td class="title"><?php echo $this->_tpl_vars['LANG']['payable_amount']; ?>
 </td>
-		<td class="data_1"><?php echo ((is_array($_tmp=$this->_tpl_vars['product']['code'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
+		<td class="data_1"><?php echo ((is_array($_tmp=$this->_tpl_vars['currency']['code'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
 : <?php echo ((is_array($_tmp=$this->_tpl_vars['invoice']['payable_amount'])) ? $this->_run_mod_handler('siLocal_number_trim', true, $_tmp) : siLocal::number_trim($_tmp)); ?>
 </td>
 

@@ -42,7 +42,7 @@
 		{display: '{/literal}{$LANG.unit_price}{literal}', name : 'unit_price', width :10 * percentage_width, sortable : true, align: 'left'},
 		{display: '{/literal}{$LANG.charge}{literal}', name : 'charge', width :5 * percentage_width, sortable : true, align: 'left'},
 		{display: '{/literal}{$LANG.total}{literal}', name : 'total', width :10 * percentage_width, sortable : true, align: 'left'},
-		{display: '{/literal}{$LANG.product}{literal}', name : 'product', width :5 * percentage_width, sortable : true, align: 'left'},
+		{display: '{/literal}{$LANG.currency}{literal}', name : 'currency', width :5 * percentage_width, sortable : true, align: 'left'},
 		{display: '{/literal}{$LANG.calculation_type}{literal}', name : 'calculation_type', width :8 * percentage_width, sortable : true, align: 'left'},
 		{display: '{/literal}{$LANG.payable_amount}{literal}', name : 'payable_amount', width :10 * percentage_width, sortable : true, align: 'left'},
 		{display: '{/literal}{$LANG.spell_number}{literal}', name : 'spell_number', width :20 * percentage_width, sortable : true, align: 'left'},
@@ -59,7 +59,7 @@
 		{display: '{/literal}{$LANG.biller}{literal}', name : 'b.name'},
 		{display: '{/literal}{$LANG.payment_type}{literal}', name : 'pt.pt_description'},
 		{display: '{/literal}{$LANG.trading_type}{literal}', name : 'tt.description'},
-		{display: '{/literal}{$LANG.product}{literal}', name : 'p.code'},
+		{display: '{/literal}{$LANG.currency}{literal}', name : 'ctt.code'},
 		{display: '{/literal}{$LANG.note}{literal}', name : 'note'},
 		{display: '{/literal}{$LANG.preference}{literal}', name : 'pf.pref_description'}
 		],

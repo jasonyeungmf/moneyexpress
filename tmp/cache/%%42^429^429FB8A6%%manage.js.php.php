@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.18, created on 2015-01-02 01:02:57
+<?php /* Smarty version 2.6.18, created on 2015-01-04 23:38:40
          compiled from ../modules/invoices_tt/manage.js.php */ ?>
 <script type="text/javascript">
 <?php echo '
@@ -77,8 +77,8 @@
 <?php echo $this->_tpl_vars['LANG']['total']; ?>
 <?php echo '\', name : \'total\', width :10 * percentage_width, sortable : true, align: \'left\'},
 		{display: \''; ?>
-<?php echo $this->_tpl_vars['LANG']['product']; ?>
-<?php echo '\', name : \'product\', width :5 * percentage_width, sortable : true, align: \'left\'},
+<?php echo $this->_tpl_vars['LANG']['currency']; ?>
+<?php echo '\', name : \'currency\', width :5 * percentage_width, sortable : true, align: \'left\'},
 		{display: \''; ?>
 <?php echo $this->_tpl_vars['LANG']['calculation_type']; ?>
 <?php echo '\', name : \'calculation_type\', width :8 * percentage_width, sortable : true, align: \'left\'},
@@ -124,8 +124,8 @@
 <?php echo $this->_tpl_vars['LANG']['trading_type']; ?>
 <?php echo '\', name : \'tt.description\'},
 		{display: \''; ?>
-<?php echo $this->_tpl_vars['LANG']['product']; ?>
-<?php echo '\', name : \'p.code\'},
+<?php echo $this->_tpl_vars['LANG']['currency']; ?>
+<?php echo '\', name : \'ctt.code\'},
 		{display: \''; ?>
 <?php echo $this->_tpl_vars['LANG']['note']; ?>
 <?php echo '\', name : \'note\'},

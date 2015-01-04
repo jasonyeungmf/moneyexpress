@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.18, created on 2013-12-11 03:12:23
+<?php /* Smarty version 2.6.18, created on 2015-01-04 23:03:10
          compiled from ../templates/default/currencys_tt/manage.tpl */ ?>
 <table class="buttons" align="center">
     <tr>

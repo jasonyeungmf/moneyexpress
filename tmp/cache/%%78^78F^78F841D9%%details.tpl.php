@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.18, created on 2015-01-04 02:59:14
+<?php /* Smarty version 2.6.18, created on 2015-01-04 22:54:40
          compiled from ../templates/default/invoices/details.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'htmlsafe', '../templates/default/invoices/details.tpl', 16, false),array('modifier', 'siLocal_number_clean', '../templates/default/invoices/details.tpl', 143, false),array('modifier', 'outhtml', '../templates/default/invoices/details.tpl', 212, false),)), $this); ?>
@@ -382,7 +382,6 @@ if ($this->_foreach['line_item_number']['total'] > 0):
 	<?php else: ?>
 		<input type="hidden" name="id" value="<?php echo ((is_array($_tmp=$this->_tpl_vars['invoice']['id'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
 " />
-
 		<input type="hidden" name="action" value="edit" />
 	<?php endif; ?>
 		<input type="hidden" name="op" value="insert_preference" />

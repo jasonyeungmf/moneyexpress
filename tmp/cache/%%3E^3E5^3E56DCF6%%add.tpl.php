@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.18, created on 2015-01-04 00:20:42
+<?php /* Smarty version 2.6.18, created on 2015-01-04 23:39:01
          compiled from ../templates/default/invoices_tt/add.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'htmlsafe', '../templates/default/invoices_tt/add.tpl', 126, false),array('modifier', 'date_format', '../templates/default/invoices_tt/add.tpl', 140, false),)), $this); ?>
@@ -416,7 +416,7 @@ smarty_core_load_plugins(array('plugins' => array(array('modifier', 'htmlsafe', 
     </tr>
 
     <tr>
-    	<td><?php echo $this->_tpl_vars['LANG']['product']; ?>
+    	<td><?php echo $this->_tpl_vars['LANG']['currency']; ?>
 </br><?php echo $this->_tpl_vars['LANG']['calculation_types']; ?>
 </br><?php echo $this->_tpl_vars['LANG']['payable_amount']; ?>
 </td>
@@ -425,12 +425,12 @@ smarty_core_load_plugins(array('plugins' => array(array('modifier', 'htmlsafe', 
 				<p><em><?php echo $this->_tpl_vars['LANG']['no_currencys_tt']; ?>
 </em></p>
 			<?php else: ?>
-				<select name="product_id"	id="product_id" class="validate[required]" tabIndex="8">
+				<select name="currency_id"	id="currency_id" class="validate[required]" tabIndex="8">
 					<?php $_from = $this->_tpl_vars['currencys_tt']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
-    foreach ($_from as $this->_tpl_vars['product']):
+    foreach ($_from as $this->_tpl_vars['currency']):
 ?>
-						<option value="<?php echo ((is_array($_tmp=$this->_tpl_vars['product']['id'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
-"><?php echo ((is_array($_tmp=$this->_tpl_vars['product']['code'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
+						<option value="<?php echo ((is_array($_tmp=$this->_tpl_vars['currency']['id'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
+"><?php echo ((is_array($_tmp=$this->_tpl_vars['currency']['code'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
 </option>
 					<?php endforeach; endif; unset($_from); ?>
 				</select>

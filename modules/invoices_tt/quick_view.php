@@ -13,7 +13,7 @@ $defaults = getSystemDefaults();
 $trading_type = getTradingType($invoice['trading_type_id']);
 $payment_type = getPaymentType($invoice['payment_type_id']);
 $account = getAccount($invoice['account_id']);
-$product = getCurrencyTT($invoice['product_id']);
+$currency = getCurrencyTT($invoice['currency_id']);
 
    $eway_check = new eway();
    $eway_check->invoice = $invoice;
@@ -51,7 +51,7 @@ $smarty -> assign("eway_pre_check",$eway_pre_check);
 $smarty -> assign("trading_type",$trading_type);
 $smarty -> assign("payment_type",$payment_type);
 $smarty -> assign("account",$account);
-$smarty -> assign("product",$product);
+$smarty -> assign("currency",$currency);
 $smarty -> assign("customer_detail",$customer_detail);
 
 $smarty -> assign('pageActive', 'invoice_tt');

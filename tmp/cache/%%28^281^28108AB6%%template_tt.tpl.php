@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.18, created on 2015-01-02 02:07:19
+<?php /* Smarty version 2.6.18, created on 2015-01-04 23:39:37
          compiled from ../templates/invoices/default/template_tt.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'urlsafe', '../templates/invoices/default/template_tt.tpl', 4, false),array('modifier', 'htmlsafe', '../templates/invoices/default/template_tt.tpl', 5, false),array('modifier', 'siLocal_number_trim', '../templates/invoices/default/template_tt.tpl', 65, false),array('modifier', 'siLocal_number_clean', '../templates/invoices/default/template_tt.tpl', 73, false),)), $this); ?>
@@ -166,7 +166,7 @@ smarty_core_load_plugins(array('plugins' => array(array('modifier', 'urlsafe', '
 	<tr>
 		<td class="title"><?php echo $this->_tpl_vars['LANG']['payable_amount']; ?>
 </td>
-		<td class="data_1"><?php echo ((is_array($_tmp=$this->_tpl_vars['product']['code'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
+		<td class="data_1"><?php echo ((is_array($_tmp=$this->_tpl_vars['currency']['code'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
 : <?php echo ((is_array($_tmp=$this->_tpl_vars['invoice']['payable_amount'])) ? $this->_run_mod_handler('siLocal_number_trim', true, $_tmp) : siLocal::number_trim($_tmp)); ?>
 </td>
 
