@@ -48,11 +48,7 @@ public $get_today;
 				total,
 				payable_amount,
 				spell_number,
-				note,
-				custom_field1,
-				custom_field2,
-				custom_field3,
-				custom_field4
+				note
 			)
 			VALUES
 			(
@@ -73,11 +69,7 @@ public $get_today;
 				:total,
 				:payable_amount,
 				:spell_number,
-				:note,
-				:customField1,
-				:customField2,
-				:customField3,
-				:customField4
+				:note
 				)";
 		//$pref_group=getPreference($this->preference_id);
 		$sth= dbQuery($sql,
@@ -98,11 +90,7 @@ public $get_today;
 			':total', $_POST[total],
 			':payable_amount', $_POST[payable_amount],
 			':spell_number', $_POST[spell_number],
-			':note', $_POST[note],
-			':customField1', $_POST[customField1],
-			':customField2', $_POST[customField2],
-			':customField3', $_POST[customField3],
-			':customField4', $_POST[customField4]
+			':note', $_POST[note]
 			);
 	    //index::increment('invoice',$pref_group[index_group],$this->biller_id);
 	    //return $sth;
@@ -253,54 +241,54 @@ public $get_today;
             case "date_between":
                 $sql_having = "HAVING date_between between '$this->start_date' and '$this->end_date'";
                 break;
-	    	case "date_between_tt_buy":
-                $sql_having = "HAVING (date_between between '$this->start_date' and '$this->end_date') AND ( trading_type_id = 3 )";
+	    	case "date_between_buy":
+                $sql_having = "HAVING (date_between between '$this->start_date' and '$this->end_date') AND ( trading_type_id = 1 )";
                 break;
-	    	case "date_between_tt_sell":
-	        $sql_having = "HAVING (date_between between '$this->start_date' and '$this->end_date') AND ( trading_type_id = 4 )";
+	    	case "date_between_sell":
+	        $sql_having = "HAVING (date_between between '$this->start_date' and '$this->end_date') AND ( trading_type_id = 2 )";
 	        break;
 		
-			// TT Buy
-		    case "tt_buy":
-		        $sql_having = "HAVING ( trading_type_id = 3 ) ";
+			// Buy
+		    case "buy":
+		        $sql_having = "HAVING ( trading_type_id = 1 ) ";
 		        break;
 
-		    // TT Sell
-		    case "tt_sell":
-		        $sql_having = "HAVING ( trading_type_id = 4 ) ";
+		    // Sell
+		    case "sell":
+		        $sql_having = "HAVING ( trading_type_id = 2 ) ";
 		        break;
 			
 			// Year
 		    case "this_year":
 		    	$sql_having = "HAVING ( year = $get_this_year ) ";
 		    	break;
-		    case "this_year_tt_buy":
-			$sql_having = "HAVING ( year = $get_this_year ) AND ( trading_type_id = 3 )";
+		    case "this_year_buy":
+			$sql_having = "HAVING ( year = $get_this_year ) AND ( trading_type_id = 1 )";
 			break;
-		    case "this_year_tt_sell":
-		    	$sql_having = "HAVING ( year = $get_this_year ) AND ( trading_type_id = 4 )";
+		    case "this_year_sell":
+		    	$sql_having = "HAVING ( year = $get_this_year ) AND ( trading_type_id = 2 )";
 		    	break;
 
 			 // Month   
 		    case "this_month":
 		    	$sql_having = "HAVING ( month = $get_this_month ) ";
 		    	break;
-		    case "this_month_tt_buy":
-			$sql_having = "HAVING ( month = $get_this_month ) AND ( trading_type_id = 3 )";
+		    case "this_month_buy":
+			$sql_having = "HAVING ( month = $get_this_month ) AND ( trading_type_id = 1 )";
 			break;
-		    case "this_month_tt_sell":
-		    	$sql_having = "HAVING ( month = $get_this_month ) AND ( trading_type_id = 4 )";
+		    case "this_month_sell":
+		    	$sql_having = "HAVING ( month = $get_this_month ) AND ( trading_type_id = 2 )";
 		    	break;
 
 			// Day    
 		    case "today":
 		    	$sql_having = "HAVING ( day = $get_today ) ";
 		    	break;
-		    case "today_tt_buy":
-			$sql_having = "HAVING ( day = $get_today ) AND ( trading_type_id = 3 )";
+		    case "today_buy":
+			$sql_having = "HAVING ( day = $get_today ) AND ( trading_type_id = 1 )";
 			break;
-		    case "today_tt_sell":
-		    	$sql_having = "HAVING ( day = $get_today ) AND ( trading_type_id = 4 )";
+		    case "today_sell":
+		    	$sql_having = "HAVING ( day = $get_today ) AND ( trading_type_id = 2 )";
 		    	break;		
         }
 

@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.18, created on 2014-03-02 03:13:25
+<?php /* Smarty version 2.6.18, created on 2015-01-02 00:59:19
          compiled from ../templates/default/invoices_tt/manage.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'date_format', '../templates/default/invoices_tt/manage.tpl', 65, false),)), $this); ?>
@@ -113,35 +113,35 @@ smarty_core_load_plugins(array('plugins' => array(array('modifier', 'date_format
     <span class="welcome">
        	<a style="font-weight:bold"><?php echo $this->_tpl_vars['LANG']['buy']; ?>
 </a>:
-       	<a href="index.php?module=invoices_tt&amp;view=manage&amp;having=tt_buy"><?php echo $this->_tpl_vars['LANG']['all']; ?>
+       	<a href="index.php?module=invoices_tt&amp;view=manage&amp;having=buy"><?php echo $this->_tpl_vars['LANG']['all']; ?>
 </a> |	
-    	<a href="index.php?module=invoices_tt&amp;view=manage&amp;having=date_between_tt_buy&amp;start_date=<?php echo $this->_tpl_vars['start_date']; ?>
+    	<a href="index.php?module=invoices_tt&amp;view=manage&amp;having=date_between_buy&amp;start_date=<?php echo $this->_tpl_vars['start_date']; ?>
 &amp;end_date=<?php echo $this->_tpl_vars['end_date']; ?>
 ">	<?php echo $this->_tpl_vars['LANG']['date_between']; ?>
 
     	</a> |
-    	<a href="index.php?module=invoices_tt&amp;view=manage&amp;having=this_year_tt_buy"><?php echo $this->_tpl_vars['LANG']['this_year']; ?>
+    	<a href="index.php?module=invoices_tt&amp;view=manage&amp;having=this_year_buy"><?php echo $this->_tpl_vars['LANG']['this_year']; ?>
 </a> |
-		<a href="index.php?module=invoices_tt&amp;view=manage&amp;having=this_month_tt_buy"><?php echo $this->_tpl_vars['LANG']['this_month']; ?>
+		<a href="index.php?module=invoices_tt&amp;view=manage&amp;having=this_month_buy"><?php echo $this->_tpl_vars['LANG']['this_month']; ?>
 </a> |
-		<a href="index.php?module=invoices_tt&amp;view=manage&amp;having=today_tt_buy"><?php echo $this->_tpl_vars['LANG']['today']; ?>
+		<a href="index.php?module=invoices_tt&amp;view=manage&amp;having=today_buy"><?php echo $this->_tpl_vars['LANG']['today']; ?>
 </a>
    </span>
    <span class="welcome">
         <a style="font-weight:bold"><?php echo $this->_tpl_vars['LANG']['sell']; ?>
 </a>:
-        <a href="index.php?module=invoices_tt&amp;view=manage&amp;having=tt_sell"><?php echo $this->_tpl_vars['LANG']['all']; ?>
+        <a href="index.php?module=invoices_tt&amp;view=manage&amp;having=sell"><?php echo $this->_tpl_vars['LANG']['all']; ?>
 </a> |
-       	<a href="index.php?module=invoices_tt&amp;view=manage&amp;having=date_between_tt_sell&amp;start_date=<?php echo $this->_tpl_vars['start_date']; ?>
+       	<a href="index.php?module=invoices_tt&amp;view=manage&amp;having=date_between_sell&amp;start_date=<?php echo $this->_tpl_vars['start_date']; ?>
 &amp;end_date=<?php echo $this->_tpl_vars['end_date']; ?>
 ">	<?php echo $this->_tpl_vars['LANG']['date_between']; ?>
 
        	</a> |
-       	<a href="index.php?module=invoices_tt&amp;view=manage&amp;having=this_year_tt_sell"><?php echo $this->_tpl_vars['LANG']['this_year']; ?>
+       	<a href="index.php?module=invoices_tt&amp;view=manage&amp;having=this_year_sell"><?php echo $this->_tpl_vars['LANG']['this_year']; ?>
 </a> |
-	   	<a href="index.php?module=invoices_tt&amp;view=manage&amp;having=this_month_tt_sell"><?php echo $this->_tpl_vars['LANG']['this_month']; ?>
+	   	<a href="index.php?module=invoices_tt&amp;view=manage&amp;having=this_month_sell"><?php echo $this->_tpl_vars['LANG']['this_month']; ?>
 </a> |
-	   	<a href="index.php?module=invoices_tt&amp;view=manage&amp;having=today_tt_sell"><?php echo $this->_tpl_vars['LANG']['today']; ?>
+	   	<a href="index.php?module=invoices_tt&amp;view=manage&amp;having=today_sell"><?php echo $this->_tpl_vars['LANG']['today']; ?>
 </a>
       </span>
     <br />

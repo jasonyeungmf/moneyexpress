@@ -87,21 +87,21 @@
        </span>
     <span class="welcome">
        	<a style="font-weight:bold">{$LANG.buy}</a>:
-       	<a href="index.php?module=invoices_tt&amp;view=manage&amp;having=tt_buy">{$LANG.all}</a> |	
-    	<a href="index.php?module=invoices_tt&amp;view=manage&amp;having=date_between_tt_buy&amp;start_date={$start_date}&amp;end_date={$end_date}">	{$LANG.date_between}
+       	<a href="index.php?module=invoices_tt&amp;view=manage&amp;having=buy">{$LANG.all}</a> |	
+    	<a href="index.php?module=invoices_tt&amp;view=manage&amp;having=date_between_buy&amp;start_date={$start_date}&amp;end_date={$end_date}">	{$LANG.date_between}
     	</a> |
-    	<a href="index.php?module=invoices_tt&amp;view=manage&amp;having=this_year_tt_buy">{$LANG.this_year}</a> |
-		<a href="index.php?module=invoices_tt&amp;view=manage&amp;having=this_month_tt_buy">{$LANG.this_month}</a> |
-		<a href="index.php?module=invoices_tt&amp;view=manage&amp;having=today_tt_buy">{$LANG.today}</a>
+    	<a href="index.php?module=invoices_tt&amp;view=manage&amp;having=this_year_buy">{$LANG.this_year}</a> |
+		<a href="index.php?module=invoices_tt&amp;view=manage&amp;having=this_month_buy">{$LANG.this_month}</a> |
+		<a href="index.php?module=invoices_tt&amp;view=manage&amp;having=today_buy">{$LANG.today}</a>
    </span>
    <span class="welcome">
         <a style="font-weight:bold">{$LANG.sell}</a>:
-        <a href="index.php?module=invoices_tt&amp;view=manage&amp;having=tt_sell">{$LANG.all}</a> |
-       	<a href="index.php?module=invoices_tt&amp;view=manage&amp;having=date_between_tt_sell&amp;start_date={$start_date}&amp;end_date={$end_date}">	{$LANG.date_between}
+        <a href="index.php?module=invoices_tt&amp;view=manage&amp;having=sell">{$LANG.all}</a> |
+       	<a href="index.php?module=invoices_tt&amp;view=manage&amp;having=date_between_sell&amp;start_date={$start_date}&amp;end_date={$end_date}">	{$LANG.date_between}
        	</a> |
-       	<a href="index.php?module=invoices_tt&amp;view=manage&amp;having=this_year_tt_sell">{$LANG.this_year}</a> |
-	   	<a href="index.php?module=invoices_tt&amp;view=manage&amp;having=this_month_tt_sell">{$LANG.this_month}</a> |
-	   	<a href="index.php?module=invoices_tt&amp;view=manage&amp;having=today_tt_sell">{$LANG.today}</a>
+       	<a href="index.php?module=invoices_tt&amp;view=manage&amp;having=this_year_sell">{$LANG.this_year}</a> |
+	   	<a href="index.php?module=invoices_tt&amp;view=manage&amp;having=this_month_sell">{$LANG.this_month}</a> |
+	   	<a href="index.php?module=invoices_tt&amp;view=manage&amp;having=today_sell">{$LANG.today}</a>
       </span>
     <br />
     <br />

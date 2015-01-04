@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.18, created on 2014-02-18 01:46:18
+<?php /* Smarty version 2.6.18, created on 2015-01-04 00:04:04
          compiled from ../templates/default/invoices_tt/quick_view.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'htmlsafe', '../templates/default/invoices_tt/quick_view.tpl', 6, false),array('modifier', 'urlencode', '../templates/default/invoices_tt/quick_view.tpl', 6, false),array('modifier', 'date_format', '../templates/default/invoices_tt/quick_view.tpl', 46, false),array('modifier', 'siLocal_number_trim', '../templates/default/invoices_tt/quick_view.tpl', 68, false),array('modifier', 'siLocal_number_clean', '../templates/default/invoices_tt/quick_view.tpl', 76, false),array('modifier', 'siLocal_number', '../templates/default/invoices_tt/quick_view.tpl', 135, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'htmlsafe', '../templates/default/invoices_tt/quick_view.tpl', 6, false),array('modifier', 'urlencode', '../templates/default/invoices_tt/quick_view.tpl', 6, false),array('modifier', 'date_format', '../templates/default/invoices_tt/quick_view.tpl', 45, false),array('modifier', 'siLocal_number_trim', '../templates/default/invoices_tt/quick_view.tpl', 67, false),array('modifier', 'siLocal_number_clean', '../templates/default/invoices_tt/quick_view.tpl', 75, false),)), $this); ?>
 <div class="align_center">
 	<br />
 
@@ -92,7 +92,6 @@ smarty_core_load_plugins(array('plugins' => array(array('modifier', 'htmlsafe', 
 <!--Actions heading - start-->
 <br />
 <br />
-<!-- #PDF end -->
 
 <table align="center" border="1">
 	<tr>
@@ -214,64 +213,4 @@ smarty_core_load_plugins(array('plugins' => array(array('modifier', 'htmlsafe', 
 </table>
 
 <br />
-<br />
-<!--
-<table align="center" border="1">
-	<tr class="details_screen">
-		<td class="details_screen" colspan="16"><?php echo $this->_tpl_vars['LANG']['financial_status']; ?>
-</td>
-	</tr>
-	<tr class="account">
-		<td class="account" colspan="8"><?php echo ((is_array($_tmp=$this->_tpl_vars['invoice']['index_id'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
-</td>
-		<td width=5%></td>
-		<td class="columnleft" width="5%"></td>
-		<td class="account" colspan="6"><a href="index.php?module=customers&amp;view=details&amp;id=<?php echo ((is_array($_tmp=$this->_tpl_vars['customer']['id'])) ? $this->_run_mod_handler('urlencode', true, $_tmp) : urlencode($_tmp)); ?>
-&amp;action=view"><?php echo $this->_tpl_vars['LANG']['customer_account']; ?>
-</a></td>
-	</tr>
-	<tr>
-		<td class="account"><?php echo $this->_tpl_vars['LANG']['total']; ?>
-:</td>
-		<td class="account"><?php echo $this->_tpl_vars['preference']['pref_currency_sign']; ?>
-<?php echo ((is_array($_tmp=$this->_tpl_vars['invoice']['total'])) ? $this->_run_mod_handler('siLocal_number', true, $_tmp) : siLocal::number($_tmp)); ?>
-</td>
-		<td class="account"><a href="index.php?module=payments&amp;view=manage&amp;id=<?php echo ((is_array($_tmp=$this->_tpl_vars['invoice']['id'])) ? $this->_run_mod_handler('urlencode', true, $_tmp) : urlencode($_tmp)); ?>
-"><?php echo $this->_tpl_vars['LANG']['paid']; ?>
-:</a></td>
-		<td class="account"><?php echo ((is_array($_tmp=$this->_tpl_vars['preference']['pref_currency_sign'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
-<?php echo ((is_array($_tmp=$this->_tpl_vars['invoice']['paid'])) ? $this->_run_mod_handler('siLocal_number', true, $_tmp) : siLocal::number($_tmp)); ?>
-</td>
-		<td class="account"><?php echo $this->_tpl_vars['LANG']['owing']; ?>
-:</td>
-		<td class="account"><u><?php echo ((is_array($_tmp=$this->_tpl_vars['preference']['pref_currency_sign'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
-<?php echo ((is_array($_tmp=$this->_tpl_vars['invoice']['owing'])) ? $this->_run_mod_handler('siLocal_number', true, $_tmp) : siLocal::number($_tmp)); ?>
-</u></td>
-		<td class="account"><?php echo $this->_tpl_vars['LANG']['age']; ?>
-:</td>
-		<td class="account" nowrap><?php echo ((is_array($_tmp=$this->_tpl_vars['invoice_age'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
- 
-		<a class="cluetip" href="#"	rel="index.php?module=documentation&amp;view=view&amp;page=help_age" title="<?php echo $this->_tpl_vars['LANG']['age']; ?>
-"><img src="./images/common/help-small.png" alt="" /></a>
-		</td>
-		<td></td>
-		<td class="columnleft"></td>
-		<td class="account"><?php echo $this->_tpl_vars['LANG']['total']; ?>
-:</td>
-		<td class="account"><?php echo ((is_array($_tmp=$this->_tpl_vars['preference']['pref_currency_sign'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
-<?php echo ((is_array($_tmp=$this->_tpl_vars['customerAccount']['total'])) ? $this->_run_mod_handler('siLocal_number', true, $_tmp) : siLocal::number($_tmp)); ?>
-</td>
-		<td class="account"><a href="index.php?module=payments&amp;view=manage&amp;c_id=<?php echo ((is_array($_tmp=$this->_tpl_vars['customer']['id'])) ? $this->_run_mod_handler('urlencode', true, $_tmp) : urlencode($_tmp)); ?>
-"><?php echo $this->_tpl_vars['LANG']['paid']; ?>
-:</a></td>
-		<td class="account"><?php echo ((is_array($_tmp=$this->_tpl_vars['preference']['pref_currency_sign'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
-<?php echo ((is_array($_tmp=$this->_tpl_vars['customerAccount']['paid'])) ? $this->_run_mod_handler('siLocal_number', true, $_tmp) : siLocal::number($_tmp)); ?>
- </td>
-		<td class="account"><?php echo $this->_tpl_vars['LANG']['owing']; ?>
-:</td>
-		<td class="account"><u><?php echo ((is_array($_tmp=$this->_tpl_vars['preference']['pref_currency_sign'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
-<?php echo ((is_array($_tmp=$this->_tpl_vars['customerAccount']['owing'])) ? $this->_run_mod_handler('siLocal_number', true, $_tmp) : siLocal::number($_tmp)); ?>
-</u></td>
-	</tr>
-</table>
-<br />	-->
+<br />

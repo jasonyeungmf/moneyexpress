@@ -229,6 +229,10 @@ if($this->file_name ==''){
 			$user_logo = str_replace(" ", "%20", $user_logo);
 					
 			$invoice = invoicett::select($this->id);
+			$currentid = $invoice['id'];
+			$previousid = previousid_tt($currentid);
+	  		$nextid = nextid_tt($currentid);
+
 			$customer = getCustomer($invoice['customer_id']);
 					
 			$biller = biller::select($invoice['biller_id']);
@@ -249,7 +253,7 @@ if($this->file_name ==''){
 					$id_no = "";
 				}
 				if($customer["id_no"] != ""){
-					$id_no = "(ID)";
+					$id_no = "[Y]";
 				}
 				$customer_detail = $customer['name']."-".$customer['attention']."-".$id_no."-".$customer['mobile_phone']."-".$customer['phone']."-".$customer['fax'];
 			}
@@ -261,8 +265,6 @@ if($this->file_name ==''){
 			$spc2us_pref = str_replace(" ", "_", $invoice['index_name']);
 			$this->file_name = $spc2us_pref;
 					
-			$customFieldLabels = getCustomFieldLabels();
-		
 			/*Set the template to the default*/
 			$template = $defaults['template'];
 				
@@ -285,13 +287,13 @@ if($this->file_name ==''){
 				$smarty -> assign('biller',$biller);
 				$smarty -> assign('customer',$customer);
 				$smarty -> assign('invoice',$invoice);
-				$smarty -> assign('invoice_number_of_taxes',$invoice_number_of_taxes);
+				$smarty -> assign('previousid',$previousid);
+				$smarty -> assign('nextid',$nextid);
 				$smarty -> assign('preference',$preference);
 				$smarty -> assign('logo',$logo);
 				$smarty -> assign('template',$template);
 				$smarty -> assign('template_path',$template_path);
 				$smarty -> assign('css',$css);
-				$smarty -> assign('customFieldLabels',$customFieldLabels);
 				$smarty -> assign('user',$user);
 				$smarty -> assign('user_logo',$user_logo);
 

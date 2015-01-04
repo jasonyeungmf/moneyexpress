@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.18, created on 2014-12-14 01:41:26
+<?php /* Smarty version 2.6.18, created on 2014-12-17 23:49:03
          compiled from ../templates/default/invoices/itemised.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'htmlsafe', '../templates/default/invoices/itemised.tpl', 57, false),array('modifier', 'date_format', '../templates/default/invoices/itemised.tpl', 123, false),)), $this); ?>
@@ -59,7 +59,7 @@ smarty_core_load_plugins(array('plugins' => array(array('modifier', 'htmlsafe', 
 <br />
 <br />
 <input type="hidden" name="action" value="insert" />
-<table align="center" width="100%" border="1">
+<table align="center" width="100%" border="0">
 	<tr>
         	<td class="details_screen"><?php echo $this->_tpl_vars['LANG']['trading_type']; ?>
 </td>		
@@ -170,7 +170,7 @@ smarty_core_load_plugins(array('plugins' => array(array('modifier', 'htmlsafe', 
 	<tr>
 
 		<td colspan="4">
-		<table id="itemtable" border="1" width="100%">
+		<table id="itemtable" width="100%" border="0">
 			<tbody id="itemtable-tbody">
 			<tr>
 				<td class="details_screen"></td>				

@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.18, created on 2014-05-27 21:18:32
+<?php /* Smarty version 2.6.18, created on 2015-01-02 02:07:19
          compiled from ../templates/invoices/default/template_tt.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'urlsafe', '../templates/invoices/default/template_tt.tpl', 4, false),array('modifier', 'htmlsafe', '../templates/invoices/default/template_tt.tpl', 5, false),array('modifier', 'siLocal_number_trim', '../templates/invoices/default/template_tt.tpl', 65, false),array('modifier', 'siLocal_number_clean', '../templates/invoices/default/template_tt.tpl', 73, false),)), $this); ?>
@@ -52,7 +52,9 @@ smarty_core_load_plugins(array('plugins' => array(array('modifier', 'urlsafe', '
 : <?php echo $this->_tpl_vars['user']['email']; ?>
 , <?php echo $this->_tpl_vars['LANG']['website']; ?>
 : </font></td>
-		<td></td>
+		<td><a href="./index.php?module=export&view=invoice_tt&id=<?php echo ((is_array($_tmp=$this->_tpl_vars['previousid'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
+&format=print"><img src="./images/print/previous.png" alt="" align="left" /></a><a href="./index.php?module=export&view=invoice_tt&id=<?php echo ((is_array($_tmp=$this->_tpl_vars['nextid'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
+&format=print"><img src="./images/print/next.png" alt="" align="right"/></a></td>
 	</tr>
 </table>
 	

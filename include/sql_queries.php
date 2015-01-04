@@ -570,12 +570,12 @@ function updateInvoice($invoice_id) {
 	}
 	
 	//index_id is NB...(buy) or NS...(sell) when trading type change.
-	if($_POST['trading_type_id'] == 1){
-		$index_id = "NB".substr($_POST['index_id'],2);
-	}
-	if($_POST['trading_type_id'] == 2){
-		$index_id = "NS".substr($_POST['index_id'],2);
-	}
+	//if($_POST['trading_type_id'] == 1){
+	//	$index_id = "B".substr($_POST['index_id'],1);
+	//}
+	//if($_POST['trading_type_id'] == 2){
+	//	$index_id = "S".substr($_POST['index_id'],1);
+	//}
 	
 	$sql = "UPDATE
 			".TB_PREFIX."invoices
@@ -591,8 +591,8 @@ function updateInvoice($invoice_id) {
 			id = :invoice_id";
 			
 	return dbQuery($sql,
-        //':index_id', $_POST['index_id'],
-		':index_id', $index_id,//W.F. Yang
+        ':index_id', $_POST['index_id'],
+		//':index_id', $index_id,//W.F. Yang
 		':biller_id', $_POST['biller_id'],
 		':customer_id', $_POST['customer_id'],
 		':preference_id', $_POST['preference_id'],
@@ -1173,7 +1173,43 @@ function nextid($currentid)
 	global $logger;
 	global $db;
 	global $auth_session;
-	$nextquery = "SELECT * FROM ".TB_PREFIX."invoices WHERE id > $currentid AND domain_id = $auth_session->domain_id ORDER BY id ASC LIMIT 1"; 
+$nextquery = "SELECT * FROM ".TB_PREFIX."invoices WHERE id > $currentid AND domain_id = $auth_session->domain_id ORDER BY id ASC LIMIT 1"; 
+	$nextresult = dbQuery($nextquery);
+	$nextrow = $nextresult->fetch();
+	$nextid  = $nextrow['id'];
+	if($nextid)
+	{
+		return $nextid;
+	}
+	else{
+		return $currentid;
+	}
+}
+
+function previousid_tt($currentid)
+{
+	global $logger;
+	global $db;
+	global $auth_session;
+$previousquery = "SELECT * FROM ".TB_PREFIX."invoices_tt WHERE id < $currentid AND domain_id=$auth_session->domain_id ORDER BY id DESC LIMIT 1";
+	$previousresult = dbQuery($previousquery);
+  	$previousrow = $previousresult->fetch();
+  	$previousid  = $previousrow['id'];
+	if($previousid)
+	{	
+		return $previousid;
+	}
+	else{
+		return $currentid;
+	}
+}
+
+function nextid_tt($currentid)
+{
+	global $logger;
+	global $db;
+	global $auth_session;
+$nextquery = "SELECT * FROM ".TB_PREFIX."invoices_tt WHERE id > $currentid AND domain_id = $auth_session->domain_id ORDER BY id ASC LIMIT 1"; 
 	$nextresult = dbQuery($nextquery);
 	$nextrow = $nextresult->fetch();
 	$nextid  = $nextrow['id'];

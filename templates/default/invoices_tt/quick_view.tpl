@@ -32,7 +32,6 @@
 <!--Actions heading - start-->
 <br />
 <br />
-<!-- #PDF end -->
 
 <table align="center" border="1">
 	<tr>
@@ -119,36 +118,3 @@
 
 <br />
 <br />
-<!--
-<table align="center" border="1">
-	<tr class="details_screen">
-		<td class="details_screen" colspan="16">{$LANG.financial_status}</td>
-	</tr>
-	<tr class="account">
-		<td class="account" colspan="8">{$invoice.index_id|htmlsafe}</td>
-		<td width=5%></td>
-		<td class="columnleft" width="5%"></td>
-		<td class="account" colspan="6"><a href="index.php?module=customers&amp;view=details&amp;id={$customer.id|urlencode}&amp;action=view">{$LANG.customer_account}</a></td>
-	</tr>
-	<tr>
-		<td class="account">{$LANG.total}:</td>
-		<td class="account">{$preference.pref_currency_sign}{$invoice.total|siLocal_number}</td>
-		<td class="account"><a href="index.php?module=payments&amp;view=manage&amp;id={$invoice.id|urlencode}">{$LANG.paid}:</a></td>
-		<td class="account">{$preference.pref_currency_sign|htmlsafe}{$invoice.paid|siLocal_number}</td>
-		<td class="account">{$LANG.owing}:</td>
-		<td class="account"><u>{$preference.pref_currency_sign|htmlsafe}{$invoice.owing|siLocal_number}</u></td>
-		<td class="account">{$LANG.age}:</td>
-		<td class="account" nowrap>{$invoice_age|htmlsafe} 
-		<a class="cluetip" href="#"	rel="index.php?module=documentation&amp;view=view&amp;page=help_age" title="{$LANG.age}"><img src="./images/common/help-small.png" alt="" /></a>
-		</td>
-		<td></td>
-		<td class="columnleft"></td>
-		<td class="account">{$LANG.total}:</td>
-		<td class="account">{$preference.pref_currency_sign|htmlsafe}{$customerAccount.total|siLocal_number}</td>
-		<td class="account"><a href="index.php?module=payments&amp;view=manage&amp;c_id={$customer.id|urlencode}">{$LANG.paid}:</a></td>
-		<td class="account">{$preference.pref_currency_sign|htmlsafe}{$customerAccount.paid|siLocal_number} </td>
-		<td class="account">{$LANG.owing}:</td>
-		<td class="account"><u>{$preference.pref_currency_sign|htmlsafe}{$customerAccount.owing|siLocal_number}</u></td>
-	</tr>
-</table>
-<br />	-->

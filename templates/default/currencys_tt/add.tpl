@@ -92,7 +92,5 @@
 		</td>
 	</tr>
 </table>
-
-
 </form>
-	{/if}
+{/if}

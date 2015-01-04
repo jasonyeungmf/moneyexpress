@@ -29,11 +29,7 @@ function insertInvoiceTT() {
 			total,
 			payable_amount,
 			spell_number,
-			note,
-			custom_field1,
-			custom_field2,
-			custom_field3,
-			custom_field4
+			note
 		)
 		VALUES
 		(
@@ -54,11 +50,7 @@ function insertInvoiceTT() {
 			:total,
 			:payable_amount,
 			:spell_number,
-			:note,
-			:customField1,
-			:customField2,
-			:customField3,
-			:customField4
+			:note
 		)";
 
     //$pref_group = getPreference($_POST[preference_id]);
@@ -81,11 +73,7 @@ function insertInvoiceTT() {
 		':total', $_POST[total],
 		':payable_amount', $_POST[payable_amount],
 		':spell_number', $_POST[spell_number],
-		':note', $_POST[note],
-		':customField1', $_POST[customField1],
-		':customField2', $_POST[customField2],
-		':customField3', $_POST[customField3],
-		':customField4', $_POST[customField4]
+		':note', $_POST[note]
 		);
 
     //index::increment('invoice',$pref_group[index_group]);
@@ -120,11 +108,7 @@ function updateInvoiceTT($id) {
 			total = :total,
 			payable_amount = :payable_amount,
 			spell_number = :spell_number,
-			note = :note,
-			custom_field1 = :customField1,
-			custom_field2 = :customField2,
-			custom_field3 = :customField3,
-			custom_field4 = :customField4
+			note = :note
 		WHERE
 			id = :id";
 			
@@ -146,11 +130,7 @@ function updateInvoiceTT($id) {
 		':total', $_POST['total'],
 		':payable_amount', $_POST['payable_amount'],
 		':spell_number', $_POST['spell_number'],
-		':note', $_POST['note'],
-		':customField1', $_POST['customField1'],
-		':customField2', $_POST['customField2'],
-		':customField3', $_POST['customField3'],
-		':customField4', $_POST['customField4']
+		':note', $_POST['note']
 		);
 }
 

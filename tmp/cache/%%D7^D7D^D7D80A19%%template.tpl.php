@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.18, created on 2014-12-16 01:04:42
+<?php /* Smarty version 2.6.18, created on 2015-01-02 01:28:32
          compiled from ../templates/invoices/default/template.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'urlsafe', '../templates/invoices/default/template.tpl', 4, false),array('modifier', 'htmlsafe', '../templates/invoices/default/template.tpl', 5, false),array('modifier', 'siLocal_number_trim', '../templates/invoices/default/template.tpl', 78, false),array('modifier', 'siLocal_number_clean', '../templates/invoices/default/template.tpl', 79, false),array('modifier', 'outhtml', '../templates/invoices/default/template.tpl', 94, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'urlsafe', '../templates/invoices/default/template.tpl', 4, false),array('modifier', 'htmlsafe', '../templates/invoices/default/template.tpl', 5, false),array('modifier', 'siLocal_number_trim', '../templates/invoices/default/template.tpl', 78, false),array('modifier', 'siLocal_number_clean', '../templates/invoices/default/template.tpl', 79, false),array('modifier', 'outhtml', '../templates/invoices/default/template.tpl', 88, false),)), $this); ?>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -143,6 +143,13 @@ smarty_core_load_plugins(array('plugins' => array(array('modifier', 'urlsafe', '
 	<?php endforeach; endif; unset($_from); ?>
 
 	<tr>
+		<td align="right" class="tbl1-bottom col1"><b><?php echo $this->_tpl_vars['LANG']['notes']; ?>
+</td>
+		<td align="left" colspan="6"></b><?php echo ((is_array($_tmp=$this->_tpl_vars['invoice']['note'])) ? $this->_run_mod_handler('outhtml', true, $_tmp) : outhtml($_tmp)); ?>
+</td>	
+	</tr>
+	
+	<tr>
 		<td colspan="5"></td>
 		<td align="right" class="tbl1-bottom col1"><b><?php echo ((is_array($_tmp=$this->_tpl_vars['preference']['pref_inv_wording'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
  <?php echo $this->_tpl_vars['LANG']['total']; ?>
@@ -151,13 +158,6 @@ smarty_core_load_plugins(array('plugins' => array(array('modifier', 'urlsafe', '
 <?php echo ((is_array($_tmp=$this->_tpl_vars['invoice']['total'])) ? $this->_run_mod_handler('siLocal_number_clean', true, $_tmp) : siLocal::number_clean($_tmp)); ?>
 </u></b></span></td>
 	</tr>		
-	
-	<tr>
-		<td align="right" class="tbl1-bottom col1"><b><?php echo $this->_tpl_vars['LANG']['notes']; ?>
-</td>
-		<td align="left" colspan="6"></b><?php echo ((is_array($_tmp=$this->_tpl_vars['invoice']['note'])) ? $this->_run_mod_handler('outhtml', true, $_tmp) : outhtml($_tmp)); ?>
-</td>	
-	</tr>
 		
 	<tr>
 		<td colspan="7"><br /></td>

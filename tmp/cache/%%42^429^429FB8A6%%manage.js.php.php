@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.18, created on 2014-02-23 23:50:18
+<?php /* Smarty version 2.6.18, created on 2015-01-02 01:02:57
          compiled from ../modules/invoices_tt/manage.js.php */ ?>
 <script type="text/javascript">
 <?php echo '
@@ -42,7 +42,7 @@
 <?php echo '\', name : \'date\', width : 11 * percentage_width, sortable : true, align: \'left\'},
 		{display: \''; ?>
 <?php echo $this->_tpl_vars['LANG']['index_id']; ?>
-<?php echo '\', name : \'index_id\', width :10 * percentage_width, sortable : true, align: \'left\'},
+<?php echo '\', name : \'index_id\', width :15 * percentage_width, sortable : true, align: \'left\'},
 		{display: \''; ?>
 <?php echo $this->_tpl_vars['LANG']['biller']; ?>
 <?php echo '\', name : \'biller\', width :5 * percentage_width, sortable : true, align: \'left\'},
@@ -152,8 +152,8 @@
 <?php echo $this->_tpl_vars['LANG']['of']; ?>
 <?php echo '\',
 	useRp: true,
-	rp: 50,
-	rpOptions: [10,20,30,40,50,100],
+	rp: 100,
+	rpOptions: [20,30,40,50,100,200],
 	showToggleBtn: true,
 	showTableToggleBtn: true,
 	width: \'auto\',

@@ -1,15 +1,4 @@
 <?php
-/*
-* Script: template.php
-* 	invoice export page
-*
-* License:
-*	 GPL v3 or above
-*
-* Website:
-* 	http://www.simpleinvoices.org
- */
-#define("BROWSE","browse");
 
 $invoiceID = $_GET['id'];
 $get_format = $_GET['format'];
@@ -23,6 +12,5 @@ $export -> file_location = 'download';
 $export -> module = 'payment';
 $export -> id = $invoiceID;
 $export -> execute();
-
 
 ?>

@@ -22,12 +22,6 @@ $product = getCurrencyTT($invoice['product_id']);
 	$url_for_pdf = "./index.php?module=export&view=pdf&id=" . $invoice['id'];
 	$invoice['url_for_pdf'] = $url_for_pdf;
 
-$customFieldLabels = getCustomFieldLabels();
-
-for($i=1;$i<=4;$i++) {
-	$customField[$i] = show_custom_field("invoice_tt_cf$i",$invoice["custom_field$i"],"read",'details_screen summary', 'details_screen','details_screen',5,':');
-}
-
 if($invoice['customer_id'] != "1")
 {
 	//Hide id number
@@ -35,7 +29,7 @@ if($invoice['customer_id'] != "1")
 		$id_no = "";
 	}
 	if($customer["id_no"] != ""){
-		$id_no = "(ID)";
+		$id_no = "[Y]";
 	}
 	$customer_detail = $customer['name']."-".$customer['attention']."-".$id_no."-".$customer['mobile_phone']."-".$customer['phone']."-".$customer['fax'];
 }
@@ -44,14 +38,6 @@ if($invoice['customer_id'] == "1")
 	$customer_detail = $account['name'];
 }
 
-//Customer accounts sections
-//$customerAccount = null;
-//$customerAccount['customer_total'] = calc_customer_total_tt($customer['customer_no']);
-//$customerAccount['paid'] = calc_customer_paid($customer['id']);
-//$customerAccount['owing'] = $customerAccount['total'] - $customerAccount['paid'];
-
-$smarty -> assign("customField",$customField);
-$smarty -> assign("customFieldLabels",$customFieldLabels);
 $smarty -> assign("defaults",$defaults);
 $smarty -> assign("preference",$preference);
 $smarty -> assign("biller",$biller);
@@ -71,6 +57,5 @@ $smarty -> assign("customer_detail",$customer_detail);
 $smarty -> assign('pageActive', 'invoice_tt');
 $smarty -> assign('subPageActive', 'invoice_tt_view');
 $smarty -> assign('active_tab', '#invoice');
-
 
 ?>

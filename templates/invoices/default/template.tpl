@@ -84,15 +84,15 @@
 	{/foreach}
 
 	<tr>
+		<td align="right" class="tbl1-bottom col1"><b>{$LANG.notes}</td>
+		<td align="left" colspan="6"></b>{$invoice.note|outhtml}</td>	
+	</tr>
+	
+	<tr>
 		<td colspan="5"></td>
 		<td align="right" class="tbl1-bottom col1"><b>{$preference.pref_inv_wording|htmlsafe} {$LANG.total}</b></td>
 		<td align="right"><span class="double_underline"><b><u>{$preference.pref_currency_sign|htmlsafe}{$invoice.total|siLocal_number_clean}</u></b></span></td>
 	</tr>		
-	
-	<tr>
-		<td align="right" class="tbl1-bottom col1"><b>{$LANG.notes}</td>
-		<td align="left" colspan="6"></b>{$invoice.note|outhtml}</td>	
-	</tr>
 		
 	<tr>
 		<td colspan="7"><br /></td>

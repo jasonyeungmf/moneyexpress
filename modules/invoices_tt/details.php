@@ -21,12 +21,6 @@ $accounts = getActiveAccounts();
 $products = getActiveCurrencysTT();
 $calculation_types = getActiveCalculationTypes();
 
-
-for($i=1;$i<=4;$i++) {
-	$customFields[$i] = show_custom_field("invoice_tt_cf$i",$invoice["custom_field$i"],"write",'',"details_screen",'','','');
-}
-
-$smarty -> assign("customFields",$customFields);
 $smarty -> assign("invoice",$invoice);
 $smarty -> assign("preference",$preference);
 $smarty -> assign("trading_type",$trading_type);

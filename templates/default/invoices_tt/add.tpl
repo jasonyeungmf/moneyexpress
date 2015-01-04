@@ -124,7 +124,7 @@
 	        	id="index_id" 
 	        	type="text" 
 	        	value="{$smarty.post.index_id|htmlsafe}" 
-	        	size="20"
+	        	size="25"
 	        />
         </td>
 
@@ -152,14 +152,12 @@
             {else}
 	            <select name="trading_type_id" id="trading_type_id" tabIndex="1">
 		            {foreach from=$trading_types item=trading_type}
-			            {if $trading_type.id == 3 || $trading_type.id ==4} 
-				            <option 
-				            	{if $trading_type.id == 4} selected {/if}
-				            	value="{$trading_type.id|htmlsafe}"
-				            >
-				            	{$trading_type.description|htmlsafe}
-				            </option>
-			            {/if}	
+			            <option 
+			            	{if $trading_type.id == 2} selected {/if}
+			            	value="{$trading_type.id|htmlsafe}"
+			            >
+			            	{$trading_type.description|htmlsafe}
+			            </option>
 		            {/foreach}
 	            </select>
             {/if}
@@ -204,28 +202,13 @@
 
     <tr>
         <td>{$LANG.customer_no}</td>
-     <!-- <td>
-        {if $customers == null }
-            <em>{$LANG.no_customers}</em>
-        {else}
-	        <select name="customer_id" id="customer_id" class="validate[required] customer_change">
-	        	<option value=""></option>
-		        {foreach from=$customers item=customer}
-		        <option {if $customer.customer_no == $defaultCustomerID} selected {/if} 
-		        value="{$customer.customer_no|htmlsafe}">
-		        {$customer.customer_no|htmlsafe}-{$customer.name|htmlsafe}
-		        </option>
-		        {/foreach}
-	        </select>
-        {/if}
-        </td>	-->
         <td>
 			<input 
 				name="customer_id"
 				id="customer_id"
 				type="text"
 				value="{$account.customer_no|htmlsafe}"
-				size="20"
+				size="25"
 			    AUTOCOMPLETE="OFF"
 			    readonly="readonly"
 				class="validate[required]" 
@@ -304,7 +287,7 @@
 				value="{$smarty.post.charge|htmlsafe}"
 				size="20"
 				AUTOCOMPLETE="OFF"
-				class="validate[required] charge_change"
+				class="validate[required] tt_charge_change"
 				tabIndex="7"
 			/>
 		</td>

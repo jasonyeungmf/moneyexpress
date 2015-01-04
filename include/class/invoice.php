@@ -214,47 +214,47 @@ function select_all($type='', $dir='DESC', $rp='25', $page='1', $having='')
             case "date_between":
                 $sql_having = "HAVING date_between between '$this->start_date' and '$this->end_date'";
                 break;
-	    case "date_between_note_buy":
+	    case "date_between_buy":
                 $sql_having = "HAVING (date_between between '$this->start_date' and '$this->end_date') AND ( iv.trading_type_id = 1 )";
                 break;
-	    case "date_between_note_sell":
+	    case "date_between_sell":
 	        $sql_having = "HAVING (date_between between '$this->start_date' and '$this->end_date') AND ( iv.trading_type_id = 2 )";
 	        break;
 		
-	    case "note_buy":
+	    case "buy":
 	        $sql_having = "HAVING ( iv.trading_type_id = 1 ) ";
 	        break;
-	    case "note_sell":
+	    case "sell":
 	        $sql_having = "HAVING ( iv.trading_type_id = 2 ) ";
 	        break;
 		
 	    case "this_year":
 	    	$sql_having = "HAVING ( this_year = $get_this_year ) ";
 	    	break;
-	    case "this_year_note_buy":
+	    case "this_year_buy":
 		$sql_having = "HAVING ( this_year = $get_this_year ) AND ( iv.trading_type_id = 1 )";
 		break;
-	    case "this_year_note_sell":
+	    case "this_year_sell":
 	    	$sql_having = "HAVING ( this_year = $get_this_year ) AND ( iv.trading_type_id = 2 )";
 	    	break;
 		    
 	    case "this_month":
 	    	$sql_having = "HAVING ( this_month = $get_this_month ) ";
 	    	break;
-	    case "this_month_note_buy":
+	    case "this_month_buy":
 		$sql_having = "HAVING ( this_month = $get_this_month ) AND ( iv.trading_type_id = 1 )";
 		break;
-	    case "this_month_note_sell":
+	    case "this_month_sell":
 	    	$sql_having = "HAVING ( this_month = $get_this_month ) AND ( iv.trading_type_id = 2 )";
 	    	break;
 		    
 	    case "today":
 	    	$sql_having = "HAVING ( today = $get_today ) ";
 	    	break;
-	    case "today_note_buy":
+	    case "today_buy":
 		$sql_having = "HAVING ( today = $get_today ) AND ( iv.trading_type_id = 1 )";
 		break;
-	    case "today_note_sell":
+	    case "today_sell":
 	    	$sql_having = "HAVING ( today = $get_today ) AND ( iv.trading_type_id = 2 )";
 	    	break;		
         }

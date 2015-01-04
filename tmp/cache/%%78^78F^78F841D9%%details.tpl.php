@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.18, created on 2014-12-14 01:23:14
+<?php /* Smarty version 2.6.18, created on 2015-01-04 02:59:14
          compiled from ../templates/default/invoices/details.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'htmlsafe', '../templates/default/invoices/details.tpl', 16, false),array('modifier', 'siLocal_number_clean', '../templates/default/invoices/details.tpl', 133, false),array('modifier', 'outhtml', '../templates/default/invoices/details.tpl', 202, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'htmlsafe', '../templates/default/invoices/details.tpl', 16, false),array('modifier', 'siLocal_number_clean', '../templates/default/invoices/details.tpl', 143, false),array('modifier', 'outhtml', '../templates/default/invoices/details.tpl', 212, false),)), $this); ?>
 <br/>
 <div id="gmail_loading" class="gmailLoader" style="float:right; display: none;">
 	<img src="images/common/gmail-loader.gif" alt="<?php echo $this->_tpl_vars['LANG']['loading']; ?>
@@ -19,7 +19,7 @@ smarty_core_load_plugins(array('plugins' => array(array('modifier', 'htmlsafe', 
 				<p><em><?php echo $this->_tpl_vars['LANG']['no_trading_types']; ?>
 </em></p>
 			<?php else: ?>	
-				<select name="trading_type_id" id="trading_type_id" class="trading_type_change">	
+				<select name="trading_type_id" id="trading_type_id" class="trading_type_change edit_trading_type_change">	
 				<?php $_from = $this->_tpl_vars['trading_types']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
     foreach ($_from as $this->_tpl_vars['trading_type']):
 ?>
@@ -55,8 +55,18 @@ smarty_core_load_plugins(array('plugins' => array(array('modifier', 'htmlsafe', 
 		</td>
 		<td class="details_screen"><?php echo $this->_tpl_vars['LANG']['index_id']; ?>
 </td>
-		<td> <?php echo ((is_array($_tmp=$this->_tpl_vars['invoice']['index_id'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
- </td>		
+		<td>
+			<input
+			AUTOCOMPLETE="OFF"
+			readonly="readonly"
+			type="text" 
+			id="index_id_edit" 
+			name="index_id" 
+			size="25"
+			value="<?php echo ((is_array($_tmp=$this->_tpl_vars['invoice']['index_id'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
+"
+			/>
+		</td>							
 	</tr>
 	
 	<tr>
@@ -81,7 +91,7 @@ smarty_core_load_plugins(array('plugins' => array(array('modifier', 'htmlsafe', 
 		</td>
 	        <td class="details_screen"><?php echo $this->_tpl_vars['LANG']['date_time']; ?>
 </td>
-        	<td><input type="text" size="20" class="" name="date" id="date" value="<?php echo ((is_array($_tmp=$this->_tpl_vars['invoice']['date'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
+        	<td><input type="text" size="25" class="" name="date" id="date" value="<?php echo ((is_array($_tmp=$this->_tpl_vars['invoice']['date'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
 " readonly="readonly"/></td>		
 	</tr>
 	
@@ -372,8 +382,7 @@ if ($this->_foreach['line_item_number']['total'] > 0):
 	<?php else: ?>
 		<input type="hidden" name="id" value="<?php echo ((is_array($_tmp=$this->_tpl_vars['invoice']['id'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
 " />
-		<input type="hidden" name="index_id" value="<?php echo ((is_array($_tmp=$this->_tpl_vars['invoice']['index_id'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
-" />
+
 		<input type="hidden" name="action" value="edit" />
 	<?php endif; ?>
 		<input type="hidden" name="op" value="insert_preference" />

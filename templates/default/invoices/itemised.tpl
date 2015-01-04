@@ -44,7 +44,7 @@
 <br />
 <br />
 <input type="hidden" name="action" value="insert" />
-<table align="center" width="100%" border="1">
+<table align="center" width="100%" border="0">
 	<tr>
         	<td class="details_screen">{$LANG.trading_type}</td>		
                 <td>
@@ -131,7 +131,7 @@
 	<tr>
 
 		<td colspan="4">
-		<table id="itemtable" border="1" width="100%">
+		<table id="itemtable" width="100%" border="0">
 			<tbody id="itemtable-tbody">
 			<tr>
 				<td class="details_screen"></td>				

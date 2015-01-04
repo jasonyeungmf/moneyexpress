@@ -446,12 +446,12 @@ function showtime()
 		index_no += no;
 		var $trading_type = $("#trading_type_id").val();
 		if($trading_type == "1"){
-			$("#index_id").attr("value","NB" + index_no);
-			$("#index_id_tt").attr("value","TB" + index_no);
+			$("#index_id").attr("value","B" + index_no);
+			//$("#index_id_tt").attr("value","TB" + index_no);
 		}
 		if($trading_type == "2"){
-			$("#index_id").attr("value","NS" + index_no);
-			$("#index_id_tt").attr("value","TS" + index_no);
+			$("#index_id").attr("value","S" + index_no);
+			//$("#index_id_tt").attr("value","TS" + index_no);
 		}
 				
 		//show date time	

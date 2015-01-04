@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.18, created on 2014-12-02 23:27:23
+<?php /* Smarty version 2.6.18, created on 2015-01-04 02:52:34
          compiled from ../templates/default/invoices_tt/details.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'htmlsafe', '../templates/default/invoices_tt/details.tpl', 17, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'htmlsafe', '../templates/default/invoices_tt/details.tpl', 15, false),)), $this); ?>
 <br />
 <div id="gmail_loading" class="gmailLoader" style="float:right; display: none;">
         	<img src="images/common/gmail-loader.gif" alt="<?php echo $this->_tpl_vars['LANG']['loading']; ?>
@@ -9,9 +9,7 @@ smarty_core_load_plugins(array('plugins' => array(array('modifier', 'htmlsafe', 
  ...
 </div>
 
-
 <form name="frmpost" action="index.php?module=invoices_tt&amp;view=save" method="post">
-
 <table align="center" border="0">
   	<tr>
       	<td><?php echo $this->_tpl_vars['LANG']['index_id']; ?>
@@ -23,7 +21,7 @@ smarty_core_load_plugins(array('plugins' => array(array('modifier', 'htmlsafe', 
 	        	type="text"
 	        	value="<?php echo ((is_array($_tmp=$this->_tpl_vars['invoice']['index_id'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
 "
-	        	size="20"
+	        	size="25"
 	        	readonly="readonly"
 	        />
         </td>
@@ -58,8 +56,7 @@ smarty_core_load_plugins(array('plugins' => array(array('modifier', 'htmlsafe', 
 	            <select name="trading_type_id" id="trading_type_id" class="tt_edit_trading_type_change" tabIndex="1">
 		            <?php $_from = $this->_tpl_vars['trading_types']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
     foreach ($_from as $this->_tpl_vars['trading_type']):
-?>
-			            <?php if ($this->_tpl_vars['trading_type']['id'] == 3 || $this->_tpl_vars['trading_type']['id'] == 4): ?> 
+?>			            
 				            <option 
 				            	<?php if ($this->_tpl_vars['trading_type']['id'] == $this->_tpl_vars['invoice']['trading_type_id']): ?> selected <?php endif; ?>
 				            	value="<?php echo ((is_array($_tmp=$this->_tpl_vars['trading_type']['id'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
@@ -67,7 +64,6 @@ smarty_core_load_plugins(array('plugins' => array(array('modifier', 'htmlsafe', 
 				            ><?php echo ((is_array($_tmp=$this->_tpl_vars['trading_type']['description'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
 
 				            </option>
-			            <?php endif; ?>	
 		            <?php endforeach; endif; unset($_from); ?>
 	            </select>
             <?php endif; ?>
@@ -130,7 +126,7 @@ smarty_core_load_plugins(array('plugins' => array(array('modifier', 'htmlsafe', 
 				type="text"
 				value="<?php echo ((is_array($_tmp=$this->_tpl_vars['invoice']['customer_id'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
 "
-				size="20"
+				size="25"
 			    AUTOCOMPLETE="OFF"
 			    readonly="readonly"
 				class="validate[required]"
@@ -219,7 +215,7 @@ smarty_core_load_plugins(array('plugins' => array(array('modifier', 'htmlsafe', 
 "
 				size="20"
 				AUTOCOMPLETE="OFF"
-				class="validate[required] charge_change"
+				class="validate[required] tt_charge_change"
 				tabIndex="7"
 			/>
 		</td>

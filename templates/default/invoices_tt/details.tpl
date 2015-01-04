@@ -3,9 +3,7 @@
         	<img src="images/common/gmail-loader.gif" alt="{$LANG.loading} ..." /> {$LANG.loading} ...
 </div>
 
-
 <form name="frmpost" action="index.php?module=invoices_tt&amp;view=save" method="post">
-
 <table align="center" border="0">
   	<tr>
       	<td>{$LANG.index_id}</td>    
@@ -15,7 +13,7 @@
 	        	id="index_id_edit"
 	        	type="text"
 	        	value="{$invoice.index_id|htmlsafe}"
-	        	size="20"
+	        	size="25"
 	        	readonly="readonly"
 	        />
         </td>
@@ -43,14 +41,12 @@
                 <p><em>{$LANG.no_trading_types}</em></p>
             {else}
 	            <select name="trading_type_id" id="trading_type_id" class="tt_edit_trading_type_change" tabIndex="1">
-		            {foreach from=$trading_types item=trading_type}
-			            {if $trading_type.id == 3 || $trading_type.id ==4} 
+		            {foreach from=$trading_types item=trading_type}			            
 				            <option 
 				            	{if $trading_type.id == $invoice.trading_type_id} selected {/if}
 				            	value="{$trading_type.id|htmlsafe}"
 				            >{$trading_type.description|htmlsafe}
 				            </option>
-			            {/if}	
 		            {/foreach}
 	            </select>
             {/if}
@@ -99,7 +95,7 @@
 				id="customer_id"
 				type="text"
 				value="{$invoice.customer_id|htmlsafe}"
-				size="20"
+				size="25"
 			    AUTOCOMPLETE="OFF"
 			    readonly="readonly"
 				class="validate[required]"
@@ -178,7 +174,7 @@
 				value="{$invoice.charge|htmlsafe}"
 				size="20"
 				AUTOCOMPLETE="OFF"
-				class="validate[required] charge_change"
+				class="validate[required] tt_charge_change"
 				tabIndex="7"
 			/>
 		</td>

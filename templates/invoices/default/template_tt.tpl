@@ -26,7 +26,7 @@
 	<tr>
 		<!--	<td><FONT SIZE="1">{$LANG.email}: {$user.email}, {$LANG.website}: {$user.website}</font></td>	-->
 		<td><FONT SIZE="1">{$LANG.email}: {$user.email}, {$LANG.website}: </font></td>
-		<td></td>
+		<td><a href="./index.php?module=export&view=invoice_tt&id={$previousid|htmlsafe}&format=print"><img src="./images/print/previous.png" alt="" align="left" /></a><a href="./index.php?module=export&view=invoice_tt&id={$nextid|htmlsafe}&format=print"><img src="./images/print/next.png" alt="" align="right"/></a></td>
 	</tr>
 </table>
 	

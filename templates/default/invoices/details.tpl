@@ -11,7 +11,7 @@
 			{if $trading_types == null }
 				<p><em>{$LANG.no_trading_types}</em></p>
 			{else}	
-				<select name="trading_type_id" id="trading_type_id" class="trading_type_change">	
+				<select name="trading_type_id" id="trading_type_id" class="trading_type_change edit_trading_type_change">	
 				{foreach from=$trading_types item=trading_type}
 					<option {if $trading_type.id == $invoice.trading_type_id} selected {/if} value="{$trading_type.id|htmlsafe}">{$trading_type.description|htmlsafe}</option>
 				{/foreach}
@@ -35,7 +35,17 @@
 			{/if}
 		</td>
 		<td class="details_screen">{$LANG.index_id}</td>
-		<td> {$invoice.index_id|htmlsafe} </td>		
+		<td>
+			<input
+			AUTOCOMPLETE="OFF"
+			readonly="readonly"
+			type="text" 
+			id="index_id_edit" 
+			name="index_id" 
+			size="25"
+			value="{$invoice.index_id|htmlsafe}"
+			/>
+		</td>							
 	</tr>
 	
 	<tr>
@@ -52,7 +62,7 @@
 			{/if}
 		</td>
 	        <td class="details_screen">{$LANG.date_time}</td>
-        	<td><input type="text" size="20" class="" name="date" id="date" value="{$invoice.date|htmlsafe}" readonly="readonly"/></td>		
+        	<td><input type="text" size="25" class="" name="date" id="date" value="{$invoice.date|htmlsafe}" readonly="readonly"/></td>		
 	</tr>
 	
 	<tr><td><br/></td></tr>
@@ -265,7 +275,6 @@
 		<input type="hidden" name="action" value="insert" />
 	{else}
 		<input type="hidden" name="id" value="{$invoice.id|htmlsafe}" />
-		<input type="hidden" name="index_id" value="{$invoice.index_id|htmlsafe}" />
 		<input type="hidden" name="action" value="edit" />
 	{/if}
 		<input type="hidden" name="op" value="insert_preference" />

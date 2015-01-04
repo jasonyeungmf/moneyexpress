@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.18, created on 2014-12-13 21:05:04
+<?php /* Smarty version 2.6.18, created on 2015-01-04 02:39:54
          compiled from ../include/jquery/jquery.conf.js.tpl */ ?>
 <?php echo '
 <script type="text/javascript">
@@ -248,6 +248,19 @@ startclock();
 <?php echo '\');
      });
 	 
+	 // edit trading type change
+	$(".edit_trading_type_change").livequery(\'change\',function () {
+		var $trading_type = $(this).val();
+		var $index_id = $("#index_id_edit").val();
+		var $index_id = $index_id.slice(1);
+		if($trading_type == "1"){
+			$("#index_id_edit").attr("value","B" + $index_id);
+		}
+		if($trading_type == "2"){
+			$("#index_id_edit").attr("value","S" + $index_id);
+		}
+	});
+	 
 	// Currency change
 	$(".currency_change").livequery(\'change\',function () { 
       	var $row_number = $(this).attr("rel");
@@ -389,18 +402,18 @@ $config->export->spreadsheet<?php echo '");
 
 
 
-/* TT invoice below */
+/* TT invoice begin */
 
 // TT edit trading type change
 $(".tt_edit_trading_type_change").livequery(\'change\',function () {
 	var $trading_type = $(this).val();
 	var $index_id = $("#index_id_edit").val();
-	var $index_id = $index_id.slice(2);
-	if($trading_type == "3"){
-		$("#index_id_edit").attr("value","TB" + $index_id);
+	var $index_id = $index_id.slice(1);
+	if($trading_type == "1"){
+		$("#index_id_edit").attr("value","B" + $index_id);
 	}
-	if($trading_type == "4"){
-		$("#index_id_edit").attr("value","TS" + $index_id);
+	if($trading_type == "2"){
+		$("#index_id_edit").attr("value","S" + $index_id);
 	}
 });
 	
@@ -535,7 +548,7 @@ $(".tt_unit_price_change").livequery(\'keyup\',function () {
 });
 
 // TT charge change
-$(".charge_change").livequery(\'keyup\',function () {
+$(".tt_charge_change").livequery(\'keyup\',function () {
 	var $calculation_type_id = $("#calculation_type_id").val();
     var $quantity = $("#quantity").val();
 	var $unit_price = $("#unit_price").val();

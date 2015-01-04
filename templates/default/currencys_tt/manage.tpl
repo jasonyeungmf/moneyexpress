@@ -1,16 +1,3 @@
-{*
-/*
-* Script: manage.tpl
-* 	 currencys_tt manage template
-*
-*
-* License:
-*	 GPL v3 or above
-*
-* Website:
-*	http://www.simpleinvoices.org
-*/
-*}
 <table class="buttons" align="center">
     <tr>
         <td>

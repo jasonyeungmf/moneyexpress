@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.18, created on 2014-03-02 03:48:54
+<?php /* Smarty version 2.6.18, created on 2015-01-04 00:20:42
          compiled from ../templates/default/invoices_tt/add.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'htmlsafe', '../templates/default/invoices_tt/add.tpl', 126, false),array('modifier', 'date_format', '../templates/default/invoices_tt/add.tpl', 140, false),)), $this); ?>
@@ -149,7 +149,7 @@ smarty_core_load_plugins(array('plugins' => array(array('modifier', 'htmlsafe', 
 	        	type="text" 
 	        	value="<?php echo ((is_array($_tmp=$_POST['index_id'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
 " 
-	        	size="20"
+	        	size="25"
 	        />
         </td>
 
@@ -184,16 +184,14 @@ smarty_core_load_plugins(array('plugins' => array(array('modifier', 'htmlsafe', 
 		            <?php $_from = $this->_tpl_vars['trading_types']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
     foreach ($_from as $this->_tpl_vars['trading_type']):
 ?>
-			            <?php if ($this->_tpl_vars['trading_type']['id'] == 3 || $this->_tpl_vars['trading_type']['id'] == 4): ?> 
-				            <option 
-				            	<?php if ($this->_tpl_vars['trading_type']['id'] == 4): ?> selected <?php endif; ?>
-				            	value="<?php echo ((is_array($_tmp=$this->_tpl_vars['trading_type']['id'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
+			            <option 
+			            	<?php if ($this->_tpl_vars['trading_type']['id'] == 2): ?> selected <?php endif; ?>
+			            	value="<?php echo ((is_array($_tmp=$this->_tpl_vars['trading_type']['id'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
 "
-				            >
-				            	<?php echo ((is_array($_tmp=$this->_tpl_vars['trading_type']['description'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
+			            >
+			            	<?php echo ((is_array($_tmp=$this->_tpl_vars['trading_type']['description'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
 
-				            </option>
-			            <?php endif; ?>	
+			            </option>
 		            <?php endforeach; endif; unset($_from); ?>
 	            </select>
             <?php endif; ?>
@@ -251,27 +249,6 @@ smarty_core_load_plugins(array('plugins' => array(array('modifier', 'htmlsafe', 
     <tr>
         <td><?php echo $this->_tpl_vars['LANG']['customer_no']; ?>
 </td>
-     <!-- <td>
-        <?php if ($this->_tpl_vars['customers'] == null): ?>
-            <em><?php echo $this->_tpl_vars['LANG']['no_customers']; ?>
-</em>
-        <?php else: ?>
-	        <select name="customer_id" id="customer_id" class="validate[required] customer_change">
-	        	<option value=""></option>
-		        <?php $_from = $this->_tpl_vars['customers']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
-    foreach ($_from as $this->_tpl_vars['customer']):
-?>
-		        <option <?php if ($this->_tpl_vars['customer']['customer_no'] == $this->_tpl_vars['defaultCustomerID']): ?> selected <?php endif; ?> 
-		        value="<?php echo ((is_array($_tmp=$this->_tpl_vars['customer']['customer_no'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
-">
-		        <?php echo ((is_array($_tmp=$this->_tpl_vars['customer']['customer_no'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
--<?php echo ((is_array($_tmp=$this->_tpl_vars['customer']['name'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
-
-		        </option>
-		        <?php endforeach; endif; unset($_from); ?>
-	        </select>
-        <?php endif; ?>
-        </td>	-->
         <td>
 			<input 
 				name="customer_id"
@@ -279,7 +256,7 @@ smarty_core_load_plugins(array('plugins' => array(array('modifier', 'htmlsafe', 
 				type="text"
 				value="<?php echo ((is_array($_tmp=$this->_tpl_vars['account']['customer_no'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
 "
-				size="20"
+				size="25"
 			    AUTOCOMPLETE="OFF"
 			    readonly="readonly"
 				class="validate[required]" 
@@ -368,7 +345,7 @@ smarty_core_load_plugins(array('plugins' => array(array('modifier', 'htmlsafe', 
 "
 				size="20"
 				AUTOCOMPLETE="OFF"
-				class="validate[required] charge_change"
+				class="validate[required] tt_charge_change"
 				tabIndex="7"
 			/>
 		</td>

@@ -24,22 +24,10 @@ $defaults['customer'] = (isset($_GET['customer'])) ? $_GET['customer'] : $defaul
 $defaults['preference'] = (isset($_GET['preference'])) ? $_GET['preference'] : $defaults['preference'];
 $defaultPreference = getDefaultPreference();
 
-//if (!empty( $_GET['line_items'] )) {
-//	$dynamic_line_items = $_GET['line_items'];
-//} 
-//else {
-//	$dynamic_line_items = $defaults['line_items'] ;
-//}
-
-for($i=1;$i<=4;$i++) {
-	$show_custom_field[$i] = show_custom_field("invoice_tt_cf$i",'',"write",'',"details_screen",'','','');
-}
-
 $smarty -> assign("accounts",$accounts);
 $smarty -> assign("billers",$billers);
 $smarty -> assign("customers",$customers);
 $smarty -> assign("preferences",$preferences);
-$smarty -> assign("show_custom_field",$show_custom_field);
 $smarty -> assign("currencys_tt",$currencys_tt);
 $smarty -> assign("trading_types",$trading_types);
 $smarty -> assign("payment_types",$payment_types);

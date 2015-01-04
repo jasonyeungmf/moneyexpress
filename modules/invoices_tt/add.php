@@ -9,13 +9,14 @@ $customer = getCustomer($account['customer_no']);
 if($account['customer_no'] != "1")
 {
 	//Hide id number
-	if($customer["id_no"] == ""){
-		$id_no = "";
-	}
-	if($customer["id_no"] != ""){
-		$id_no = "(ID)";
-	}
-$customer_detail = $customer['name']."-".$customer['attention']."-".$id_no."-".$customer['mobile_phone']."-".$customer['phone']."-".$customer['fax'];
+//	if($customer["id_no"] == ""){
+//		$id_no = "";
+//	}
+//	if($customer["id_no"] != ""){
+//		$id_no = "(ID)";
+//	}
+//$customer_detail = $customer['name']."-".$customer['attention']."-".$id_no."-".$customer['mobile_phone']."-".$customer['phone']."-".$customer['fax'];
+$customer_detail = $customer['name']."-".$customer['attention']."-".$customer["id_no"]."-".$customer['mobile_phone']."-".$customer['phone']."-".$customer['fax'];
 }
 
 if($account['customer_no'] == "1")
