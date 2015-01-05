@@ -243,6 +243,7 @@ switch ($this->format)
 			$smarty -> assign('biller',$biller);
 			$smarty -> assign('customer',$customer);
 			$smarty -> assign('invoice',$invoice);
+			$smarty -> assign('currentid',$currentid);
 			$smarty -> assign('previousid',$previousid);
 			$smarty -> assign('nextid',$nextid);
 			$smarty -> assign('preference',$preference);

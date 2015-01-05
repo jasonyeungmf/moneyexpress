@@ -1,15 +1,12 @@
-<?php /* Smarty version 2.6.18, created on 2014-12-19 00:14:30
+<?php /* Smarty version 2.6.18, created on 2015-01-05 22:27:21
          compiled from ../templates/default/invoices/manage.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'date_format', '../templates/default/invoices/manage.tpl', 59, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'date_format', '../templates/default/invoices/manage.tpl', 56, false),)), $this); ?>
 <!-- <link href="include/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen"> -->
 <table class="buttons" align="center">
     <tr>
         <td>
-
-            <a href="index.php?module=invoices&amp;view=itemised" class="positive">
-                <img src="./images/common/add.png" alt="" />
-                <?php echo $this->_tpl_vars['LANG']['new_invoice']; ?>
+            <a href="index.php?module=invoices&amp;view=itemised" class="positive"><img src="./images/common/add.png" alt="" /><?php echo $this->_tpl_vars['LANG']['new_invoice']; ?>
 
             </a>
 

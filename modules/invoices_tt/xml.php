@@ -44,7 +44,7 @@ $count = $sth_count_rows->rowCount();
 			<img src='images/common/edit.png' class='action' />
 		</a>
 		
-		<a class='index_table' title=' ".$LANG['print_preview_tooltip']." ".$row['preference']." ".$row['id']."' href='index.php?module=export&view=invoice_tt&id=".$row['id']."&format=print'>
+		<a class='index_table' title=' ".$LANG['print_preview_tooltip']." ".$row['preference']." ".$row['id']."' href='index.php?module=export&view=invoice_tt&id=".$row['id']."&format=print' target='_blank'>
 			<img src='images/common/printer.png' class='action' />
 		</a>
 		

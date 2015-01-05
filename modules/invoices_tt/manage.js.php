@@ -73,7 +73,7 @@
 	ofmsg: '{/literal}{$LANG.of}{literal}',
 	useRp: true,
 	rp: 100,
-	rpOptions: [20,30,40,50,100,200],
+	rpOptions: [50,100,200,300,500],
 	showToggleBtn: true,
 	showTableToggleBtn: true,
 	width: 'auto',

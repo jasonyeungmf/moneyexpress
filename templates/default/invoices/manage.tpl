@@ -2,10 +2,7 @@
 <table class="buttons" align="center">
     <tr>
         <td>
-
-            <a href="index.php?module=invoices&amp;view=itemised" class="positive">
-                <img src="./images/common/add.png" alt="" />
-                {$LANG.new_invoice}
+            <a href="index.php?module=invoices&amp;view=itemised" class="positive"><img src="./images/common/add.png" alt="" />{$LANG.new_invoice}
             </a>
 
         </td>

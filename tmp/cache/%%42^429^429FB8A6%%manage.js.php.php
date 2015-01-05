@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.18, created on 2015-01-04 23:38:40
+<?php /* Smarty version 2.6.18, created on 2015-01-05 22:47:31
          compiled from ../modules/invoices_tt/manage.js.php */ ?>
 <script type="text/javascript">
 <?php echo '
@@ -153,7 +153,7 @@
 <?php echo '\',
 	useRp: true,
 	rp: 100,
-	rpOptions: [20,30,40,50,100,200],
+	rpOptions: [50,100,200,300,500],
 	showToggleBtn: true,
 	showTableToggleBtn: true,
 	width: \'auto\',

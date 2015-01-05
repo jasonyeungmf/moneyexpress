@@ -8,7 +8,11 @@
 <div id="container_tt">
 <table align="center" width="100%" border="0">
 	<tr>
-		<td rowspan="4"><img src="{$user_logo|urlsafe}" height=55  border="0" hspace="0" align="left"></td>
+		<td rowspan="4">
+			<a href="./index.php?module=invoices_tt&view=quick_view&id={$currentid|htmlsafe}">	
+			<img src="{$user_logo|urlsafe}" height=55  border="0" hspace="0" align="left">
+		</a>
+		</td>
 		<td class="head_1">{$user.name}</td>
 		<th align="right"><span class="head_1">{$preference.pref_inv_heading|htmlsafe}</span></th>
 	</tr>

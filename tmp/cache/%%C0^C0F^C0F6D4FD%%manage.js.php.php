@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.18, created on 2014-12-10 22:12:32
+<?php /* Smarty version 2.6.18, created on 2015-01-05 22:47:44
          compiled from ../modules/invoices/manage.js.php */ ?>
 <script type="text/javascript">
 <?php echo '
@@ -96,8 +96,8 @@
 <?php echo $this->_tpl_vars['LANG']['of']; ?>
 <?php echo '\',
 	useRp: true,
-	rp: 50,
-	rpOptions: [10,20,30,40,50,100],
+	rp: 100,
+	rpOptions: [50,100,200,300,500],
 	showToggleBtn: true,
 	showTableToggleBtn: true,
 	width: \'auto\',

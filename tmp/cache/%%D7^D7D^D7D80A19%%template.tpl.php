@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.18, created on 2015-01-02 01:28:32
+<?php /* Smarty version 2.6.18, created on 2015-01-05 22:24:37
          compiled from ../templates/invoices/default/template.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'urlsafe', '../templates/invoices/default/template.tpl', 4, false),array('modifier', 'htmlsafe', '../templates/invoices/default/template.tpl', 5, false),array('modifier', 'siLocal_number_trim', '../templates/invoices/default/template.tpl', 78, false),array('modifier', 'siLocal_number_clean', '../templates/invoices/default/template.tpl', 79, false),array('modifier', 'outhtml', '../templates/invoices/default/template.tpl', 88, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'urlsafe', '../templates/invoices/default/template.tpl', 4, false),array('modifier', 'htmlsafe', '../templates/invoices/default/template.tpl', 5, false),array('modifier', 'siLocal_number_trim', '../templates/invoices/default/template.tpl', 82, false),array('modifier', 'siLocal_number_clean', '../templates/invoices/default/template.tpl', 83, false),array('modifier', 'outhtml', '../templates/invoices/default/template.tpl', 92, false),)), $this); ?>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -15,8 +15,13 @@ smarty_core_load_plugins(array('plugins' => array(array('modifier', 'urlsafe', '
 	<div id="header"></div>
 	<table width="100%" align="center" border="0">
 		<tr>
-			<td rowspan="4"><img src="<?php echo ((is_array($_tmp=$this->_tpl_vars['user_logo'])) ? $this->_run_mod_handler('urlsafe', true, $_tmp) : urlsafe($_tmp)); ?>
-" height=55  border="0" hspace="0" align="left"></td>
+			<td rowspan="4">
+				<a href="./index.php?module=invoices&view=quick_view&id=<?php echo ((is_array($_tmp=$this->_tpl_vars['currentid'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
+">
+					<img src="<?php echo ((is_array($_tmp=$this->_tpl_vars['user_logo'])) ? $this->_run_mod_handler('urlsafe', true, $_tmp) : urlsafe($_tmp)); ?>
+" height=55  border="0" hspace="0" align="left">
+				</a>
+			</td>
 			<td class="font1"><?php echo $this->_tpl_vars['user']['name']; ?>
 </td>
 			<th align="right"><span class="font1"><?php echo ((is_array($_tmp=$this->_tpl_vars['preference']['pref_inv_heading'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>

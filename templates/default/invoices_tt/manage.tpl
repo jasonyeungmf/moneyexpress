@@ -3,10 +3,7 @@
 <table class="buttons" align="center">
     <tr>
         <td>
-
-            <a href="index.php?module=invoices_tt&amp;view=add" class="positive">
-                <img src="./images/common/add.png" alt="" />
-                {$LANG.new_invoice}
+            <a href="index.php?module=invoices_tt&amp;view=add" class="positive"><img src="./images/common/add.png" alt="" />{$LANG.new_invoice}
             </a>
 
         </td>

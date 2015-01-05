@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.18, created on 2015-01-04 23:39:37
+<?php /* Smarty version 2.6.18, created on 2015-01-05 23:26:36
          compiled from ../templates/invoices/default/template_tt.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'urlsafe', '../templates/invoices/default/template_tt.tpl', 4, false),array('modifier', 'htmlsafe', '../templates/invoices/default/template_tt.tpl', 5, false),array('modifier', 'siLocal_number_trim', '../templates/invoices/default/template_tt.tpl', 65, false),array('modifier', 'siLocal_number_clean', '../templates/invoices/default/template_tt.tpl', 73, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'urlsafe', '../templates/invoices/default/template_tt.tpl', 4, false),array('modifier', 'htmlsafe', '../templates/invoices/default/template_tt.tpl', 5, false),array('modifier', 'siLocal_number_trim', '../templates/invoices/default/template_tt.tpl', 69, false),array('modifier', 'siLocal_number_clean', '../templates/invoices/default/template_tt.tpl', 77, false),)), $this); ?>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -14,8 +14,13 @@ smarty_core_load_plugins(array('plugins' => array(array('modifier', 'urlsafe', '
 <div id="container_tt">
 <table align="center" width="100%" border="0">
 	<tr>
-		<td rowspan="4"><img src="<?php echo ((is_array($_tmp=$this->_tpl_vars['user_logo'])) ? $this->_run_mod_handler('urlsafe', true, $_tmp) : urlsafe($_tmp)); ?>
-" height=55  border="0" hspace="0" align="left"></td>
+		<td rowspan="4">
+			<a href="./index.php?module=invoices_tt&view=quick_view&id=<?php echo ((is_array($_tmp=$this->_tpl_vars['currentid'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
+">	
+			<img src="<?php echo ((is_array($_tmp=$this->_tpl_vars['user_logo'])) ? $this->_run_mod_handler('urlsafe', true, $_tmp) : urlsafe($_tmp)); ?>
+" height=55  border="0" hspace="0" align="left">
+		</a>
+		</td>
 		<td class="head_1"><?php echo $this->_tpl_vars['user']['name']; ?>
 </td>
 		<th align="right"><span class="head_1"><?php echo ((is_array($_tmp=$this->_tpl_vars['preference']['pref_inv_heading'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
