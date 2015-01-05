@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.18, created on 2015-01-05 23:17:49
+<?php /* Smarty version 2.6.18, created on 2015-01-06 00:19:32
          compiled from ../templates/default/invoices_tt/quick_view.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'htmlsafe', '../templates/default/invoices_tt/quick_view.tpl', 6, false),array('modifier', 'urlencode', '../templates/default/invoices_tt/quick_view.tpl', 6, false),array('modifier', 'date_format', '../templates/default/invoices_tt/quick_view.tpl', 45, false),array('modifier', 'siLocal_number_trim', '../templates/default/invoices_tt/quick_view.tpl', 67, false),array('modifier', 'siLocal_number_clean', '../templates/default/invoices_tt/quick_view.tpl', 75, false),)), $this); ?>
@@ -93,7 +93,7 @@ smarty_core_load_plugins(array('plugins' => array(array('modifier', 'htmlsafe', 
 <br />
 <br />
 
-<table align="center" width="100%" border="1">
+<table align="center" border="1">
 	<tr>
 		<td class="title"><?php echo $this->_tpl_vars['LANG']['index_id']; ?>
 </td>

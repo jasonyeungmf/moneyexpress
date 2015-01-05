@@ -33,7 +33,7 @@
 <br />
 <br />
 
-<table align="center" width="100%" border="1">
+<table align="center" border="1">
 	<tr>
 		<td class="title">{$LANG.index_id}</td>
 		<td class="data_2">{$invoice.index_id|htmlsafe}</td>

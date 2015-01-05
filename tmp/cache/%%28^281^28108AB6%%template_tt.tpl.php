@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.18, created on 2015-01-05 23:26:36
+<?php /* Smarty version 2.6.18, created on 2015-01-06 00:22:24
          compiled from ../templates/invoices/default/template_tt.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'urlsafe', '../templates/invoices/default/template_tt.tpl', 4, false),array('modifier', 'htmlsafe', '../templates/invoices/default/template_tt.tpl', 5, false),array('modifier', 'siLocal_number_trim', '../templates/invoices/default/template_tt.tpl', 69, false),array('modifier', 'siLocal_number_clean', '../templates/invoices/default/template_tt.tpl', 77, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'urlsafe', '../templates/invoices/default/template_tt.tpl', 4, false),array('modifier', 'htmlsafe', '../templates/invoices/default/template_tt.tpl', 5, false),array('modifier', 'siLocal_number_trim', '../templates/invoices/default/template_tt.tpl', 78, false),array('modifier', 'siLocal_number_clean', '../templates/invoices/default/template_tt.tpl', 86, false),)), $this); ?>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -57,9 +57,19 @@ smarty_core_load_plugins(array('plugins' => array(array('modifier', 'urlsafe', '
 : <?php echo $this->_tpl_vars['user']['email']; ?>
 , <?php echo $this->_tpl_vars['LANG']['website']; ?>
 : </font></td>
-		<td><a href="./index.php?module=export&view=invoice_tt&id=<?php echo ((is_array($_tmp=$this->_tpl_vars['previousid'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
-&format=print"><img src="./images/print/previous.png" alt="" align="left" /></a><a href="./index.php?module=export&view=invoice_tt&id=<?php echo ((is_array($_tmp=$this->_tpl_vars['nextid'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
-&format=print"><img src="./images/print/next.png" alt="" align="right"/></a></td>
+		<td>
+			<a href="./index.php?module=export&view=invoice_tt&id=<?php echo ((is_array($_tmp=$this->_tpl_vars['previousid'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
+&format=print">
+			<img src="./images/print/previous.png" alt="" align="left"/></a>
+
+			<a href="./index.php?module=invoices_tt&view=quick_view&id=<?php echo ((is_array($_tmp=$this->_tpl_vars['currentid'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
+">
+			<img src="./images/print/view.png" alt="" align="left"/></a>
+
+			<a href="./index.php?module=export&view=invoice_tt&id=<?php echo ((is_array($_tmp=$this->_tpl_vars['nextid'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
+&format=print">
+			<img src="./images/print/next.png" alt="" align="left"/></a>
+		</td>
 	</tr>
 </table>
 	
