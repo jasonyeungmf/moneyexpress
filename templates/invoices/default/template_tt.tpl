@@ -8,11 +8,7 @@
 <div id="container_tt">
 <table align="center" width="100%" border="0">
 	<tr>
-		<td rowspan="4">
-			<a href="./index.php?module=invoices_tt&view=quick_view&id={$currentid|htmlsafe}">	
-			<img src="{$user_logo|urlsafe}" height=55  border="0" hspace="0" align="left">
-		</a>
-		</td>
+		<td rowspan="4"><img src="{$user_logo|urlsafe}" height=55  border="0" hspace="0" align="left"></td>
 		<td class="head_1">{$user.name}</td>
 		<th align="right"><span class="head_1">{$preference.pref_inv_heading|htmlsafe}</span></th>
 	</tr>
@@ -31,14 +27,17 @@
 		<!--	<td><FONT SIZE="1">{$LANG.email}: {$user.email}, {$LANG.website}: {$user.website}</font></td>	-->
 		<td><FONT SIZE="1">{$LANG.email}: {$user.email}, {$LANG.website}: </font></td>
 		<td>
-			<a href="./index.php?module=export&view=invoice_tt&id={$previousid|htmlsafe}&format=print">
-			<img src="./images/print/previous.png" alt="" align="left"/></a>
+			<a href="./index.php?module=export&view=invoice_tt&id={$nextid|htmlsafe}&format=print">
+			<img src="./images/print/next.png" alt="" title="{$LANG.next}" align="right"/></a>	
+
+			<a href="./index.php?module=invoices_tt&view=details&id={$currentid|htmlsafe}">
+			<img src="./images/print/edit.png" alt="" title="{$LANG.edit}" align="right"/></a>		
 
 			<a href="./index.php?module=invoices_tt&view=quick_view&id={$currentid|htmlsafe}">
-			<img src="./images/print/view.png" alt="" align="left"/></a>
+			<img src="./images/print/view.png" alt="" title="{$LANG.view}" align="right"/></a>
 
-			<a href="./index.php?module=export&view=invoice_tt&id={$nextid|htmlsafe}&format=print">
-			<img src="./images/print/next.png" alt="" align="left"/></a>
+			<a href="./index.php?module=export&view=invoice_tt&id={$previousid|htmlsafe}&format=print">
+			<img src="./images/print/previous.png" alt="" title="{$LANG.previous}" align="right"/></a>
 		</td>
 	</tr>
 </table>
