@@ -9,5 +9,5 @@ $updated = true;
 
 $smarty->assign('updated',$updated);
 $smarty -> assign('pageActive', 'currencys_cny');
-$smarty -> assign('active_tab', '#product');
+$smarty -> assign('active_tab', '#currency');
 ?>

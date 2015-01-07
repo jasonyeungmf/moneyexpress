@@ -17,5 +17,5 @@ $smarty -> assign('save',$save);
 //$smarty -> assign('taxes',$taxes);
 
 $smarty -> assign('pageActive', 'currencys_note');
-$smarty -> assign('active_tab', '#product');
+$smarty -> assign('active_tab', '#currency');
 ?>

@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.18, created on 2015-01-08 03:13:03
+<?php /* Smarty version 2.6.18, created on 2015-01-08 03:34:45
          compiled from ../templates/default/menu.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'htmlsafe', '../templates/default/menu.tpl', 3, false),)), $this); ?>
@@ -30,7 +30,7 @@ smarty_core_load_plugins(array('plugins' => array(array('modifier', 'htmlsafe', 
 </span></a></li>
 		<li><a href="#people"><span><?php echo $this->_tpl_vars['LANG']['people']; ?>
 </span></a></li>
-		<li><a href="#product"><span><?php echo $this->_tpl_vars['LANG']['product']; ?>
+		<li><a href="#currency"><span><?php echo $this->_tpl_vars['LANG']['currency']; ?>
 </span></a></li>
 		<li style="float:right" class="menu_setting"><a href="#setting"><span><?php echo $this->_tpl_vars['LANG']['settings']; ?>
 </span></a></li>
@@ -111,7 +111,7 @@ smarty_core_load_plugins(array('plugins' => array(array('modifier', 'htmlsafe', 
 		</ul>
 </div>
 
-<div id="product">
+<div id="currency">
 <ul class="subnav">
 <li><a<?php if ($this->_tpl_vars['pageActive'] == 'currencys_note'): ?> class="active"<?php endif; ?> href="index.php?module=currencys_note&amp;view=manage"><?php echo $this->_tpl_vars['LANG']['note']; ?>
 </a></li>

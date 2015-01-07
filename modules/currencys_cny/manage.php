@@ -15,5 +15,5 @@ $smarty -> assign("defaults",$defaults);
 $smarty -> assign("number_of_rows",$number_of_rows);
 
 $smarty -> assign('pageActive', 'currencys_cny');
-$smarty -> assign('active_tab', '#product');
+$smarty -> assign('active_tab', '#currency');
 ?>

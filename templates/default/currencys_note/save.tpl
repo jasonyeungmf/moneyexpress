@@ -1,19 +1,3 @@
-{*
-/*
-* Script: save.tpl
-* 	Currency(Note) save template
-*
-* Authors:
-*	 Jeson.Yang
-*
-* Last edited:
-* 	 2013-07-19
-*
-* License:
-*	 GPL v2 or above
-*/
-*}
-
 {if $saved == true }
 	<br />
 	 {$LANG.save_currency_note_success}

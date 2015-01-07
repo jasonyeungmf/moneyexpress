@@ -17,5 +17,5 @@ $smarty -> assign('customFieldLabel',$customFieldLabel);
 $smarty -> assign('pageActive', 'currencys_cny');
 $subPageActive = $_GET['action'] =="view"  ? "currency_cny_view" : "currency_cny_edit" ;
 //$smarty -> assign('subPageActive', $subPageActive);
-$smarty -> assign('active_tab', '#product');
+$smarty -> assign('active_tab', '#currency');
 ?>

@@ -18,7 +18,7 @@
 		<li><a href="#invoice"><span>{$LANG.invoice}</span></a></li>
 		<li><a href="#account"><span>{$LANG.account}</span></a></li>
 		<li><a href="#people"><span>{$LANG.people}</span></a></li>
-		<li><a href="#product"><span>{$LANG.product}</span></a></li>
+		<li><a href="#currency"><span>{$LANG.currency}</span></a></li>
 		<li style="float:right" class="menu_setting"><a href="#setting"><span>{$LANG.settings}</span></a></li>
 	</ul>
 
@@ -71,7 +71,7 @@
 		</ul>
 </div>
 
-<div id="product">
+<div id="currency">
 <ul class="subnav">
 <li><a{ if $pageActive == "currencys_note"} class="active"{/if} href="index.php?module=currencys_note&amp;view=manage">{$LANG.note}</a></li>
 

@@ -33,5 +33,5 @@ $refresh_total = isset($refresh_total) ? $refresh_total : '&nbsp';
 $smarty->assign('saved',$saved);
 
 $smarty -> assign('pageActive', 'currencys_tt');
-$smarty -> assign('active_tab', '#product');
+$smarty -> assign('active_tab', '#currency');
 ?>
