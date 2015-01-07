@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.18, created on 2013-12-18 23:28:43
+<?php /* Smarty version 2.6.18, created on 2015-01-08 01:19:09
          compiled from ../templates/default/options/index.tpl */ ?>
 <br />
 <table align="center">
@@ -41,15 +41,6 @@
 <h2>Invoice settings</h2>
 <table class="buttons" >
       <tr>
-        <td>
-    
-           <a href="index.php?module=tax_rates&amp;view=manage" class="">
-                <img src="./images/common/money_delete.png" alt="" />
-                 <?php echo $this->_tpl_vars['LANG']['tax_rates']; ?>
-
-            </a>
-
-		</td>
 		<td>
             
              <a href="index.php?module=preferences&amp;view=manage" class="">

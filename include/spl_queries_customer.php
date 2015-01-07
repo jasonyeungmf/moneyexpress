@@ -201,11 +201,11 @@ function getCustomers() {
 		#invoice total calc - end
 
 		#amount paid calc - start
-		$customer['paid'] = calc_customer_paid($customer['customer_no']);
+		//$customer['paid'] = calc_customer_paid($customer['customer_no']);
 		#amount paid calc - end
 
 		#amount owing calc - start
-		$customer['owing'] = $customer['total'] - $customer['paid'];
+		//$customer['owing'] = $customer['total'] - $customer['paid'];
 		
 		#amount owing calc - end
 		$customers[$i] = $customer;
@@ -402,6 +402,27 @@ function importFromExcel(){
 	//print_r($sql);
 	//exit;
 	}
+}
+
+//no use
+function calc_customer_total($customer_id) {
+	global $LANG;
+	global $dbh;
+	
+    $sql ="SELECT
+		coalesce(sum(ii.total),  0) AS total 
+	FROM
+		".TB_PREFIX."invoice_items ii INNER JOIN
+		".TB_PREFIX."invoices iv ON (iv.id = ii.invoice_id)
+	WHERE  
+		iv.customer_id  = :customer
+	";
+	
+    $sth = dbQuery($sql, ':customer', $customer_id) or die(end($dbh->errorInfo()));
+	$invoice = $sth->fetch();
+
+	//return number_format($invoice['total'],"#########.##");
+	return $invoice['total'];
 }
 
 function calc_customer_total_tt($customer_id) {

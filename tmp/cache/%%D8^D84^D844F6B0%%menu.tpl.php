@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.18, created on 2014-03-05 02:55:26
+<?php /* Smarty version 2.6.18, created on 2015-01-08 01:04:53
          compiled from ../templates/default/menu.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'htmlsafe', '../templates/default/menu.tpl', 3, false),)), $this); ?>
@@ -139,15 +139,6 @@ smarty_core_load_plugins(array('plugins' => array(array('modifier', 'htmlsafe', 
 	<?php if ($this->_tpl_vars['subPageActive'] == 'custom_fields_view'): ?> <li><a class="active active_subpage" href="#"><?php echo $this->_tpl_vars['LANG']['view']; ?>
 </a></li><?php endif; ?>
 	<?php if ($this->_tpl_vars['subPageActive'] == 'custom_fields_edit'): ?> <li><a class="active active_subpage" href="#"><?php echo $this->_tpl_vars['LANG']['edit']; ?>
-</a></li><?php endif; ?>
-
-<li><a <?php if ($this->_tpl_vars['pageActive'] == 'tax_rate'): ?> class="active"<?php endif; ?> href="index.php?module=tax_rates&amp;view=manage"><?php echo $this->_tpl_vars['LANG']['tax_rates']; ?>
-</a></li>
-	<?php if ($this->_tpl_vars['subPageActive'] == 'tax_rates_add'): ?> <li><a class="active active_subpage" href="#"><?php echo $this->_tpl_vars['LANG']['add']; ?>
-</a></li><?php endif; ?>
-	<?php if ($this->_tpl_vars['subPageActive'] == 'tax_rates_view'): ?> <li><a class="active active_subpage" href="#"><?php echo $this->_tpl_vars['LANG']['view']; ?>
-</a></li><?php endif; ?>
-	<?php if ($this->_tpl_vars['subPageActive'] == 'tax_rates_edit'): ?> <li><a class="active active_subpage" href="#"><?php echo $this->_tpl_vars['LANG']['edit']; ?>
 </a></li><?php endif; ?>
 
 <li><a <?php if ($this->_tpl_vars['pageActive'] == 'preference'): ?> class="active"<?php endif; ?> href="index.php?module=preferences&amp;view=manage"><?php echo $this->_tpl_vars['LANG']['invoice_preferences']; ?>

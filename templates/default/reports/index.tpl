@@ -49,7 +49,8 @@
             <a href="index.php?module=reports&view=report_sales_customers_total" class="">
                 <img src="./images/famfam/money.png" alt="" />
                 {$LANG.sales_by_customers} 
-            </a>                              </td>
+            </a>                      
+        </td>
     </tr>
 </table>
 {if $defaults.inventory == "1"}
@@ -69,21 +70,6 @@
         </tr>
     </table>
 {/if}
-<br />
-<h2>{$LANG.tax}</h2>
-<table class="buttons" >
-    <tr>
-        <td>
-
-            <a href="index.php?module=reports&view=report_tax_total" class="">
-                <img src="./images/famfam/money_delete.png" alt="" />
-                {$LANG.total_taxes}
-            </a>
-            
-
-        </td>
-    </tr>
-</table>
 <br />
 
 <h2>{$LANG.products}</h2>
@@ -123,41 +109,6 @@
 
         </td>
     </tr>
-</table>
-<br />
-
-		
-
-
-<h2>{$LANG.debtors}</h2>
-<table class="buttons" >
-    <tr>
-        <td>
-             <a href="index.php?module=reports&view=report_debtors_by_amount" class="">
-                <img src="./images/famfam/vcard.png" alt="" />
-                {$LANG.debtors_by_amount_owed}
-            </a>
-    
-    
-           <a href="index.php?module=reports&view=report_debtors_by_aging" class="">
-                <img src="./images/famfam/vcard.png" alt="" />
-                 {$LANG.debtors_by_aging_periods}
-            </a>
-            
-             <a href="index.php?module=reports&view=report_debtors_owing_by_customer" class="">
-                <img src="./images/famfam/vcard.png" alt="" />
-                 {$LANG.total_owed_per_customer}
-            </a>
-    
-    
-           <a href="index.php?module=reports&view=report_debtors_aging_total" class="">
-                <img src="./images/famfam/vcard.png" alt="" />
-                 {$LANG.total_by_aging_periods}
-            </a>
-        </td>
-    </tr>
-
- 
 </table>
 <br />
 

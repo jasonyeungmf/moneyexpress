@@ -92,11 +92,6 @@
 	{ if $subPageActive == "custom_fields_view"} <li><a class="active active_subpage" href="#">{$LANG.view}</a></li>{/if}
 	{ if $subPageActive == "custom_fields_edit"} <li><a class="active active_subpage" href="#">{$LANG.edit}</a></li>{/if}
 
-<li><a { if $pageActive == "tax_rate"} class="active"{/if} href="index.php?module=tax_rates&amp;view=manage">{$LANG.tax_rates}</a></li>
-	{ if $subPageActive == "tax_rates_add"} <li><a class="active active_subpage" href="#">{$LANG.add}</a></li>{/if}
-	{ if $subPageActive == "tax_rates_view"} <li><a class="active active_subpage" href="#">{$LANG.view}</a></li>{/if}
-	{ if $subPageActive == "tax_rates_edit"} <li><a class="active active_subpage" href="#">{$LANG.edit}</a></li>{/if}
-
 <li><a { if $pageActive == "preference"} class="active"{/if} href="index.php?module=preferences&amp;view=manage">{$LANG.invoice_preferences}</a></li>
 	{ if $subPageActive == "preferences_add"} <li><a class="active active_subpage" href="#">{$LANG.add}</a></li>{/if}
 	{ if $subPageActive == "preferences_view"} <li><a class="active active_subpage" href="#">{$LANG.view}</a></li>{/if}

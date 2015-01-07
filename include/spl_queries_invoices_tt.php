@@ -147,17 +147,6 @@ function getInvoiceTT($id) {
 	return $invoice;
 }
 
-/*
- * _invoice_tt_check_fk performs some manual FK checks on tables that the invoice
- *     table refers to.   Under normal conditions, this function will return
- *     true.  Returning false indicates that if the INSERT or UPDATE were to
- *     proceed, bad data could be written to the database.
- */
-
-// In every instance of insertion into / updation  of the invoice table, 
-// we only pick from dropdown boxes which are sourced from the respective lookup tables.
-// Hence is this function necessary to be used at all?
-
 function _invoice_tt_check_fk($biller, $customer, $preference) {
 	global $dbh;
 

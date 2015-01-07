@@ -606,7 +606,7 @@ $LANG['insert_account'] = "Insert Account";//1
 $LANG['account_id'] = "Account ID";//1
 $LANG['add_to_invoice'] = "Add To Invoice";//1
 
-// Currency notes
+//Currencys_notes
 $LANG['country'] = "Country";//1
 $LANG['symbol'] = "Symbol";//1
 $LANG['currency'] = "Currency";//1
@@ -635,7 +635,7 @@ $LANG['add_new_currencynote'] = "Add New Currency";//1
 $LANG['previous'] = "Previous";//1
 $LANG['next'] = "Next";//1
 
-// Currency T/T
+//Currencys_tt
 $LANG['tt_buy'] = "TT Buy";//1
 $LANG['tt_sell'] = "TT Sell";//1
 $LANG['amount'] = "Amount";//1
@@ -649,7 +649,7 @@ $LANG['save_currency_tt_failure'] = "Something went wrong, please try saving aga
 $LANG['update_currency_tt_rate_success'] = "Successfully updated,<br /> you will be redirected to the T/T page";//1
 $LANG['update_currency_tt_rate_failure'] = "Something went wrong, Please try updating the T/T rate again";//1
 
-// Currency T/T CNY
+//Currencys_cny
 $LANG['cny'] = "CNY";//1
 $LANG['currency_cny_add'] = "Add New Currency";//1
 $LANG['cny_rate_update'] = "CNY Rate Update";//1

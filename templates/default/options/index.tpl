@@ -36,14 +36,6 @@
 <h2>Invoice settings</h2>
 <table class="buttons" >
       <tr>
-        <td>
-    
-           <a href="index.php?module=tax_rates&amp;view=manage" class="">
-                <img src="./images/common/money_delete.png" alt="" />
-                 {$LANG.tax_rates}
-            </a>
-
-		</td>
 		<td>
             
              <a href="index.php?module=preferences&amp;view=manage" class="">

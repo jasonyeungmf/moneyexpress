@@ -160,7 +160,6 @@ include_once("./include/spl_queries_customer.php");//jeson yang
 include_once("./include/spl_queries_default.php");//jeson yang
 include_once("./include/spl_queries_biller.php");//jeson yang
 include_once("./include/spl_queries_payment_types.php");//jeson yang
-include_once("./include/spl_queries_tax.php");//jeson yang
 include_once("./include/spl_queries_preference.php");//jeson yang
 include_once("./include/spl_queries_calculation_types.php");//jeson yang
 include_once("./include/spl_queries_invoices_tt.php");//jeson yang

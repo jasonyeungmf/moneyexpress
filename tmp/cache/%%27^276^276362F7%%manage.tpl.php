@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.18, created on 2013-12-18 22:42:29
+<?php /* Smarty version 2.6.18, created on 2015-01-08 01:16:48
          compiled from ../templates/default/system_defaults/manage.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'htmlsafe', '../templates/default/system_defaults/manage.tpl', 4, false),)), $this); ?>
@@ -16,13 +16,6 @@ smarty_core_load_plugins(array('plugins' => array(array('modifier', 'htmlsafe', 
 " alt="<?php echo $this->_tpl_vars['LANG']['edit']; ?>
 " /></a></td><td class="details_screen"><?php echo $this->_tpl_vars['LANG']['default_customer']; ?>
 </td><td><?php echo ((is_array($_tmp=$this->_tpl_vars['defaultCustomer']['name'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
-</td>
-	</tr>
-	<tr>
-		<td class="details_screen"><a href='index.php?module=system_defaults&amp;view=edit&amp;submit=tax'><img src="images/common/edit.png" title="<?php echo $this->_tpl_vars['LANG']['edit']; ?>
-" alt="<?php echo $this->_tpl_vars['LANG']['edit']; ?>
-" /></a></td><td class="details_screen"><?php echo $this->_tpl_vars['LANG']['default_tax']; ?>
-</td><td><?php echo ((is_array($_tmp=$this->_tpl_vars['defaultTax']['tax_description'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
 </td>
 	</tr>
 	<tr>
@@ -84,22 +77,6 @@ smarty_core_load_plugins(array('plugins' => array(array('modifier', 'htmlsafe', 
 " alt="<?php echo $this->_tpl_vars['LANG']['edit']; ?>
 " /></a></td><td class="details_screen"><?php echo $this->_tpl_vars['LANG']['language']; ?>
 </td><td><?php echo ((is_array($_tmp=$this->_tpl_vars['defaultLanguage'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
-</td>
-	</tr>
-	<tr>
-		<td class="details_screen"><a href='index.php?module=system_defaults&amp;view=edit&amp;submit=tax_per_line_item'><img src="images/common/edit.png" title="<?php echo $this->_tpl_vars['LANG']['edit']; ?>
-" alt="<?php echo $this->_tpl_vars['LANG']['edit']; ?>
-" /></a></td><td class="details_screen"><?php echo $this->_tpl_vars['LANG']['number_of_taxes_per_line_item']; ?>
-</td><td><?php echo ((is_array($_tmp=$this->_tpl_vars['defaults']['tax_per_line_item'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
-</td>
-	</tr>
-	<tr>
-		<td class="details_screen"><a href='index.php?module=system_defaults&amp;view=edit&amp;submit=inventory'><img src="images/common/edit.png" title="<?php echo $this->_tpl_vars['LANG']['edit']; ?>
-" alt="<?php echo $this->_tpl_vars['LANG']['edit']; ?>
-" /></a></td><td class="details_screen"><?php echo $this->_tpl_vars['LANG']['inventory']; ?>
- 
-		</td>
-		<td><?php echo ((is_array($_tmp=$this->_tpl_vars['defaultInventory'])) ? $this->_run_mod_handler('htmlsafe', true, $_tmp) : htmlsafe($_tmp)); ?>
 </td>
 	</tr>
 	<tr>

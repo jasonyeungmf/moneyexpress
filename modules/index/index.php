@@ -1,11 +1,6 @@
 <?php
 
-//stop the direct browsing to this file - let index.php handle which files get displayed
 checkLogin();
-
-$debtor = getTopDebtor();
-$customer = getTopCustomer();
-$biller = getTopBiller();
 
 $accounts = getAccounts();
 $billers = getBillers();
@@ -25,12 +20,9 @@ if ($billers == null OR $customers == null OR $preferences == null)
 $smarty -> assign("mysql",$mysql);
 $smarty -> assign("db_server",$db_server);
 
-$smarty -> assign("biller", $biller);
 $smarty -> assign("billers", $billers);
-$smarty -> assign("customer", $customer);
 $smarty -> assign("customers", $customers);
 $smarty -> assign("preferences", $preferences);
-$smarty -> assign("debtor", $debtor);
 $smarty -> assign("account", $account);
 $smarty -> assign("accounts", $accounts);
 

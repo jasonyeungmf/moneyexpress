@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.18, created on 2014-02-26 01:04:24
+<?php /* Smarty version 2.6.18, created on 2015-01-08 02:22:12
          compiled from ../templates/default/reports/index.tpl */ ?>
 <!-- Welcome message - end -->
 <!-- Do stuff menu  - start -->
@@ -40,7 +40,8 @@
                 <img src="./images/famfam/money.png" alt="" />
                 <?php echo $this->_tpl_vars['LANG']['sales_by_customers']; ?>
  
-            </a>                              </td>
+            </a>                      
+        </td>
     </tr>
 </table>
 <?php if ($this->_tpl_vars['defaults']['inventory'] == '1'): ?>
@@ -62,23 +63,6 @@
         </tr>
     </table>
 <?php endif; ?>
-<br />
-<h2><?php echo $this->_tpl_vars['LANG']['tax']; ?>
-</h2>
-<table class="buttons" >
-    <tr>
-        <td>
-
-            <a href="index.php?module=reports&view=report_tax_total" class="">
-                <img src="./images/famfam/money_delete.png" alt="" />
-                <?php echo $this->_tpl_vars['LANG']['total_taxes']; ?>
-
-            </a>
-            
-
-        </td>
-    </tr>
-</table>
 <br />
 
 <h2><?php echo $this->_tpl_vars['LANG']['products']; ?>
@@ -123,46 +107,6 @@
 
         </td>
     </tr>
-</table>
-<br />
-
-		
-
-
-<h2><?php echo $this->_tpl_vars['LANG']['debtors']; ?>
-</h2>
-<table class="buttons" >
-    <tr>
-        <td>
-             <a href="index.php?module=reports&view=report_debtors_by_amount" class="">
-                <img src="./images/famfam/vcard.png" alt="" />
-                <?php echo $this->_tpl_vars['LANG']['debtors_by_amount_owed']; ?>
-
-            </a>
-    
-    
-           <a href="index.php?module=reports&view=report_debtors_by_aging" class="">
-                <img src="./images/famfam/vcard.png" alt="" />
-                 <?php echo $this->_tpl_vars['LANG']['debtors_by_aging_periods']; ?>
-
-            </a>
-            
-             <a href="index.php?module=reports&view=report_debtors_owing_by_customer" class="">
-                <img src="./images/famfam/vcard.png" alt="" />
-                 <?php echo $this->_tpl_vars['LANG']['total_owed_per_customer']; ?>
-
-            </a>
-    
-    
-           <a href="index.php?module=reports&view=report_debtors_aging_total" class="">
-                <img src="./images/famfam/vcard.png" alt="" />
-                 <?php echo $this->_tpl_vars['LANG']['total_by_aging_periods']; ?>
-
-            </a>
-        </td>
-    </tr>
-
- 
 </table>
 <br />
 
