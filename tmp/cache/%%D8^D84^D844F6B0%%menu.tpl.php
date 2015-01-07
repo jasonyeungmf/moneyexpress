@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.18, created on 2015-01-08 01:04:53
+<?php /* Smarty version 2.6.18, created on 2015-01-08 03:13:03
          compiled from ../templates/default/menu.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'htmlsafe', '../templates/default/menu.tpl', 3, false),)), $this); ?>
@@ -131,7 +131,7 @@ smarty_core_load_plugins(array('plugins' => array(array('modifier', 'htmlsafe', 
 	<?php if ($this->_tpl_vars['subPageActive'] == 'setting_extensions'): ?> <li><a class="active active_subpage" href="#"><?php echo $this->_tpl_vars['LANG']['extensions']; ?>
 </a></li><?php endif; ?>
 
-<li><a <?php if ($this->_tpl_vars['pageActive'] == 'system_default'): ?> class="active"<?php endif; ?> href="index.php?module=system_defaults&amp;view=manage"><?php echo $this->_tpl_vars['LANG']['system_preferences']; ?>
+<li><a <?php if ($this->_tpl_vars['pageActive'] == 'system_default'): ?> class="active"<?php endif; ?> href="index.php?module=system_defaults&amp;view=manage"><?php echo $this->_tpl_vars['LANG']['system_defaults']; ?>
 </a></li>
 
 <li><a <?php if ($this->_tpl_vars['pageActive'] == 'custom_field'): ?> class="active"<?php endif; ?> href="index.php?module=custom_fields&amp;view=manage"><?php echo $this->_tpl_vars['LANG']['custom_fields_upper']; ?>

@@ -17,12 +17,10 @@ foreach($languages as $language) {
 $smarty -> assign("defaults", getSystemDefaults());
 $smarty -> assign("defaultBiller", getDefaultBiller());
 $smarty -> assign("defaultCustomer", getDefaultCustomer());
-$smarty -> assign("defaultTax", getDefaultTax());
 $smarty -> assign("defaultPreference", getDefaultPreference());
 $smarty -> assign("defaultPaymentType", getDefaultPaymentType());
 $smarty -> assign("defaultDelete", getDefaultDelete());
 $smarty -> assign("defaultLogging", getDefaultLogging());
-$smarty -> assign("defaultInventory", getDefaultInventory());
 $smarty -> assign("defaultLanguage", $lang);
 $smarty -> assign("defaultTradingType", getDefaultTradingType());//jeson yang
 

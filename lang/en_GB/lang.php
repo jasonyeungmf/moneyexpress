@@ -747,3 +747,6 @@ $LANG['money_express_system'] = "Money Express System";//1
 $LANG['powered_by_jy'] = "Powered by W.F.Yang";//1
 
 $LANG['money_express'] = "Money Express";//1
+
+//system_defaults
+$LANG['system_defaults'] = "System Defaults";//1
