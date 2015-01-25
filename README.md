@@ -7,7 +7,7 @@
 	<li>Flexigrid</li>
 	<li>Jquery</li>
 	<li>MySQL</li>
-	<li>et.</li>
+	<li>etc./li>
 </ul>
 
 <img src="https://github.com/jesonyang001/moneyexpress/blob/master/images/money_exchange_system.jpg" alt="Money express screenshot" style="width:960px;height:459px">
