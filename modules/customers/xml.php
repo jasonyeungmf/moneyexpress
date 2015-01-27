@@ -136,21 +136,16 @@ function sql($type='', $start, $dir, $sort, $rp, $page )
 	
 		$result = dbQuery($sql, ':domain_id', $auth_session->domain_id) or die(htmlsafe(end($dbh->errorInfo())));
 		return $result;
-		
-}	
+}
 
 $sth = sql('', $start, $dir, $sort, $rp, $page);
 $sth_count_rows = sql('count', $start, $dir, $sort, $rp, $page);
-
 $customers = $sth->fetchAll(PDO::FETCH_ASSOC);
-
 $count = $sth_count_rows->rowCount();
-
 
 	$xml .= "<rows>";
 	$xml .= "<page>$page</page>";
-	$xml .= "<total>$count</total>";
-	
+	$xml .= "<total>$count</total>";	
 	foreach ($customers as $row) {
 		$xml .= "<row customer_no='".$row['customer_no']."'>";
 		$xml .= "<cell><![CDATA[
@@ -158,7 +153,16 @@ $count = $sth_count_rows->rowCount();
 			<a class='index_table' title='$LANG[edit] $LANG[customer] ".$row['name']."' href='index.php?module=customers&view=details&customer_no=$row[customer_no]&action=edit'><img src='images/common/edit.png' height='16' border='-5px' padding='-4px' valign='bottom' /></a>
 		]]></cell>";
 		$xml .= "<cell><![CDATA[".$row['customer_no']."]]></cell>";
-		$xml .= "<cell><![CDATA[<img src='images/id_document/".$row['id_document']."' height='17' alt='".$row['id_document']."'/>]]></cell>";
+		
+		//$xml .= "<cell><![CDATA[<img src='images/id_document/".$row['id_document']."' height='17' alt='".$row['id_document']."'/>]]></cell>";
+
+		if(file_exists('images/id_document/' . $row['id_document'])) {
+			$xml .= "<cell><![CDATA[".$row['id_document']."--Yes]]></cell>";
+		}
+		else {
+			$xml .= "<cell><![CDATA[".$row['id_document']."]]></cell>";
+		}
+		
 		$xml .= "<cell><![CDATA[".$row['name_attn']."]]></cell>";
 		$xml .= "<cell><![CDATA[".$row['id_no']."]]></cell>";
 		$xml .= "<cell><![CDATA[".$row['mobile_phone_fax']."]]></cell>";
@@ -166,6 +170,7 @@ $count = $sth_count_rows->rowCount();
 		$xml .= "<cell><![CDATA[".$row['address']."]]></cell>";
 		$xml .= "<cell><![CDATA[".$row['notes']."]]></cell>";
 		$xml .= "<cell><![CDATA[".siLocal::number_trim($row['customer_total'])."]]></cell>";
+
 		if ($row['enabled']==$LANG['enabled']) {
 			$xml .= "<cell><![CDATA[<img src='images/common/tick.png' alt='".$row['enabled']."' title='".$row['enabled']."' />]]></cell>";				
 		}	
@@ -177,4 +182,4 @@ $count = $sth_count_rows->rowCount();
 	$xml .= "</rows>";
 
 echo $xml;
-?> 
+?>
