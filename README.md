@@ -19,4 +19,6 @@ Include 4 modules:
 	<li>Account manage(T/T)</li>
 	<li>Role manage(user,staff,customer)</li>
 	<li>Product manage(note,T/T)</li>
-</ul>
+i</ul>
+
+by Jason
